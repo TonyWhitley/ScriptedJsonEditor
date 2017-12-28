@@ -1,0 +1,14 @@
+{"job1":
+	{
+	"filepath": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\player\\player.json",
+
+	"edits": {
+		"Graphic Options":{
+		"Track Detail": 1,  
+		"#": "0=Low 1=Medium 2=High 3=Full",
+		"Texture Filter": 4,
+		"#": "0, bilinear, 1, trilinear, 2, X2 AF, 3, X4 AF, 4, X8 AF, 5, X16 AF"
+		}
+	  }
+	}
+}
