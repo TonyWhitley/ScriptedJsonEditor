@@ -34,6 +34,7 @@
     <Folder Include="Tests\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="makeexe.bat" />
     <Content Include="nosetestcmd.bat" />
     <Content Include="requirements.txt" />
     <Content Include="Tests\jobs_test1.json" />

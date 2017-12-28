@@ -262,3 +262,7 @@ __pycache__/
 
 # Python Virtual Environment
 env/
+/ScriptedJsonEditor/build/ScriptedJsonEditor/localpycos
+/ScriptedJsonEditor/build/ScriptedJsonEditor
+/ScriptedJsonEditor/ScriptedJsonEditor.exe
+/ScriptedJsonEditor/ScriptedJsonEditor.spec
