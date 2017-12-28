@@ -11,11 +11,11 @@ An example file is
 
         "edits": {
              "Graphic Options":{
-             "Track Detail": 1,  
-             "Track Detail#": "0=Low 1=Medium 2=High 3=Full",
-             "Texture Filter": 4,
-             "Texture Filter#": "0, bilinear, 1, trilinear, 2, X2 AF, 3, X4 AF, 4, X8 AF, 5, X16 AF"
-             }
-           }
+                 "Track Detail": 1,  
+                 "Track Detail#": "0=Low 1=Medium 2=High 3=Full",
+                 "Texture Filter": 4,
+                 "Texture Filter#": "0, bilinear, 1, trilinear, 2, X2 AF, 3, X4 AF, 4, X8 AF, 5, X16 AF"
+                }
+            }
         }
     }
