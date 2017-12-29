@@ -268,3 +268,4 @@ env/
 /ScriptedJsonEditor/ScriptedJsonEditor.spec
 /ScriptedJsonEditor/envPyLint/.ptvs
 /ScriptedJsonEditor/envPyLint
+/ScriptedJsonEditor/command_line_Argparse_failed.py

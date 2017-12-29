@@ -1,5 +1,6 @@
 import unittest
 import ScriptedJsonEditor
+from test_jobs import jobsJSONstr2 # 2 jobs
 
 filepath = r'c:\Program Files (x86)\Steam\steamapps\common\rFactor 2\UserData\player\player.json'
 
@@ -56,7 +57,11 @@ playerJSONstr = r"""
                             "Car Vibration Mult1":0,
                             "Car Vibration Mult1#":"Primary engine vibration multiplier affects position of cameras attached directly to the car",
                             "Car Vibration Mult2":0,
-                            "Car Vibration Mult2#":"Secondary engine vibration multiplier affects orientation of cameras attached directly to the car"
+                            "Car Vibration Mult2#":"Secondary engine vibration multiplier affects orientation of cameras attached directly to the car",
+                            "Track Detail": 0,  
+		                        "Track Detail#": "0=Low 1=Medium 2=High 3=Full",
+                            "Shadows": 0,
+		                        "Shadows#": "0=Low 1=Medium 2=High 3=Full"
   }
 }
 """
@@ -114,6 +119,9 @@ class Test_test_JSON(unittest.TestCase):
         assert P_JSON["Graphic Options"]["Allow HUD in cockpit"] != None
         assert P_JSON["Graphic Options"]["Allow HUD in cockpit"], P_JSON["Graphic Options"]["Allow HUD in cockpit"]
 
+        # before editing
+        assert _JSNO_O._get_value("Graphic Options", "Allow Letterboxing") == True, _JSNO_O._get_value("Graphic Options", "Allow Letterboxing")
+
         # This is only what run_jobs() does 
         for job in jobs:
           for main_key in job["edits"]:
@@ -139,9 +147,39 @@ class Test_test_JSON(unittest.TestCase):
         assert P_JSON["Graphic Options"]["Allow HUD in cockpit"] != None
         assert P_JSON["Graphic Options"]["Allow HUD in cockpit"], P_JSON["Graphic Options"]["Allow HUD in cockpit"]
 
+        # before job
+        assert _JSNO_O._get_value("Graphic Options", "Allow Letterboxing") == True, _JSNO_O._get_value("Graphic Options", "Allow Letterboxing")
+
         _JSNO_O.run_jobs(jobs)
 
         assert _JSNO_O._get_value("Graphic Options", "Allow Letterboxing") == False, _JSNO_O._get_value("Graphic Options", "Allow Letterboxing")
+        
+    def test_run_2jobs(self):
+        _jsonJob = ScriptedJsonEditor.JsonFile()
+        P_JSON = _jsonJob._load(jobsJSONstr2)
+        assert P_JSON["job1"] != None
+        assert P_JSON["job1"]["filepath"] != None
+        assert len(P_JSON["job1"]["edits"]) > 0, P_JSON["job1"]["edits"]
+        jobs = _jsonJob.get_jobs()
+        assert len(jobs) > 0
+        assert jobs[0]["filepath"] != None
+        assert len(jobs[0]["edits"]) > 0, jobs[0]["edits"]
+        
+        _JSNO_O = ScriptedJsonEditor.JsonFile()
+        P_JSON = _JSNO_O._load(playerJSONstr)
+        assert P_JSON["Graphic Options"] != None
+        assert P_JSON["Graphic Options"]["Allow HUD in cockpit"] != None
+        assert P_JSON["Graphic Options"]["Allow HUD in cockpit"], P_JSON["Graphic Options"]["Allow HUD in cockpit"]
+
+        # before job 1
+        assert _JSNO_O._get_value("Graphic Options", "Track Detail") == 0, _JSNO_O._get_value("Graphic Options", "Track Detail")
+        # before job 2
+        assert _JSNO_O._get_value("Graphic Options", "Shadows") == 0, _JSNO_O._get_value("Graphic Options", "Shadows")
+
+        _JSNO_O.run_jobs(jobs)
+
+        assert _JSNO_O._get_value("Graphic Options", "Track Detail") == 1, _JSNO_O._get_value("Graphic Options", "Track Detail")
+        assert _JSNO_O._get_value("Graphic Options", "Shadows") == 1, _JSNO_O._get_value("Graphic Options", "Shadows")
         
 if __name__ == '__main__':
     unittest.main()
