@@ -10,5 +10,5 @@ if exist env\scripts (
 	) else (
 	rem No virtualenv
 	)
-REM fails to get pypiwin32 on AppVeyor ####  if not exist env\scripts	pip install -r requirements.txt
+REM fails to get pypiwin32 on AppVeyor ####  if not exist env\scripts 	pip install -r requirements.txt
 
