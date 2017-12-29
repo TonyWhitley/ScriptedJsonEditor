@@ -13,6 +13,7 @@ class CommandLine(object):
     """ get the command line args """
     return self.jobs_file
 
+  # pylint: disable=no-self-use
   def get_options(self):
     """ when there are some """
     return None

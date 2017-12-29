@@ -10,6 +10,9 @@
 """
 import json
 
+from backups import Backups
+from command_line import CommandLine
+
 class JsonFile():
   """
   Read, write and edit a JSON file.
@@ -33,8 +36,16 @@ class JsonFile():
     except IOError:
       print('Failed to open JSON file "%s"' % filepath)
 
-  def write(self, filepath):
-    """ Write the JSON file, maintaining the rFactor 2 JSON "style" """
+  def backup_file(self):
+    """ Move file to datestamped file in temp folder """
+    _backupO = Backups()
+    _backupFilename = _backupO.backup_file(self.filepath)
+    print('Original file %s backed up to %s' % (self.filepath, _backupFilename))
+
+  def write(self, _filepath = None):
+    """ Write the JSON file, maintaining the rFactor 2 JSON "style" 
+    _filepath is for unit testing
+    """
     _json_txt = json.dumps(self.json_dict, indent=2).splitlines()
     # json.dumps() puts a space after the :  rF2 doesn't
     # So strip it out to make it easier to compare before and after
@@ -48,7 +59,9 @@ class JsonFile():
         _line = _line[:_colon] + _line[_colon:].replace('/', r'\/')
       _whitespace_removed.append(_line)
 
-    with open(filepath, 'w') as f_p:
+    if _filepath == None:
+      _filepath = self.filepath
+    with open(_filepath, 'w') as f_p:
       f_p.write('\n'.join(_whitespace_removed))
 
   def edit(self, main_key, sub_key, new_value):
@@ -99,9 +112,35 @@ class JsonFile():
       print('Main key "%s" not in JSON dict' % main_key)
       return None
 
+def main():
+  """ Main """
+  print('Scripted JSON Editor V0.1.11\n')
+  _clo = CommandLine()
+  jobsFile = _clo.get_args()
+  # Execute
+  # For each job in jobsFile
+  #   read 'filepath'
+  #   do the edits
+  #   if successful:
+  #     backup 'filepath'
+  #     save new contents to 'filepath
 
+  _JSNO_O = JsonFile()
+  _jobs = _JSNO_O.read(jobsFile)
+
+  # this needs tidying. Why does 'job' only contain the name of the job
+  # and not the associated data???
+  if _jobs:
+    for job in _jobs:
+      _PJSNO_O = JsonFile()
+      _j = _jobs[job]
+      _filepath = _j["filepath"]
+      _PJSNO_O.read(_filepath)
+      for main_key in _j["edits"]:
+        for item in _j["edits"][main_key]:
+          _PJSNO_O.edit(main_key, item, _j["edits"][main_key][item])
+      _PJSNO_O.backup_file()
+      _PJSNO_O.write()
 
 if __name__ == '__main__':
-  # Read command line
-  # Execute
-  pass
+  main()

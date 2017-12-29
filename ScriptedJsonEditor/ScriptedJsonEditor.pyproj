@@ -11,7 +11,7 @@
     <OutputPath>.</OutputPath>
     <Name>ScriptedJsonEditor</Name>
     <RootNamespace>ScriptedJsonEditor</RootNamespace>
-    <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
+    <InterpreterId>MSBuild|envPyLint|$(MSBuildProjectFullPath)</InterpreterId>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
     <CommandLineArguments>
     </CommandLineArguments>
@@ -28,10 +28,16 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="backups.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="command_line.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ScriptedJsonEditor.py" />
+    <Compile Include="Tests\test_backups.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Tests\test_command_line.py">
       <SubType>Code</SubType>
     </Compile>
@@ -39,6 +45,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\test_JSON.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tests\test_main.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Tests\test_whole_program.py">
@@ -49,6 +58,7 @@
     <Folder Include="Tests\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="JsonEditorJobs.json" />
     <Content Include="makeexe.bat" />
     <Content Include="nosetestcmd.bat" />
     <Content Include="pylintrc" />
