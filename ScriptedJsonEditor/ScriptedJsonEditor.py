@@ -1,3 +1,5 @@
+# pylint: disable=invalid-name
+# Warning		Module name "ScriptedJsonEditor" doesn't conform to snake_case naming style
 
 """
  Scripted JSON editor to make changes for example to rFactor 2 player.json
@@ -9,23 +11,34 @@
 import json
 
 class JsonFile():
+  """
+  Read, write and edit a JSON file.
+  Also get a list of keys whose name contains "job" and use those to
+  edit the file.
+  Maintains rFactor 2 JSON "style" - e.g. escaping /
+  """
+  def __init__(self):
+    self.json_dict = None
+    self.filepath = None
   def read(self, filepath):
+    """ Read the JSON file """
     try:
-      with open(filepath) as fp:
+      with open(filepath) as f_p:
         try:
-          self.JsonDict = json.load(fp)
+          self.json_dict = json.load(f_p)
           self.filepath = filepath
-          return self.JsonDict
-        except:
+          return self.json_dict
+        except ValueError:
           print('JSON content error in "%s"' % filepath)
-    except:
+    except IOError:
       print('Failed to open JSON file "%s"' % filepath)
 
   def write(self, filepath):
-    _json_txt = json.dumps(self.JsonDict, indent = 2).splitlines()
+    """ Write the JSON file, maintaining the rFactor 2 JSON "style" """
+    _json_txt = json.dumps(self.json_dict, indent=2).splitlines()
     # json.dumps() puts a space after the :  rF2 doesn't
     # So strip it out to make it easier to compare before and after
-    _whitespaceRemoved = []
+    _whitespace_removed = []
     for _line in _json_txt:
       _line = _line.replace(': ', ':', 1)
 
@@ -33,52 +46,52 @@ class JsonFile():
       _colon = _line.find(':')
       if _colon:
         _line = _line[:_colon] + _line[_colon:].replace('/', r'\/')
-      _whitespaceRemoved.append(_line)
+      _whitespace_removed.append(_line)
 
-    with open(filepath, 'w') as fp:
-      fp.write('\n'.join(_whitespaceRemoved))
-  
-  def edit(self, main_key, sub_key, newValue):
-    """ Change the value of 'main_key''sub_key' in the JSON file to 'newValue' """
+    with open(filepath, 'w') as f_p:
+      f_p.write('\n'.join(_whitespace_removed))
+
+  def edit(self, main_key, sub_key, new_value):
+    """ Change the value of 'main_key''sub_key' in the JSON file to 'new_value' """
     if '#' in sub_key:
       pass # it's a "comment main_key"
     else:
       try:
-        self.JsonDict[main_key][sub_key] = newValue
-      except:
+        self.json_dict[main_key][sub_key] = new_value
+      except KeyError:
         print('No such sub key "%s":"%s"' % (main_key, sub_key))
-    pass
 
-  def getJobs(self):
+  def get_jobs(self):
     """
     Get the list of jobs in this JSON dict
     """
-    jobs = [self.JsonDict[key] for key in self.JsonDict if 'job' in key.lower()]
+    jobs = [self.json_dict[key] for key in self.json_dict if 'job' in key.lower()]
     return jobs
 
-  def runJobs(self, jobs):
+  def run_jobs(self, jobs):
     """
     Execute the list of jobs in this JSON dict
     """
     for job in jobs:
       for main_key in job["edits"]:
-        for item in job["edits"][main_key]:
-          self.edit(main_key, item, job["edits"][main_key][item])
+        for _item in job["edits"][main_key]:
+          self.edit(main_key, _item, job["edits"][main_key][_item])
 
-  def _load(self, JSONstr):
+  def _load(self, json_str):
     """ For unit tests - load the JSON dict with values to be edited """
     try:
-      self.JsonDict = json.loads(JSONstr)
-      self.filepath = filepath
-      return self.JsonDict
-    except:
+      self.json_dict = json.loads(json_str)
+      self.filepath = FILEPATH
+      return self.json_dict
+    except ValueError:
       print('JSON string content error in _load()')
 
   def _get_value(self, main_key, sub_key):
     """ For unit tests - get value of dict key """
-    if main_key in self.JsonDict:
-      if sub_key in self.JsonDict[main_key]:
-        return self.JsonDict[main_key][sub_key]
+     # pylint: disable=no-else-return
+    if main_key in self.json_dict:
+      if sub_key in self.json_dict[main_key]:
+        return self.json_dict[main_key][sub_key]
       else:
         print('Sub key "%s" not in main key "%s"' % (sub_key, main_key))
         return None
@@ -88,27 +101,28 @@ class JsonFile():
 
 
 
-filepath = r'c:\Program Files (x86)\Steam\steamapps\common\rFactor 2\UserData\player\player.json'
+FILEPATH = r'c:\Program Files (x86)\Steam\steamapps\common\rFactor 2\UserData\player\player.json'
 
-editsExample = [
-    # General graphics
-    ("Graphic Options", "Track Detail", 1),  # "0=Low 1=Medium 2=High 3=Full"
-    ("Graphic Options", "Player Detail", 1),
-    ("Graphic Options", "Opponent Detail", 1),
-    ("Graphic Options", "Texture Detail", 1),
-    ("Graphic Options", "Texture Filter", 4),  # "0, bilinear, 1, trilinear, 2, X2 AF, 3, X4 AF, 4, X8 AF, 5, X16 AF"
-    ]
+EDITS_EXAMPLE = [
+  # General graphics
+  ("Graphic Options", "Track Detail", 1),  # "0=Low 1=Medium 2=High 3=Full"
+  ("Graphic Options", "Player Detail", 1),
+  ("Graphic Options", "Opponent Detail", 1),
+  ("Graphic Options", "Texture Detail", 1),
+  ("Graphic Options", "Texture Filter", 4),  # "0, bilinear, 1, trilinear, 2,
+                                             # X2 AF, 3, X4 AF, 4, X8 AF, 5, X16 AF"
+  ]
 
 if __name__ == '__main__':
-  _jsonO = JsonFile()
-  pJson = _jsonO.read(filepath)
+  _JSNO_O = JsonFile()
+  P_JSON = _JSNO_O.read(FILEPATH)
   ##################################
   # change values as required
   ##################################
-  for key, item, newValue in editsExample:
-    _jsonO.edit(key, item, newValue)
-  
-  _filepath = filepath + '.edited'
-  _jsonO.write(_filepath)
+  for key, item, newValue in EDITS_EXAMPLE:
+    _JSNO_O.edit(key, item, newValue)
+
+  _FILEPATH = FILEPATH + '.edited'
+  _JSNO_O.write(_FILEPATH)
 
   ########################## Now, what does rF2 think of the result?

@@ -266,3 +266,5 @@ env/
 /ScriptedJsonEditor/build/ScriptedJsonEditor
 /ScriptedJsonEditor/ScriptedJsonEditor.exe
 /ScriptedJsonEditor/ScriptedJsonEditor.spec
+/ScriptedJsonEditor/envPyLint/.ptvs
+/ScriptedJsonEditor/envPyLint

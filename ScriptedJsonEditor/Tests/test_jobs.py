@@ -30,29 +30,29 @@ JSONstr1 = r"""
 class Test_test_jobs(unittest.TestCase):
     def test_read_0(self):
         filepath = this_path('no_such_file.json')
-        _jsonO = ScriptedJsonEditor.JsonFile()
-        pJson = _jsonO.read(filepath)
-        assert pJson == None
+        _JSNO_O = ScriptedJsonEditor.JsonFile()
+        P_JSON = _JSNO_O.read(filepath)
+        assert P_JSON == None
     def test_read_file(self):
         filepath = this_path('jobs_test1.json')
-        _jsonO = ScriptedJsonEditor.JsonFile()
-        pJson = _jsonO.read(filepath)
-        assert pJson["job1"] != None
-        assert pJson["job1"]["filepath"] != None
-        assert len(pJson["job1"]["edits"]) > 0, pJson["job1"]["edits"]
+        _JSNO_O = ScriptedJsonEditor.JsonFile()
+        P_JSON = _JSNO_O.read(filepath)
+        assert P_JSON["job1"] != None
+        assert P_JSON["job1"]["filepath"] != None
+        assert len(P_JSON["job1"]["edits"]) > 0, P_JSON["job1"]["edits"]
     def test_load_JSON_str(self):
-        _jsonO = ScriptedJsonEditor.JsonFile()
-        pJson = _jsonO._load(JSONstr1)
-        assert pJson["job1"] != None
-        assert pJson["job1"]["filepath"] != None
-        assert len(pJson["job1"]["edits"]) > 0, pJson["job1"]["edits"]
+        _JSNO_O = ScriptedJsonEditor.JsonFile()
+        P_JSON = _JSNO_O._load(JSONstr1)
+        assert P_JSON["job1"] != None
+        assert P_JSON["job1"]["filepath"] != None
+        assert len(P_JSON["job1"]["edits"]) > 0, P_JSON["job1"]["edits"]
     def test_get_jobs(self):
-        _jsonO = ScriptedJsonEditor.JsonFile()
-        pJson = _jsonO._load(JSONstr1)
-        assert pJson["job1"] != None
-        assert pJson["job1"]["filepath"] != None
-        assert len(pJson["job1"]["edits"]) > 0, pJson["job1"]["edits"]
-        jobs = _jsonO.getJobs()
+        _JSNO_O = ScriptedJsonEditor.JsonFile()
+        P_JSON = _JSNO_O._load(JSONstr1)
+        assert P_JSON["job1"] != None
+        assert P_JSON["job1"]["filepath"] != None
+        assert len(P_JSON["job1"]["edits"]) > 0, P_JSON["job1"]["edits"]
+        jobs = _JSNO_O.get_jobs()
         assert len(jobs) > 0
         assert jobs[0]["filepath"] != None
         assert len(jobs[0]["edits"]) > 0, jobs[0]["edits"]

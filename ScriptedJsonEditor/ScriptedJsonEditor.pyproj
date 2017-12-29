@@ -11,7 +11,7 @@
     <OutputPath>.</OutputPath>
     <Name>ScriptedJsonEditor</Name>
     <RootNamespace>ScriptedJsonEditor</RootNamespace>
-    <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
+    <InterpreterId>MSBuild|envPyLint|$(MSBuildProjectFullPath)</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -36,10 +36,21 @@
   <ItemGroup>
     <Content Include="makeexe.bat" />
     <Content Include="nosetestcmd.bat" />
+    <Content Include="pylintrc" />
     <Content Include="requirements.txt" />
+    <Content Include="run_PyLint.bat" />
     <Content Include="Tests\jobs_test1.json" />
   </ItemGroup>
   <ItemGroup>
+    <Interpreter Include="envPyLint\">
+      <Id>envPyLint</Id>
+      <Version>3.6</Version>
+      <Description>envPyLint (Python 3.6 (64-bit))</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X64</Architecture>
+    </Interpreter>
     <Interpreter Include="env\">
       <Id>env</Id>
       <Version>3.6</Version>

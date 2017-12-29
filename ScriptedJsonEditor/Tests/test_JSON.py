@@ -80,68 +80,68 @@ jobsJSONstr = r"""
 
 class Test_test_JSON(unittest.TestCase):
     def test_readJsonFile(self):
-        _jsonO = ScriptedJsonEditor.JsonFile()
-        pJson = _jsonO.read(filepath)
+        _JSNO_O = ScriptedJsonEditor.JsonFile()
+        P_JSON = _JSNO_O.read(filepath)
         _filepath = filepath + '.mostlySame'
-        _jsonO.write(_filepath)
+        _JSNO_O.write(_filepath)
 
     def test_editJson(self):
-        _jsonO = ScriptedJsonEditor.JsonFile()
-        pJson = _jsonO.read(filepath)
+        _JSNO_O = ScriptedJsonEditor.JsonFile()
+        P_JSON = _JSNO_O.read(filepath)
         ##################################
         # change values as required
         ##################################
         for key, item, newValue in edits:
-          _jsonO.edit(key, item, newValue)
+          _JSNO_O.edit(key, item, newValue)
   
         _filepath = filepath + '.edited'
-        _jsonO.write(_filepath)
+        _JSNO_O.write(_filepath)
 
     def test_get_jobs(self):
         _jsonJob = ScriptedJsonEditor.JsonFile()
-        pJson = _jsonJob._load(jobsJSONstr)
-        assert pJson["job1"] != None
-        assert pJson["job1"]["filepath"] != None
-        assert len(pJson["job1"]["edits"]) > 0, pJson["job1"]["edits"]
-        jobs = _jsonJob.getJobs()
+        P_JSON = _jsonJob._load(jobsJSONstr)
+        assert P_JSON["job1"] != None
+        assert P_JSON["job1"]["filepath"] != None
+        assert len(P_JSON["job1"]["edits"]) > 0, P_JSON["job1"]["edits"]
+        jobs = _jsonJob.get_jobs()
         assert len(jobs) > 0
         assert jobs[0]["filepath"] != None
         assert len(jobs[0]["edits"]) > 0, jobs[0]["edits"]
         
-        _jsonO = ScriptedJsonEditor.JsonFile()
-        pJson = _jsonO._load(playerJSONstr)
-        assert pJson["Graphic Options"] != None
-        assert pJson["Graphic Options"]["Allow HUD in cockpit"] != None
-        assert pJson["Graphic Options"]["Allow HUD in cockpit"], pJson["Graphic Options"]["Allow HUD in cockpit"]
+        _JSNO_O = ScriptedJsonEditor.JsonFile()
+        P_JSON = _JSNO_O._load(playerJSONstr)
+        assert P_JSON["Graphic Options"] != None
+        assert P_JSON["Graphic Options"]["Allow HUD in cockpit"] != None
+        assert P_JSON["Graphic Options"]["Allow HUD in cockpit"], P_JSON["Graphic Options"]["Allow HUD in cockpit"]
 
-        # This is only what runJobs() does 
+        # This is only what run_jobs() does 
         for job in jobs:
           for main_key in job["edits"]:
             for item in job["edits"][main_key]:
-              _jsonO.edit(main_key, item, job["edits"][main_key][item])
+              _JSNO_O.edit(main_key, item, job["edits"][main_key][item])
 
-        assert _jsonO._get_value("Graphic Options", "Allow Letterboxing") == False, _jsonO._get_value("Graphic Options", "Allow Letterboxing")
+        assert _JSNO_O._get_value("Graphic Options", "Allow Letterboxing") == False, _JSNO_O._get_value("Graphic Options", "Allow Letterboxing")
 
     def test_run_jobs(self):
         _jsonJob = ScriptedJsonEditor.JsonFile()
-        pJson = _jsonJob._load(jobsJSONstr)
-        assert pJson["job1"] != None
-        assert pJson["job1"]["filepath"] != None
-        assert len(pJson["job1"]["edits"]) > 0, pJson["job1"]["edits"]
-        jobs = _jsonJob.getJobs()
+        P_JSON = _jsonJob._load(jobsJSONstr)
+        assert P_JSON["job1"] != None
+        assert P_JSON["job1"]["filepath"] != None
+        assert len(P_JSON["job1"]["edits"]) > 0, P_JSON["job1"]["edits"]
+        jobs = _jsonJob.get_jobs()
         assert len(jobs) > 0
         assert jobs[0]["filepath"] != None
         assert len(jobs[0]["edits"]) > 0, jobs[0]["edits"]
         
-        _jsonO = ScriptedJsonEditor.JsonFile()
-        pJson = _jsonO._load(playerJSONstr)
-        assert pJson["Graphic Options"] != None
-        assert pJson["Graphic Options"]["Allow HUD in cockpit"] != None
-        assert pJson["Graphic Options"]["Allow HUD in cockpit"], pJson["Graphic Options"]["Allow HUD in cockpit"]
+        _JSNO_O = ScriptedJsonEditor.JsonFile()
+        P_JSON = _JSNO_O._load(playerJSONstr)
+        assert P_JSON["Graphic Options"] != None
+        assert P_JSON["Graphic Options"]["Allow HUD in cockpit"] != None
+        assert P_JSON["Graphic Options"]["Allow HUD in cockpit"], P_JSON["Graphic Options"]["Allow HUD in cockpit"]
 
-        _jsonO.runJobs(jobs)
+        _JSNO_O.run_jobs(jobs)
 
-        assert _jsonO._get_value("Graphic Options", "Allow Letterboxing") == False, _jsonO._get_value("Graphic Options", "Allow Letterboxing")
+        assert _JSNO_O._get_value("Graphic Options", "Allow Letterboxing") == False, _JSNO_O._get_value("Graphic Options", "Allow Letterboxing")
         
 if __name__ == '__main__':
     unittest.main()
