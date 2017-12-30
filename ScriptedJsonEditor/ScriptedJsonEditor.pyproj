@@ -50,6 +50,9 @@
     <Compile Include="Tests\test_main.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tests\test_test_strings.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Tests\test_whole_program.py">
       <SubType>Code</SubType>
     </Compile>

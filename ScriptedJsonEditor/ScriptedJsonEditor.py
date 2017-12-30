@@ -65,14 +65,20 @@ class JsonFile():
       f_p.write('\n'.join(_whitespace_removed))
 
   def edit(self, main_key, sub_key, new_value):
-    """ Change the value of 'main_key''sub_key' in the JSON file to 'new_value' """
+    """ 
+    Change the value of 'main_key''sub_key' in the JSON file to 'new_value'
+    May raise KeyError
+    """
     if '#' in sub_key:
       pass # it's a "comment main_key"
     else:
+      self.json_dict[main_key][sub_key] = new_value
       try:
         self.json_dict[main_key][sub_key] = new_value
-      except KeyError:
+      except e as Argument:
         print('No such sub key "%s":"%s"' % (main_key, sub_key))
+        print(Argument)
+        raise KeyError
 
   def get_jobs(self):
     """
@@ -81,14 +87,14 @@ class JsonFile():
     jobs = [self.json_dict[key] for key in self.json_dict if 'job' in key.lower()]
     return jobs
 
-  def run_jobs(self, jobs):
+  def run_edits(self, job):
     """
-    Execute the list of jobs in this JSON dict
+    Execute the job's edits on current file
+    May raise KeyError
     """
-    for job in jobs:
-      for main_key in job["edits"]:
-        for _item in job["edits"][main_key]:
-          self.edit(main_key, _item, job["edits"][main_key][_item])
+    for main_key in job["edits"]:
+      for _item in job["edits"][main_key]:
+        self.edit(main_key, _item, job["edits"][main_key][_item])
 
   def _load(self, json_str):
     """ For unit tests - load the JSON dict with values to be edited """
@@ -98,6 +104,7 @@ class JsonFile():
       return self.json_dict
     except ValueError:
       print('JSON string content error in _load()')
+      raise ValueError
 
   def _get_value(self, main_key, sub_key):
     """ For unit tests - get value of dict key """
@@ -114,16 +121,9 @@ class JsonFile():
 
 def main():
   """ Main """
-  print('Scripted JSON Editor V0.1.11\n')
+  print('Scripted JSON Editor V0.1.12\n')
   _clo = CommandLine()
   jobsFile = _clo.get_args()
-  # Execute
-  # For each job in jobsFile
-  #   read 'filepath'
-  #   do the edits
-  #   if successful:
-  #     backup 'filepath'
-  #     save new contents to 'filepath
 
   _JSNO_O = JsonFile()
   _jobs = _JSNO_O.read(jobsFile)
@@ -131,14 +131,22 @@ def main():
   # this needs tidying. Why does 'job' only contain the name of the job
   # and not the associated data???
   if _jobs:
+    # Execute
+    # For each job in jobsFile
     for job in _jobs:
       _PJSNO_O = JsonFile()
       _j = _jobs[job]
+      #   read 'filepath'
       _filepath = _j["filepath"]
       _PJSNO_O.read(_filepath)
-      for main_key in _j["edits"]:
-        for item in _j["edits"][main_key]:
-          _PJSNO_O.edit(main_key, item, _j["edits"][main_key][item])
+      #   do the edits
+      #   if successful:
+      #     backup 'filepath'
+      #     save new contents to 'filepath
+      try:
+        _PJSNO_O.run_edits(_j)
+      except KeyError:
+        break # failed, try the next job
       _PJSNO_O.backup_file()
       _PJSNO_O.write()
 

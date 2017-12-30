@@ -269,3 +269,4 @@ env/
 /ScriptedJsonEditor/envPyLint/.ptvs
 /ScriptedJsonEditor/envPyLint
 /ScriptedJsonEditor/command_line_Argparse_failed.py
+/ScriptedJsonEditor/revisionCountFromGit.py
