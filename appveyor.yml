@@ -22,4 +22,4 @@ install:
   - "path=%PATH%;%cd%"
 
 test_script:
-  - "%PYTHON%/Scripts/nosetests  --verbosity=2"
+  - "%PYTHON%/Scripts/nosetests  --verbosity=2 ScriptedJsonEditor.tests"
