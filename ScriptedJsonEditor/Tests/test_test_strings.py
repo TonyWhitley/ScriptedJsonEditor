@@ -58,6 +58,10 @@ playerJSONstr = r"""
                             "Car Vibration Mult1#":"Primary engine vibration multiplier affects position of cameras attached directly to the car",
                             "Car Vibration Mult2":0,
                             "Car Vibration Mult2#":"Secondary engine vibration multiplier affects orientation of cameras attached directly to the car",
+		                        "Shadow Blur": 4,
+		                        "Shadow Blur#": "0=Off, 1=Fast, 2=Optimal, 3=Quality",
+                            "Texture Filter": 4,
+                            "Texture Filter#": "0, bilinear, 1, trilinear, 2, X2 AF, 3, X4 AF, 4, X8 AF, 5, X16 AF",
                             "Track Detail": 0,  
 		                        "Track Detail#": "0=Low 1=Medium 2=High 3=Full",
                             "Shadows": 0,
@@ -103,7 +107,8 @@ jobsJSONstr1 = r"""
 """
 valid_JSON_strings.append(jobsJSONstr1)
 
-jobsJSONstr2 = r"""
+# Valid JSON but key name in job2 is wrong
+jobsJSONstrBadKey2 = r"""
 {"job1":
 	{
 	"filepath": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\player\\player.json",
@@ -132,7 +137,7 @@ jobsJSONstr2 = r"""
 	}
 }
 """
-valid_JSON_strings.append(jobsJSONstr2)
+valid_JSON_strings.append(jobsJSONstrBadKey2)
 
 # Valid JSON but key name is wrong
 jobsJSONstrBadKey = r"""

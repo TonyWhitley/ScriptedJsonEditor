@@ -65,8 +65,9 @@ class Test_test_JSON(unittest.TestCase):
         assert _JSNO_O._get_value("Graphic Options", "Allow Letterboxing") == False, _JSNO_O._get_value("Graphic Options", "Allow Letterboxing")
         
     def test_run_2jobs(self):
+        # Expect job2 to fail
         _jsonJob = ScriptedJsonEditor.JsonFile()
-        P_JSON = _jsonJob._load(test_test_strings.jobsJSONstr2)
+        P_JSON = _jsonJob._load(test_test_strings.jobsJSONstrBadKey2)
         assert P_JSON["job1"] != None
         assert P_JSON["job1"]["filepath"] != None
         assert len(P_JSON["job1"]["edits"]) > 0, P_JSON["job1"]["edits"]
@@ -87,8 +88,13 @@ class Test_test_JSON(unittest.TestCase):
         assert _JSNO_O._get_value("Graphic Options", "Shadows") == 0, _JSNO_O._get_value("Graphic Options", "Shadows")
 
         for job in jobs:
-          _JSNO_O.run_edits(job)
-
+          try:
+            _JSNO_O.run_edits(job)
+          except KeyError:
+            # That's expected
+            assert _JSNO_O._get_value("Graphic Options", "Shadow Blur") == 4, _JSNO_O._get_value("Graphic Options", "Shadow Blur")
+            
+        # job1 values will change, but main() will not write the new file
         assert _JSNO_O._get_value("Graphic Options", "Track Detail") == 1, _JSNO_O._get_value("Graphic Options", "Track Detail")
         assert _JSNO_O._get_value("Graphic Options", "Shadows") == 1, _JSNO_O._get_value("Graphic Options", "Shadows")
         

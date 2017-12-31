@@ -44,7 +44,7 @@ class Test_test_jobs(unittest.TestCase):
 
     def test_load_JSON_str_2jobs(self):
         _JSNO_O = ScriptedJsonEditor.JsonFile()
-        P_JSON = _JSNO_O._load(test_test_strings.jobsJSONstr2)
+        P_JSON = _JSNO_O._load(test_test_strings.jobsJSONstrBadKey2)
         assert P_JSON["job1"] != None
         assert P_JSON["job1"]["filepath"] != None
         assert len(P_JSON["job1"]["edits"]) > 0, P_JSON["job1"]["edits"]
@@ -53,7 +53,7 @@ class Test_test_jobs(unittest.TestCase):
         assert len(P_JSON["job2"]["edits"]) > 0, P_JSON["job2"]["edits"]
     def test_get_2jobs(self):
         _JSNO_O = ScriptedJsonEditor.JsonFile()
-        P_JSON = _JSNO_O._load(test_test_strings.jobsJSONstr2)
+        P_JSON = _JSNO_O._load(test_test_strings.jobsJSONstrBadKey2)
         assert P_JSON["job1"] != None
         assert P_JSON["job1"]["filepath"] != None
         assert len(P_JSON["job1"]["edits"]) > 0, P_JSON["job1"]["edits"]
