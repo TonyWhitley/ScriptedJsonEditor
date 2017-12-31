@@ -23,48 +23,48 @@ class Test_test_jobs(unittest.TestCase):
         _JSNO_O = ScriptedJsonEditor.JsonFile()
         P_JSON = _JSNO_O.read(filepath)
         assert P_JSON["job1"] != None
-        assert P_JSON["job1"]["filepath"] != None
+        assert P_JSON["job1"]["JSONfileToBeEdited"] != None
         assert len(P_JSON["job1"]["edits"]) > 0, P_JSON["job1"]["edits"]
     def test_load_JSON_str(self):
         _JSNO_O = ScriptedJsonEditor.JsonFile()
         P_JSON = _JSNO_O._load(test_test_strings.jobsJSONstr1)
         assert P_JSON["job1"] != None
-        assert P_JSON["job1"]["filepath"] != None
+        assert P_JSON["job1"]["JSONfileToBeEdited"] != None
         assert len(P_JSON["job1"]["edits"]) > 0, P_JSON["job1"]["edits"]
     def test_get_jobs(self):
         _JSNO_O = ScriptedJsonEditor.JsonFile()
         P_JSON = _JSNO_O._load(test_test_strings.jobsJSONstr1)
         assert P_JSON["job1"] != None
-        assert P_JSON["job1"]["filepath"] != None
+        assert P_JSON["job1"]["JSONfileToBeEdited"] != None
         assert len(P_JSON["job1"]["edits"]) > 0, P_JSON["job1"]["edits"]
         jobs = _JSNO_O.get_jobs()
         assert len(jobs) > 0
-        assert jobs[0]["filepath"] != None
+        assert jobs[0]["JSONfileToBeEdited"] != None
         assert len(jobs[0]["edits"]) > 0, jobs[0]["edits"]
 
     def test_load_JSON_str_2jobs(self):
         _JSNO_O = ScriptedJsonEditor.JsonFile()
         P_JSON = _JSNO_O._load(test_test_strings.jobsJSONstrBadKey2)
         assert P_JSON["job1"] != None
-        assert P_JSON["job1"]["filepath"] != None
+        assert P_JSON["job1"]["JSONfileToBeEdited"] != None
         assert len(P_JSON["job1"]["edits"]) > 0, P_JSON["job1"]["edits"]
         assert P_JSON["job2"] != None
-        assert P_JSON["job2"]["filepath"] != None
+        assert P_JSON["job2"]["JSONfileToBeEdited"] != None
         assert len(P_JSON["job2"]["edits"]) > 0, P_JSON["job2"]["edits"]
     def test_get_2jobs(self):
         _JSNO_O = ScriptedJsonEditor.JsonFile()
         P_JSON = _JSNO_O._load(test_test_strings.jobsJSONstrBadKey2)
         assert P_JSON["job1"] != None
-        assert P_JSON["job1"]["filepath"] != None
+        assert P_JSON["job1"]["JSONfileToBeEdited"] != None
         assert len(P_JSON["job1"]["edits"]) > 0, P_JSON["job1"]["edits"]
         assert P_JSON["job2"] != None
-        assert P_JSON["job2"]["filepath"] != None
+        assert P_JSON["job2"]["JSONfileToBeEdited"] != None
         assert len(P_JSON["job2"]["edits"]) > 0, P_JSON["job2"]["edits"]
         jobs = _JSNO_O.get_jobs()
         assert len(jobs) > 0
-        assert jobs[0]["filepath"] != None
+        assert jobs[0]["JSONfileToBeEdited"] != None
         assert len(jobs[0]["edits"]) > 0, jobs[0]["edits"]
-        assert jobs[1]["filepath"] != None
+        assert jobs[1]["JSONfileToBeEdited"] != None
         assert len(jobs[1]["edits"]) > 0, jobs[1]["edits"]
 
 

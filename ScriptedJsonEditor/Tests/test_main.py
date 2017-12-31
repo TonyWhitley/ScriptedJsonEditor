@@ -37,7 +37,7 @@ class Test_test_main(unittest.TestCase):
         _PJSNO_O = ScriptedJsonEditor.JsonFile()
         _j = _jobs[job]
         #   read 'filepath'
-        _filepath = _j["filepath"]
+        _filepath = _j["JSONfileToBeEdited"]
         _PJSNO_O._load(test_test_strings.playerJSONstr)
         #   do the edits
         #   if successful:

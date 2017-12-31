@@ -74,7 +74,11 @@ valid_JSON_strings = [playerJSONstr]
 jobsJSONstr = r"""
 {"job1":
 	{
-	"filepath": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\player\\player.json",
+	"JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\player\\player.json",
+  "skip keys with # in them": true,
+  "# keys with # in them are used as comments, don't change the values": 0,
+  "rFactor escape slash": true,
+  "# rFactor 2 escapes /. Also remove space after the :": 0,
 
 	"edits": {
 		"Graphic Options":{
@@ -92,7 +96,11 @@ valid_JSON_strings.append(jobsJSONstr)
 jobsJSONstr1 = r"""
 {"job1":
 	{
-	"filepath": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\player\\player.json",
+	"JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\player\\player.json",
+  "skip keys with # in them": true,
+  "# keys with # in them are used as comments, don't change the values": 0,
+  "rFactor escape slash": true,
+  "# rFactor 2 escapes /. Also remove space after the :": 0,
 
 	"edits": {
 		"Graphic Options":{
@@ -111,7 +119,11 @@ valid_JSON_strings.append(jobsJSONstr1)
 jobsJSONstrBadKey2 = r"""
 {"job1":
 	{
-	"filepath": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\player\\player.json",
+	"JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\player\\player.json",
+  "skip keys with # in them": true,
+  "# keys with # in them are used as comments, don't change the values": 0,
+  "rFactor escape slash": true,
+  "# rFactor 2 escapes /. Also remove space after the :": 0,
 
 	"edits": {
 		"Graphic Options":{
@@ -124,7 +136,11 @@ jobsJSONstrBadKey2 = r"""
 	},
 "job2":
 	{
-	"filepath": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\player\\player.json",
+	"JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\player\\player.json",
+  "skip keys with # in them": true,
+  "# keys with # in them are used as comments, don't change the values": 0,
+  "rFactor escape slash": true,
+  "# rFactor 2 escapes /. Also remove space after the :": 0,
 
 	"edits": {
 		"Graphic Options":{
@@ -143,7 +159,11 @@ valid_JSON_strings.append(jobsJSONstrBadKey2)
 jobsJSONstrBadKey = r"""
 {"job1":
 	{
-	"filepath": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\player\\player.json",
+	"JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\player\\player.json",
+  "skip keys with # in them": true,
+  "# keys with # in them are used as comments, don't change the values": 0,
+  "rFactor escape slash": true,
+  "# rFactor 2 escapes /. Also remove space after the :": 0,
 
 	"edits": {
 		"Graphic Options":{
@@ -164,7 +184,11 @@ valid_JSON_strings.append(jobsJSONstrBadKey)
 jobsBadJSONstr = r"""
 {"job1":
 	{
-	"filepath": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\player\\player.json",
+	"JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\player\\player.json",
+  "skip keys with # in them": true,
+  "# keys with # in them are used as comments, don't change the values": 0,
+  "rFactor escape slash": true,
+  "# rFactor 2 escapes /. Also remove space after the :": 0,
 
 	"edits": {
 		"Graphic Options":{

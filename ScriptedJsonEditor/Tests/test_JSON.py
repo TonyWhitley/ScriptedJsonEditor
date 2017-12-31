@@ -1,4 +1,6 @@
+import os
 import unittest
+
 import ScriptedJsonEditor
 import test_test_strings
 
@@ -8,46 +10,48 @@ filepath = r'c:\Program Files (x86)\Steam\steamapps\common\rFactor 2\UserData\pl
 
 class Test_test_JSON(unittest.TestCase):
     def test_readJsonFile(self):
-        _JSNO_O = ScriptedJsonEditor.JsonFile()
-        P_JSON = _JSNO_O.read(filepath)
-        _filepath = filepath + '.mostlySame'
-        _JSNO_O.write(_filepath)
+        if os.path.exists(filepath):
+          _JSNO_O = ScriptedJsonEditor.JsonFile()
+          P_JSON = _JSNO_O.read(filepath)
+          _filepath = filepath + '.mostlySame'
+          _JSNO_O.write(_filepath)
 
     def test_editJson(self):
-        _JSNO_O = ScriptedJsonEditor.JsonFile()
-        P_JSON = _JSNO_O.read(filepath)
-        ##################################
-        # change values as required
-        ##################################
-        for key, item, newValue in test_test_strings.edits:
-          try:
-            _JSNO_O.edit(key, item, newValue)
-          except KeyError:  # we're expecting one error
-            assert key == 'GraphicOptions', key
+        if os.path.exists(filepath):
+          _JSNO_O = ScriptedJsonEditor.JsonFile()
+          P_JSON = _JSNO_O.read(filepath)
+          ##################################
+          # change values as required
+          ##################################
+          for key, item, newValue in test_test_strings.edits:
+            try:
+              _JSNO_O.edit(key, item, newValue)
+            except KeyError:  # we're expecting one error
+              assert key == 'GraphicOptions', key
   
-        _filepath = filepath + '.edited'
-        _JSNO_O.write(_filepath)
+          _filepath = filepath + '.edited'
+          _JSNO_O.write(_filepath)
 
     def test_get_jobs(self):
         _jsonJob = ScriptedJsonEditor.JsonFile()
         P_JSON = _jsonJob._load(test_test_strings.jobsJSONstr)
         assert P_JSON["job1"] != None
-        assert P_JSON["job1"]["filepath"] != None
+        assert P_JSON["job1"]["JSONfileToBeEdited"] != None
         assert len(P_JSON["job1"]["edits"]) > 0, P_JSON["job1"]["edits"]
         jobs = _jsonJob.get_jobs()
         assert len(jobs) > 0
-        assert jobs[0]["filepath"] != None
+        assert jobs[0]["JSONfileToBeEdited"] != None
         assert len(jobs[0]["edits"]) > 0, jobs[0]["edits"]
 
     def test_run_job(self):
         _jsonJob = ScriptedJsonEditor.JsonFile()
         P_JSON = _jsonJob._load(test_test_strings.jobsJSONstr)
         assert P_JSON["job1"] != None
-        assert P_JSON["job1"]["filepath"] != None
+        assert P_JSON["job1"]["JSONfileToBeEdited"] != None
         assert len(P_JSON["job1"]["edits"]) > 0, P_JSON["job1"]["edits"]
         jobs = _jsonJob.get_jobs()
         assert len(jobs) > 0
-        assert jobs[0]["filepath"] != None
+        assert jobs[0]["JSONfileToBeEdited"] != None
         assert len(jobs[0]["edits"]) > 0, jobs[0]["edits"]
         
         _JSNO_O = ScriptedJsonEditor.JsonFile()
@@ -69,11 +73,11 @@ class Test_test_JSON(unittest.TestCase):
         _jsonJob = ScriptedJsonEditor.JsonFile()
         P_JSON = _jsonJob._load(test_test_strings.jobsJSONstrBadKey2)
         assert P_JSON["job1"] != None
-        assert P_JSON["job1"]["filepath"] != None
+        assert P_JSON["job1"]["JSONfileToBeEdited"] != None
         assert len(P_JSON["job1"]["edits"]) > 0, P_JSON["job1"]["edits"]
         jobs = _jsonJob.get_jobs()
         assert len(jobs) > 0
-        assert jobs[0]["filepath"] != None
+        assert jobs[0]["JSONfileToBeEdited"] != None
         assert len(jobs[0]["edits"]) > 0, jobs[0]["edits"]
         
         _JSNO_O = ScriptedJsonEditor.JsonFile()

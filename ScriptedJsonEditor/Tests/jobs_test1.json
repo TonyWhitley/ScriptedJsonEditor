@@ -1,6 +1,6 @@
 {"job1":
 	{
-	"filepath": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\player\\player.json",
+	"JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\player\\player.json",
 
 	"edits": {
 		"Graphic Options":{

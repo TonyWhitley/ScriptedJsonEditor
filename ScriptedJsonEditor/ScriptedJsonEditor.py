@@ -23,6 +23,14 @@ class JsonFile():
   def __init__(self):
     self.json_dict = None
     self.filepath = None
+    # default to rfactor 2 player.json filepath and formatting:
+    self.config = \
+      {"JSONfileToBeEdited":
+       r"c:\Program Files (x86)\Steam\steamapps\common\rFactor 2\UserData\player\player.json",
+       "skip keys with # in them": True,
+       "rFactor escape slash": True
+      }
+
   def read(self, filepath):
     """ Read the JSON file """
     try:
@@ -30,6 +38,11 @@ class JsonFile():
         try:
           self.json_dict = json.load(f_p)
           self.filepath = filepath
+          for key in ["JSONfileToBeEdited",
+                      "skip keys with # in them",
+                      "rFactor escape slash"]:
+            if key in self.json_dict:
+              self.config[key] = self.json_dict[key]
           return self.json_dict
         except ValueError:
           print('JSON content error in "%s"' % filepath)
@@ -42,34 +55,37 @@ class JsonFile():
     _backupFilename = _backupO.backup_file(self.filepath)
     print('Original file %s backed up to %s' % (self.filepath, _backupFilename))
 
-  def write(self, _filepath = None):
-    """ Write the JSON file, maintaining the rFactor 2 JSON "style" 
+  def write(self, _filepath=None):
+    """ Write the JSON file, maintaining the rFactor 2 JSON "style"
     _filepath is for unit testing
     """
     _json_txt = json.dumps(self.json_dict, indent=2).splitlines()
-    # json.dumps() puts a space after the :  rF2 doesn't
-    # So strip it out to make it easier to compare before and after
-    _whitespace_removed = []
-    for _line in _json_txt:
-      _line = _line.replace(': ', ':', 1)
+    if self.config["rFactor escape slash"]:
+      # json.dumps() puts a space after the :  rF2 doesn't
+      # So strip it out to make it easier to compare before and after
+      _whitespace_removed = []
+      for _line in _json_txt:
+        _line = _line.replace(': ', ':', 1)
 
-      # For some reason rF2 escapes / in values
-      _colon = _line.find(':')
-      if _colon:
-        _line = _line[:_colon] + _line[_colon:].replace('/', r'\/')
-      _whitespace_removed.append(_line)
+        # For some reason rF2 escapes / in values
+        _colon = _line.find(':')
+        if _colon:
+          _line = _line[:_colon] + _line[_colon:].replace('/', r'\/')
+        _whitespace_removed.append(_line)
+      _json_txt = '\n'.join(_whitespace_removed)
+    #else no reformatting required
 
-    if _filepath == None:
+    if _filepath is None:
       _filepath = self.filepath
     with open(_filepath, 'w') as f_p:
-      f_p.write('\n'.join(_whitespace_removed))
+      f_p.write(_json_txt)
 
   def edit(self, main_key, sub_key, new_value):
-    """ 
+    """
     Change the value of 'main_key''sub_key' in the JSON file to 'new_value'
     May raise KeyError
     """
-    if '#' in sub_key:
+    if '#' in sub_key and self.config["skip keys with # in them"]:
       pass # it's a "comment main_key"
     else:
       # check that key exists, otherwise it's a typo in the job
@@ -95,6 +111,10 @@ class JsonFile():
     """
     jobs = [self.json_dict[key] for key in self.json_dict if 'job' in key.lower()]
     return jobs
+
+  def read_json_file_to_be_edited(self):
+    """ Read the file specified by the job file key 'JSONfileToBeEdited' """
+    self.read(self.config["JSONfileToBeEdited"])
 
   def run_edits(self, job):
     """
@@ -130,7 +150,7 @@ class JsonFile():
 
 def main():
   """ Main """
-  print('Scripted JSON Editor V0.1.15\n')
+  print('Scripted JSON Editor V0.1.17\n')
   _clo = CommandLine()
   jobsFile = _clo.get_args()
 
@@ -145,9 +165,8 @@ def main():
     for job in _jobs:
       _PJSNO_O = JsonFile()
       _j = _jobs[job]
-      #   read 'filepath'
-      _filepath = _j["filepath"]
-      _PJSNO_O.read(_filepath)
+      #   read the file to be edited
+      _PJSNO_O.read_json_file_to_be_edited()
       #   do the edits
       #   if successful:
       #     backup 'filepath'

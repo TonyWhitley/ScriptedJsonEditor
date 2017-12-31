@@ -17,17 +17,18 @@ EDITS_EXAMPLE = [
 
 class Test_test_whole_program(unittest.TestCase):
   def test_using_test_dict(self):
-    _JSNO_O = ScriptedJsonEditor.JsonFile()
-    P_JSON = _JSNO_O.read(FILEPATH)
-    ##################################
-    # change values as required
-    ##################################
-    for key, item, newValue in EDITS_EXAMPLE:
-      _JSNO_O.edit(key, item, newValue)
+    if os.path.exists(FILEPATH):
+      _JSNO_O = ScriptedJsonEditor.JsonFile()
+      P_JSON = _JSNO_O.read(FILEPATH)
+      ##################################
+      # change values as required
+      ##################################
+      for key, item, newValue in EDITS_EXAMPLE:
+        _JSNO_O.edit(key, item, newValue)
 
-    _FILEPATH = FILEPATH + '.edited'
-    _JSNO_O.write(_FILEPATH)
-    assert os.path.exists(_FILEPATH), _FILEPATH
+      _FILEPATH = FILEPATH + '.edited'
+      _JSNO_O.write(_FILEPATH)
+      assert os.path.exists(_FILEPATH), _FILEPATH
 
   
 if __name__ == '__main__':
