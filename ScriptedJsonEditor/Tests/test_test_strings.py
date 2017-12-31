@@ -3,7 +3,7 @@
 import json
 import unittest
 
-from command_line import jobsJSONhelpStr
+from command_line import JOBS_JSON_HELP_STR
 
 edits = [
     # General graphics
@@ -73,7 +73,7 @@ playerJSONstr = r"""
 """
 valid_JSON_strings = [playerJSONstr]
 
-valid_JSON_strings.append(jobsJSONhelpStr)
+valid_JSON_strings.append(JOBS_JSON_HELP_STR)
 
 jobsJSONstr1 = r"""
 {"job1":

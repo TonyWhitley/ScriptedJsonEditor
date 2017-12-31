@@ -1,7 +1,7 @@
 """ Parse the command line """
 import sys
 
-jobsJSONhelpStr = r"""
+JOBS_JSON_HELP_STR = r"""
 {"job1":
   {
   "JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\player\\player.json",
@@ -30,13 +30,14 @@ class CommandLine(object):
       self.jobs_file = sys.argv[1]
     else:
       print(\
-        """%s <jobs file name> 
-        
-        Jobs file is a JSON file specifying the JSON file to be edited 
-        and the edits to be performed. Example contents:
+        """
+%s <jobs file name>
 
-        %s
-        """ % (sys.argv[0], jobsJSONhelpStr))
+<jobs file name> is a JSON file specifying the JSON file to be edited
+and the edits to be performed. Example contents:
+
+%s
+        """ % (sys.argv[0], JOBS_JSON_HELP_STR))
 
   def get_jobs_file(self):
     """ get the jobs file from the command line """
