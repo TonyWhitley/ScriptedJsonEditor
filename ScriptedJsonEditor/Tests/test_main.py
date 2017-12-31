@@ -47,6 +47,10 @@ class Test_test_main(unittest.TestCase):
           _PJSNO_O.run_edits(_j)
         except KeyError:
           return # failed as expected, try the next job
+        except ValueError:
+          assert False, 'Didn\'t expect ValueError'
+        except:
+          assert False, 'Didn\'t expect other error'
       assert False, 'Expected job to fail'
 
 

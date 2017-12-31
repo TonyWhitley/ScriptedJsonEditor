@@ -72,12 +72,21 @@ class JsonFile():
     if '#' in sub_key:
       pass # it's a "comment main_key"
     else:
-      self.json_dict[main_key][sub_key] = new_value
-      try:
-        self.json_dict[main_key][sub_key] = new_value
-      except e as Argument:
-        print('No such sub key "%s":"%s"' % (main_key, sub_key))
-        print(Argument)
+      # check that key exists, otherwise it's a typo in the job
+      if main_key in self.json_dict:
+        if sub_key in self.json_dict[main_key]:
+          try:
+            self.json_dict[main_key][sub_key] = new_value
+          except ValueError:
+            try:
+              print('Invalid value "%s" in "%s":"%s"' % (new_value, main_key, sub_key))
+            except ValueError:
+              print('Invalid number %d in "%s":"%s"' % (new_value, main_key, sub_key))
+        else:
+          print('No existing sub key "%s" in main key "%s"' % (sub_key, main_key))
+          raise KeyError
+      else:
+        print('No existing main key "%s":"%s"' % (main_key, sub_key))
         raise KeyError
 
   def get_jobs(self):
@@ -90,7 +99,7 @@ class JsonFile():
   def run_edits(self, job):
     """
     Execute the job's edits on current file
-    May raise KeyError
+    May raise KeyError or ValueError
     """
     for main_key in job["edits"]:
       for _item in job["edits"][main_key]:
@@ -146,6 +155,8 @@ def main():
       try:
         _PJSNO_O.run_edits(_j)
       except KeyError:
+        break # failed, try the next job
+      except ValueError:
         break # failed, try the next job
       _PJSNO_O.backup_file()
       _PJSNO_O.write()

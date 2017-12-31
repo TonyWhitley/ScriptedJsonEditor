@@ -41,6 +41,7 @@ playerJSONstr = r"""
                             "Allow HUD in cockpit":true,
                             "Allow Letterboxing":true,
                             "Allow Letterboxing#":"whether we allow letterboxing (during replays, for example)",
+                            "Max Headlights": 255,
                             "Always Rebuild Collision":false,
                             "Always Rebuild Collision#":"Build collision database everytime tracks are loaded (for development purposes)",
                             "Any Camera HUD":true,

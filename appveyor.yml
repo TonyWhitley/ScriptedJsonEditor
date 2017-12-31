@@ -1,0 +1,25 @@
+build: false
+
+#branches:
+#  only:
+#    - never-build-branch-automatically-dont-use-this-name
+    
+environment:
+  matrix:
+    - PYTHON: "C:\\Python36"
+      PYTHON_VERSION: "3.6.2"
+      PYTHON_ARCH: "64"
+
+
+init:
+  - "ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH%"
+
+
+install:
+  - "%PYTHON%/Scripts/pip.exe install nose"
+  - "%PYTHON%/Scripts/pip.exe install coverage"
+  - "%PYTHON%/Scripts/pip.exe install -r ScriptedJsonEditor/tests/requirements.txt"
+  - "path=%PATH%;%cd%"
+
+test_script:
+  - "%PYTHON%/Scripts/nosetests  --verbosity=2"
