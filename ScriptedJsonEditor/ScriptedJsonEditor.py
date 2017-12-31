@@ -150,7 +150,7 @@ class JsonFile():
 
 def main():
   """ Main """
-  print('Scripted JSON Editor V0.1.18\n')
+  print('Scripted JSON Editor V0.1.19\n')
   _clo = CommandLine()
   jobsFile = _clo.get_jobs_file()
   if jobsFile:
