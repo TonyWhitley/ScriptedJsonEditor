@@ -130,7 +130,7 @@ class JsonFile():
 
 def main():
   """ Main """
-  print('Scripted JSON Editor V0.1.12\n')
+  print('Scripted JSON Editor V0.1.15\n')
   _clo = CommandLine()
   jobsFile = _clo.get_args()
 
