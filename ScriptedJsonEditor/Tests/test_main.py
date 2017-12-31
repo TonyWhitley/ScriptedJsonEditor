@@ -7,8 +7,12 @@ import test_test_strings
 
 
 class Test_test_main(unittest.TestCase):
-  def test_main_none_existent_jobs_file(self):
+  def test_main_non_existent_jobs_file(self):
     sys.argv = ['ScriptedJsonEditor', 'JsonEditorJobs.json']
+    ScriptedJsonEditor.main()
+
+  def test_main_no_jobs_file_specified(self):
+    sys.argv = ['ScriptedJsonEditor']
     ScriptedJsonEditor.main()
 
   def test_main(self):

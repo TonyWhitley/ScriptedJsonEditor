@@ -150,35 +150,36 @@ class JsonFile():
 
 def main():
   """ Main """
-  print('Scripted JSON Editor V0.1.17\n')
+  print('Scripted JSON Editor V0.1.18\n')
   _clo = CommandLine()
-  jobsFile = _clo.get_args()
+  jobsFile = _clo.get_jobs_file()
+  if jobsFile:
 
-  _JSNO_O = JsonFile()
-  _jobs = _JSNO_O.read(jobsFile)
+    _JSNO_O = JsonFile()
+    _jobs = _JSNO_O.read(jobsFile)
 
-  # this needs tidying. Why does 'job' only contain the name of the job
-  # and not the associated data???
-  if _jobs:
-    # Execute
-    # For each job in jobsFile
-    for job in _jobs:
-      _PJSNO_O = JsonFile()
-      _j = _jobs[job]
-      #   read the file to be edited
-      _PJSNO_O.read_json_file_to_be_edited()
-      #   do the edits
-      #   if successful:
-      #     backup 'filepath'
-      #     save new contents to 'filepath
-      try:
-        _PJSNO_O.run_edits(_j)
-      except KeyError:
-        break # failed, try the next job
-      except ValueError:
-        break # failed, try the next job
-      _PJSNO_O.backup_file()
-      _PJSNO_O.write()
+    # Why does 'job' only contain the name of the job
+    # and not the associated data???
+    if _jobs:
+      # Execute
+      # For each job in jobsFile
+      for job in _jobs:
+        _PJSNO_O = JsonFile()
+        _j = _jobs[job]
+        #   read the file to be edited
+        _PJSNO_O.read_json_file_to_be_edited()
+        #   do the edits
+        #   if successful:
+        #     backup 'filepath'
+        #     save new contents to 'filepath
+        try:
+          _PJSNO_O.run_edits(_j)
+        except KeyError:
+          break # failed, try the next job
+        except ValueError:
+          break # failed, try the next job
+        _PJSNO_O.backup_file()
+        _PJSNO_O.write()
 
 if __name__ == '__main__':
   main()
