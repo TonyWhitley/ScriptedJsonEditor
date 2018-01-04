@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>8b6feaa7-b8f5-4472-bcb3-4bdc7f5ab211</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Tests\test_command_line.py</StartupFile>
+    <StartupFile>Tests\test_jobs.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -61,13 +61,14 @@
     <Folder Include="Tests\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="JsonEditorJobs.json" />
     <Content Include="makeexe.bat" />
     <Content Include="nosetestcmd.bat" />
     <Content Include="pylintrc" />
     <Content Include="requirements.txt" />
+    <Content Include="rF2VR.json" />
     <Content Include="run_PyLint.bat" />
     <Content Include="Tests\jobs_test1.json" />
+    <Content Include="Tests\player.json" />
     <Content Include="Tests\requirements.txt" />
   </ItemGroup>
   <ItemGroup>

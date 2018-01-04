@@ -1,5 +1,8 @@
+import os
 import sys
 import unittest
+
+sys.path.insert(0, os.path.abspath(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 
 from command_line import CommandLine
 

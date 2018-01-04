@@ -1,7 +1,12 @@
 """ Test strings used by test functions """
 
 import json
+import os
+import sys
 import unittest
+
+sys.path.insert(0, os.path.abspath(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
+
 
 from command_line import JOBS_JSON_HELP_STR
 
@@ -78,7 +83,7 @@ valid_JSON_strings.append(JOBS_JSON_HELP_STR)
 jobsJSONstr1 = r"""
 {"job1":
 	{
-	"JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\player\\player.json",
+	"JSONfileToBeEdited": "tests/player.json",
   "skip keys with # in them": true,
   "# keys with # in them are used as comments, don't change the values": 0,
   "rFactor escape slash": true,
@@ -101,7 +106,7 @@ valid_JSON_strings.append(jobsJSONstr1)
 jobsJSONstrBadKey2 = r"""
 {"job1":
 	{
-	"JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\player\\player.json",
+	"JSONfileToBeEdited": "tests/player.json",
   "skip keys with # in them": true,
   "# keys with # in them are used as comments, don't change the values": 0,
   "rFactor escape slash": true,
@@ -118,7 +123,7 @@ jobsJSONstrBadKey2 = r"""
 	},
 "job2":
 	{
-	"JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\player\\player.json",
+	"JSONfileToBeEdited": "tests/player.json",
   "skip keys with # in them": true,
   "# keys with # in them are used as comments, don't change the values": 0,
   "rFactor escape slash": true,
@@ -141,7 +146,7 @@ valid_JSON_strings.append(jobsJSONstrBadKey2)
 jobsJSONstrBadKey = r"""
 {"job1":
 	{
-	"JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\player\\player.json",
+	"JSONfileToBeEdited": "tests/player.json",
   "skip keys with # in them": true,
   "# keys with # in them are used as comments, don't change the values": 0,
   "rFactor escape slash": true,
@@ -163,10 +168,30 @@ jobsJSONstrBadKey = r"""
 """
 valid_JSON_strings.append(jobsJSONstrBadKey)
 
+# Valid JSON, check JSONfileToBeEdited
+jobsJSONfileToBeEdited = r"""
+{"jobJSONfileToBeEdited":
+	{
+	"JSONfileToBeEdited": "test/player.json",
+  "skip keys with # in them": true,
+  "# keys with # in them are used as comments, don't change the values": 0,
+  "rFactor escape slash": true,
+  "# rFactor 2 escapes /. Also remove space after the :": 0,
+
+	"edits": {
+		"Graphic Options":{
+                            "Allow Letterboxing":false
+		                  }
+	          }
+	}
+}
+"""
+valid_JSON_strings.append(jobsJSONfileToBeEdited)
+
 jobsBadJSONstr = r"""
 {"job1":
 	{
-	"JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\player\\player.json",
+	"JSONfileToBeEdited": "tests/player.json",
   "skip keys with # in them": true,
   "# keys with # in them are used as comments, don't change the values": 0,
   "rFactor escape slash": true,

@@ -270,3 +270,9 @@ env/
 /ScriptedJsonEditor/envPyLint
 /ScriptedJsonEditor/command_line_Argparse_failed.py
 /ScriptedJsonEditor/revisionCountFromGit.py
+/.vscode
+/ScriptedJsonEditor/.vscode
+/ScriptedJsonEditor/revisionCountFromGit.bat
+/ScriptedJsonEditor/ScriptedJsonEditor.code-workspace
+/.noseids
+/ScriptedJsonEditor/.noseids
