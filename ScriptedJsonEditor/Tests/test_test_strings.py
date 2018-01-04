@@ -188,6 +188,18 @@ jobsJSONfileToBeEdited = r"""
 """
 valid_JSON_strings.append(jobsJSONfileToBeEdited)
 
+# Type 2 jobs file
+jobs2base = r"""
+{ "jobs": ["job1", "fred", "harry"],
+"job1": {},
+"job2": {},
+"fred": {},
+"harry": {},
+"job3": {}
+}
+"""
+valid_JSON_strings.append(jobs2base)
+
 jobsBadJSONstr = r"""
 {"job1":
 	{

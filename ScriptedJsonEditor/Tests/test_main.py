@@ -1,6 +1,7 @@
 """ Test the main program """
 import sys
 import unittest
+from unittest.mock import patch
 
 from command_line import CommandLine
 import ScriptedJsonEditor
@@ -8,19 +9,24 @@ import test_test_strings
 
 
 class Test_test_main(unittest.TestCase):
-  def test_main_non_existent_jobs_file(self):
+  @patch('ScriptedJsonEditor.print', create=True)     # Mock the print call in main()
+  def test_main_non_existent_jobs_file(self, print_): # Note added , print_ to mock print()
     sys.argv = ['ScriptedJsonEditor', 'JsonEditorJobs.json']
     assert ScriptedJsonEditor.main() != 0
 
-  def test_main_no_jobs_file_specified(self):
+  @patch('ScriptedJsonEditor.print', create=True)     # Mock the print call in main()
+  @patch('command_line.print', create=True)           # Mock the print call in command_line()
+  def test_main_no_jobs_file_specified(self, print_, print__): # Note added , print_ to mock print()
     sys.argv = ['ScriptedJsonEditor']
     assert ScriptedJsonEditor.main() != 0
 
-  def test_main(self):
+  @patch('ScriptedJsonEditor.print', create=True)     # Mock the print call in main()
+  def test_main(self, print_):                        # Note added , print_ to mock print()
     sys.argv = ['ScriptedJsonEditor', r'Tests\jobs_test1.json']
     assert ScriptedJsonEditor.main() == 0
 
-  def test_main_bad_jobs_file(self):
+  @patch('ScriptedJsonEditor.print', create=True)     # Mock the print call in main()
+  def test_main_bad_jobs_file(self, print_):          # Note added , print_ to mock print()
     _JSNO_O = ScriptedJsonEditor.JsonFile()
     try:
       _jobs = _JSNO_O._load(test_test_strings.jobsBadJSONstr)
@@ -28,7 +34,8 @@ class Test_test_main(unittest.TestCase):
       return
     assert False, 'Expected job load to fail'
 
-  def test_main_key_error_in_jobs_file(self):
+  @patch('ScriptedJsonEditor.print', create=True)     # Mock the print call in main()
+  def test_main_key_error_in_jobs_file(self, print_): # Note added , print_ to mock print()
     _JSNO_O = ScriptedJsonEditor.JsonFile()
     try:
       _jobs = _JSNO_O._load(test_test_strings.jobsJSONstrBadKey)

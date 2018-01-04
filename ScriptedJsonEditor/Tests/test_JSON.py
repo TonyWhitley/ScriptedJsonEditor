@@ -1,5 +1,6 @@
 import os
 import unittest
+from unittest.mock import patch
 
 import ScriptedJsonEditor
 import test_test_strings
@@ -70,7 +71,8 @@ class Test_test_JSON(unittest.TestCase):
 
           assert _j._get_value("Graphic Options", "Allow Letterboxing") == False, _JSNO_O._get_value("Graphic Options", "Allow Letterboxing")
         
-    def test_run_2jobs(self):
+    @patch('ScriptedJsonEditor.print', create=True)   # Mock the print call in ScriptedJsonEditor()
+    def test_run_2jobs(self, print_):                 # Note added , print_ to mock print()
         # Expect job2 to fail
         _jsonJob = ScriptedJsonEditor.JsonJobsFile()
         P_JSON = _jsonJob._load(test_test_strings.jobsJSONstrBadKey2)

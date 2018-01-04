@@ -1,13 +1,15 @@
 import os
 import sys
 import unittest
+from unittest.mock import patch
 
 sys.path.insert(0, os.path.abspath(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 
 from command_line import CommandLine
 
 class Test_test_command_line(unittest.TestCase):
-    def test_command_line_no_jobs_file_specified(self):
+    @patch('command_line.print', create=True)                   # Mock the print call in CommandLine()
+    def test_command_line_no_jobs_file_specified(self, print_): # Note added , print_ to mock print()
         sys.argv = ['ScriptedJsonEditor']
         self.CLo = CommandLine()
         jobsFile = self.CLo.get_jobs_file()

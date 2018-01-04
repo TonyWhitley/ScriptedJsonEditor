@@ -1,6 +1,7 @@
 import os
 import sys
 import unittest
+from unittest.mock import patch
 
 import test_test_strings
 
@@ -13,7 +14,8 @@ def this_path(filename):
   return os.path.join(this_folder, filename)
 
 class Test_test_jobs(unittest.TestCase):
-    def test_read_0(self):
+    @patch('ScriptedJsonEditor.print', create=True)   # Mock the print call in ScriptedJsonEditor()
+    def test_read_0(self, print_):                    # Note added , print_ to mock print()
         filepath = this_path('no_such_file.json')
         _JSNO_O = ScriptedJsonEditor.JsonJobsFile()
         try:
@@ -74,6 +76,12 @@ class Test_test_jobs(unittest.TestCase):
         assert P_JSON["jobJSONfileToBeEdited"] != None
         assert P_JSON["jobJSONfileToBeEdited"]["JSONfileToBeEdited"] == "test/player.json", P_JSON["jobJSONfileToBeEdited"]["JSONfileToBeEdited"]
       
+    def test_jobs2base(self):
+        _JSNO_O = ScriptedJsonEditor.JsonJobsFile()
+        P_JSON = _JSNO_O._load(test_test_strings.jobs2base)
+        assert P_JSON["jobs"] != None
+        for j in P_JSON["jobs"]:
+          assert P_JSON[j] != None
 
 
 if __name__ == '__main__':
