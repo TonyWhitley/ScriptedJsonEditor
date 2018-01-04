@@ -43,8 +43,9 @@ class JsonFile():
           self.json_dict = json.load(f_p)
           self.filepath = filepath
           return self.json_dict
-        except ValueError:
+        except ValueError as err:
           print('JSON content error in "%s"' % filepath)
+          print(err)
     except IOError:
       print('Failed to open JSON file "%s"' % filepath)
     raise JsonContentError
@@ -220,7 +221,7 @@ class Job():
 
 def main():
   """ Main """
-  print('Scripted JSON Editor V0.3.25\n')
+  print('Scripted JSON Editor V0.3.26\n')
   _clo = CommandLine()
   jobsFile = _clo.get_jobs_file()
   if jobsFile is None:
