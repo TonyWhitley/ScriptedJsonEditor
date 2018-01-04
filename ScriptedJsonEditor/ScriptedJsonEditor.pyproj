@@ -61,11 +61,14 @@
     <Folder Include="Tests\" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="jobs\" />
+    <Content Include="jobs\rF2VR.json" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="makeexe.bat" />
     <Content Include="nosetestcmd.bat" />
     <Content Include="pylintrc" />
     <Content Include="requirements.txt" />
-    <Content Include="rF2VR.json" />
     <Content Include="run_PyLint.bat" />
     <Content Include="Tests\jobs_test1.json" />
     <Content Include="Tests\player.json" />

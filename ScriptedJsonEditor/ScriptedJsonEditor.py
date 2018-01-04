@@ -148,8 +148,10 @@ class JsonJobsFile(JsonFile):
     """
     Get the list of jobs in this JSON dict
     """
-    jobs = [self.json_dict[key] for key in self.json_dict if 'job' in key.lower()]
-    return jobs
+    _result = []
+    for _job in self.json_dict["jobs"]:
+      _result.append(self.json_dict[_job])
+    return _result
 
 class JsonRfactorFile(JsonFile):
   """
@@ -218,7 +220,7 @@ class Job():
 
 def main():
   """ Main """
-  print('Scripted JSON Editor V0.2.21\n')
+  print('Scripted JSON Editor V0.3.25\n')
   _clo = CommandLine()
   jobsFile = _clo.get_jobs_file()
   if jobsFile is None:
@@ -237,7 +239,7 @@ def main():
 
   # Execute
   # For each job in jobsFile
-  for job in _jobs:
+  for job in _jobs["jobs"]:
     _j = Job(_jobs[job])
     #   read the file to be edited
     try:

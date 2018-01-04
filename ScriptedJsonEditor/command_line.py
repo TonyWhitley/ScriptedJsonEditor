@@ -2,7 +2,10 @@
 import sys
 
 JOBS_JSON_HELP_STR = r"""
-{"job1":
+{"jobs": ["noLetterboxing"],
+"#Only that list of jobs will be performed": 0,
+"#Not all jobs in the file will necessarily be run": 0,
+"noLetterboxing":
   {
   "JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\player\\player.json",
   "skip keys with # in them": true,

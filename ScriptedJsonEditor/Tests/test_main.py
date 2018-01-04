@@ -44,7 +44,7 @@ class Test_test_main(unittest.TestCase):
     assert _jobs
     # Execute
     # For each job in jobsFile
-    for job in _jobs:
+    for job in _jobs["jobs"]:
       _j = ScriptedJsonEditor.Job(_jobs[job])
       #   read the file to be edited
       _j._load(test_test_strings.playerJSONstr)
@@ -75,7 +75,7 @@ class Test_test_main(unittest.TestCase):
       if _jobs:
         # Execute
         # For each job in jobsFile
-        for job in _jobs:
+        for job in _jobs["jobs"]:
           _j = ScriptedJsonEditor.Job(_jobs[job])
           #   read the file to be edited
           _j._load(test_test_strings.playerJSONstr)

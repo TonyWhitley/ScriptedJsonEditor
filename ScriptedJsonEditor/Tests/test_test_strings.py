@@ -81,7 +81,10 @@ valid_JSON_strings = [playerJSONstr]
 valid_JSON_strings.append(JOBS_JSON_HELP_STR)
 
 jobsJSONstr1 = r"""
-{"job1":
+{"jobs": ["job1"],
+"#Only that list of jobs will be performed": 0,
+"#Not all jobs in the file will necessarily be run": 0,
+"job1":
 	{
 	"JSONfileToBeEdited": "tests/player.json",
   "skip keys with # in them": true,
@@ -104,7 +107,8 @@ valid_JSON_strings.append(jobsJSONstr1)
 
 # Valid JSON but key name in job2 is wrong
 jobsJSONstrBadKey2 = r"""
-{"job1":
+{"jobs": ["job1", "job2"],
+"job1":
 	{
 	"JSONfileToBeEdited": "tests/player.json",
   "skip keys with # in them": true,
@@ -144,7 +148,8 @@ valid_JSON_strings.append(jobsJSONstrBadKey2)
 
 # Valid JSON but key name is wrong
 jobsJSONstrBadKey = r"""
-{"job1":
+{"jobs": ["job1"],
+"job1":
 	{
 	"JSONfileToBeEdited": "tests/player.json",
   "skip keys with # in them": true,
@@ -170,7 +175,8 @@ valid_JSON_strings.append(jobsJSONstrBadKey)
 
 # Valid JSON, check JSONfileToBeEdited
 jobsJSONfileToBeEdited = r"""
-{"jobJSONfileToBeEdited":
+{"jobs": ["jobJSONfileToBeEdited"],
+"jobJSONfileToBeEdited":
 	{
 	"JSONfileToBeEdited": "test/player.json",
   "skip keys with # in them": true,

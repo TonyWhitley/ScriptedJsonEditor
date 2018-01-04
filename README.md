@@ -5,7 +5,10 @@ Rather than a list of instructions to "edit player.json setting 'blah' to 15" an
 
 An example file is
 
-    {"job1":
+    {"jobs": ["noLetterboxing"],
+     "#Only that list of jobs will be performed": 0,
+     "#Not all jobs in the file will necessarily be run": 0,
+     "noLetterboxing":
       {
       "JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\player\\player.json",
       "skip keys with # in them": true,
@@ -23,3 +26,4 @@ An example file is
         }
       }
     }
+

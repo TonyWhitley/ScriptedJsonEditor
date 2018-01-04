@@ -1,4 +1,5 @@
-{"job1":
+{"jobs": ["job1"],
+"job1":
   {
   "JSONfileToBeEdited": "Tests/player.json",
 
