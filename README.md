@@ -6,11 +6,14 @@ Rather than a list of instructions to "edit player.json setting 'blah' to 15" an
 An example file is
 
     {"jobs": ["noLetterboxing"],
-     "#Only that list of jobs will be performed": 0,
-     "#Not all jobs in the file will necessarily be run": 0,
+     "# Only that list of jobs will be performed": 0,
+     "# Not all jobs in the file will necessarily be run": 0,
+     
      "noLetterboxing":
       {
-      "JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\player\\player.json",
+      "JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\player\\player.JSON",
+      "# Note: JSONfileToBeEdited .JSON is case-sensitive": 0,
+      
       "skip keys with # in them": true,
       "# keys with # in them are used as comments, don't change the values": 0,
       "rFactor escape slash": true,
@@ -27,3 +30,4 @@ An example file is
       }
     }
 
+See ScriptedJsonEditor/jobs/1109.json for a complete example.
