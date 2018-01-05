@@ -1,13 +1,13 @@
 {"#jobs": ["Low end GPU", "Mid range GPU", "High end GPU", "VR"],
 "# Sample jobs file for rFactor 1109 release": 0,
-"jobs": [],
+"jobs": ["Low end GPU", "VR"],
 
 "Low end GPU":
   {
   "# Set graphic options for Low end GPU as recommended in": 0,
   "# https://forum.studio-397.com/index.php?threads/latest-release-1109-rain-effects-and-more.58675/": 0,
   
-  "JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\VR\\Test.json",
+  "JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\player.json",
   "skip keys with # in them": true,
   "# keys with # in them are used as comments, don't change the values": 0,
   "rFactor escape slash": true,
@@ -15,6 +15,10 @@
 
   "edits": 
     {
+    "Game Options":
+      {
+      "Message Center Detail": 0
+      },
     "Graphic Options":
       {
       "Auto Detail Framerate": 0,
@@ -30,7 +34,6 @@
         "Rearview_Back_Clip#":"Back plane distance for mirror (0.0 = use default for scene)",
       "#Heads up display? Can't find it in player.json": "Off",
       "Max Visible Vehicles": 15,
-      "Message Center Detail": 0,
       "#Mirrors? Can't find it in player.json": "Off",
       "Opponent Detail":1,
       "Opponent Detail#":"0=Low 1=Medium 2=High 3=Full",
@@ -63,7 +66,7 @@
   "# Set graphic options for Mid range GPU as recommended in": 0,
   "# https://forum.studio-397.com/index.php?threads/latest-release-1109-rain-effects-and-more.58675/": 0,
   
-  "JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\VR\\Test.json",
+  "JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\player.json",
   "skip keys with # in them": true,
   "# keys with # in them are used as comments, don't change the values": 0,
   "rFactor escape slash": true,
@@ -71,6 +74,10 @@
 
   "edits": 
     {
+    "Game Options":
+      {
+      "Message Center Detail": 0
+      },
     "Graphic Options":
       {
       "Auto Detail Framerate": 0,
@@ -85,7 +92,6 @@
       "#Heads up display? Can't find it in player.json": "On",
       "#Mirrors? Can't find it in player.json": "Off",
       "Max Visible Vehicles": 15,
-      "Message Center Detail": 0,
       "Opponent Detail":2,
       "Opponent Detail#":"0=Low 1=Medium 2=High 3=Full",
       "Player Detail":3,
@@ -117,7 +123,7 @@
    "# Set graphic options for High end GPU as recommended in": 0,
    "# https://forum.studio-397.com/index.php?threads/latest-release-1109-rain-effects-and-more.58675/": 0,
    
-   "JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\VR\\Test.json",
+   "JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\player.json",
    "skip keys with # in them": true,
    "# keys with # in them are used as comments, don't change the values": 0,
    "rFactor escape slash": true,
@@ -125,6 +131,10 @@
  
    "edits": 
      {
+     "Game Options":
+       {
+       "Message Center Detail": 0
+       },
      "Graphic Options":
        {
        "Auto Detail Framerate": 0,
@@ -138,7 +148,6 @@
          "Max Headlights#":"Max headlights visible relative to your car.",
        "#Heads up display? Can't find it in player.json": "On",
        "Max Visible Vehicles": 15,
-       "Message Center Detail": 0,
        "#Mirrors? Can't find it in player.json": "On",
        "Opponent Detail":3,
        "Opponent Detail#":"0=Low 1=Medium 2=High 3=Full",
@@ -172,7 +181,7 @@
   "# Set graphic options for VR as recommended in": 0,
   "# https://forum.studio-397.com/index.php?threads/rfactor2-the-vr-thread-settings-tips.55249/": 0,
   
-  "JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\VR\\Test.json",
+  "JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\player.json",
   "skip keys with # in them": true,
   "# keys with # in them are used as comments, don't change the values": 0,
   "rFactor escape slash": true,

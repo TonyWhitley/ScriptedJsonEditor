@@ -2,6 +2,10 @@
 "job1":
   {
   "JSONfileToBeEdited": "Tests/player.json",
+  "skip keys with # in them": true,
+  "# keys with # in them are used as comments, don't change the values": 0,
+  "rFactor escape slash": true,
+  "# rFactor 2 escapes /. Also remove space after the :": 0,
 
   "edits": {
     "Graphic Options":{

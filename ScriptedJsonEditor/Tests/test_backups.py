@@ -1,4 +1,4 @@
-from os import path
+import os
 from tempfile import NamedTemporaryFile
 import unittest
 
@@ -13,7 +13,9 @@ class Test_test_backups(unittest.TestCase):
     # do it
     _backupO = backups.Backups()
     _backupFilename = _backupO.backup_file(_name)
-    assert path.exists(_backupFilename), _backupFilename
+    assert os.path.exists(_backupFilename), _backupFilename
+    # Tidy up
+    os.remove(_backupFilename)
         
 
 if __name__ == '__main__':

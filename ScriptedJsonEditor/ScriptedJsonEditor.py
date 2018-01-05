@@ -182,7 +182,10 @@ class Job():
   """ Run a job """
   def __init__(self, job):
     self.job = job
-    self.json_o = JsonFile()
+    if 'rFactor escape slash' in job and job['rFactor escape slash']:
+      self.json_o = JsonRfactorFile()
+    else:
+      self.json_o = JsonFile()
 
   def read_json_file_to_be_edited(self):
     """
@@ -221,7 +224,7 @@ class Job():
 
 def main():
   """ Main """
-  print('Scripted JSON Editor V0.3.26\n')
+  print('Scripted JSON Editor V0.3.29\n')
   _clo = CommandLine()
   jobsFile = _clo.get_jobs_file()
   if jobsFile is None:
