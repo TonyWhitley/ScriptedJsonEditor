@@ -10,7 +10,7 @@ class Backups(object):
   def __init__(self):
     self.tempdir = path.join(gettempdir(), 'ScriptedJsonEditor')
     makedirs(self.tempdir, exist_ok=True)
-    
+
   def backup_file(self, filename):
     """ Back up 'filename' to <temp dir>'filename'.YYYYMMDD-HHMMSS """
     _timestamp = datetime.now().strftime('%Y%m%d-%H%M%S')

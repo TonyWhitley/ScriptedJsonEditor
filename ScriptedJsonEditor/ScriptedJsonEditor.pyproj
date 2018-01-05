@@ -71,6 +71,7 @@
     <Content Include="requirements.txt" />
     <Content Include="run_PyLint.bat" />
     <Content Include="Tests\jobs_test1.json" />
+    <Content Include="Tests\null.json" />
     <Content Include="Tests\player.json" />
     <Content Include="Tests\requirements.txt" />
   </ItemGroup>

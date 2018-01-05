@@ -8,11 +8,14 @@
     Repeat as necessary
  3) Write the file
 """
+
 import json
 import sys
 
 from backups import Backups
 from command_line import CommandLine
+
+BUILD_REVISION = 30 # The git commit count
 
 # User-defined exceptions
 class EmptyJsonError(Exception):
@@ -224,7 +227,6 @@ class Job():
 
 def main():
   """ Main """
-  print('Scripted JSON Editor V0.3.29\n')
   _clo = CommandLine()
   jobsFile = _clo.get_jobs_file()
   if jobsFile is None:
@@ -268,5 +270,6 @@ def main():
   return 0
 
 if __name__ == '__main__':
+  print('Scripted JSON Editor V0.3.%d\n' % BUILD_REVISION)
   _result = main()
   sys.exit(_result)
