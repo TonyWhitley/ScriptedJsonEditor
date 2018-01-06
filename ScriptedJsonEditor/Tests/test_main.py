@@ -69,14 +69,15 @@ class Test_test_main(unittest.TestCase):
     jobsFile = _clo.get_jobs_file()
     if jobsFile:
 
-      _JSNO_O = ScriptedJsonEditor.JsonFile()
-      _jobs = _JSNO_O.read(jobsFile)
+      _JSNO_O = ScriptedJsonEditor.JsonJobsFile()
+      _JSNO_O.read(jobsFile)
+      _jobs = _JSNO_O.get_jobs()
 
       if _jobs:
         # Execute
         # For each job in jobsFile
-        for job in _jobs["jobs"]:
-          _j = ScriptedJsonEditor.Job(_jobs[job])
+        for job in _jobs:
+          _j = ScriptedJsonEditor.Job(job)
           #   read the file to be edited
           _j._load(test_test_strings.playerJSONstr)
       else:
