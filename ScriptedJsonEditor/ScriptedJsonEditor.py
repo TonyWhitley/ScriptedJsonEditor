@@ -10,12 +10,14 @@
 """
 
 import json
+import os
 import sys
+from json_include import build_json_include
 
 from backups import Backups
 from command_line import CommandLine
 
-BUILD_REVISION = 30 # The git commit count
+BUILD_REVISION = 33 # The git commit count
 
 # User-defined exceptions
 class EmptyJsonError(Exception):
@@ -38,7 +40,7 @@ class JsonFile():
       "skip keys with # in them": True
     }
 
-  def read(self, filepath):
+  def readSimple(self, filepath):
     """ Read the JSON file """
     try:
       with open(filepath) as f_p:
@@ -49,6 +51,27 @@ class JsonFile():
         except ValueError as err:
           print('JSON content error in "%s"' % filepath)
           print(err)
+    except IOError:
+      print('Failed to open JSON file "%s"' % filepath)
+    raise JsonContentError
+
+  def read(self, filepath, dirpath=None):
+    """
+    Read the JSON file that may include other JSON files
+    (in the same folder unless 'dirpath' is set)
+    """
+    try:
+      if dirpath is None:
+        dirpath = os.path.abspath(os.path.dirname(os.path.realpath(filepath)))
+
+      try:
+        _filepath = os.path.basename(filepath)
+        self.json_dict = json.loads(build_json_include(dirpath, _filepath, indent=2))
+        self.filepath = filepath
+        return self.json_dict
+      except ValueError as err:
+        print('JSON content error in "%s"' % filepath)
+        print(err)
     except IOError:
       print('Failed to open JSON file "%s"' % filepath)
     raise JsonContentError
@@ -125,8 +148,7 @@ class JsonFile():
 
 class JsonJobsFile(JsonFile):
   """
-  Get a list of keys whose name contains "job" and use those to
-  edit the file.
+  Get a list of keys in the item "jobs".
   """
   def __init__(self):
     # default to rfactor 2 player.json filepath and formatting:
@@ -138,7 +160,7 @@ class JsonJobsFile(JsonFile):
        "rFactor escape slash": True
       }
 
-  def read(self, filepath):
+  def read(self, filepath, dirpath=None):
     self.json_dict = super().read(filepath)
     if self.json_dict:
       for key in ["JSONfileToBeEdited",
@@ -154,7 +176,7 @@ class JsonJobsFile(JsonFile):
     """
     _result = []
     for _job in self.json_dict["jobs"]:
-      _result.append(self.json_dict[_job])
+      _result.append(self.json_dict['jobs library'][_job])
     return _result
 
 class JsonRfactorFile(JsonFile):
@@ -235,7 +257,8 @@ def main():
 
   _JSNO_O = JsonJobsFile()
   try:
-    _jobs = _JSNO_O.read(jobsFile)
+    _JSNO_O.read(jobsFile)
+    _jobs = _JSNO_O.get_jobs()
   except JsonContentError:
     return 99
 
@@ -245,8 +268,8 @@ def main():
 
   # Execute
   # For each job in jobsFile
-  for job in _jobs["jobs"]:
-    _j = Job(_jobs[job])
+  for job in _jobs:
+    _j = Job(job)
     #   read the file to be edited
     try:
       _j.read_json_file_to_be_edited()
@@ -270,6 +293,6 @@ def main():
   return 0
 
 if __name__ == '__main__':
-  print('Scripted JSON Editor V0.3.%d\n' % BUILD_REVISION)
+  print('Scripted JSON Editor V0.4.%d\n' % BUILD_REVISION)
   _result = main()
   sys.exit(_result)

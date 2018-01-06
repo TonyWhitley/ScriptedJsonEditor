@@ -13,7 +13,8 @@
     <RootNamespace>ScriptedJsonEditor</RootNamespace>
     <InterpreterId>MSBuild|envPyLint|$(MSBuildProjectFullPath)</InterpreterId>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <CommandLineArguments>jobs\1109.json </CommandLineArguments>
+    <CommandLineArguments>
+    </CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
     <InterpreterArguments>
     </InterpreterArguments>
@@ -33,6 +34,7 @@
     <Compile Include="command_line.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="json_include.py" />
     <Compile Include="ScriptedJsonEditor.py" />
     <Compile Include="Tests\test_backups.py">
       <SubType>Code</SubType>
@@ -62,6 +64,9 @@
   <ItemGroup>
     <Folder Include="jobs\" />
     <Content Include="jobs\1109.json" />
+    <Content Include="jobs\G25.json" />
+    <Content Include="jobs\G25_VR.json" />
+    <Content Include="jobs\jobs_library.json" />
     <Content Include="jobs\rF2VR.json" />
   </ItemGroup>
   <ItemGroup>
@@ -70,6 +75,7 @@
     <Content Include="pylintrc" />
     <Content Include="requirements.txt" />
     <Content Include="run_PyLint.bat" />
+    <Content Include="Tests\jobs_include_test.json" />
     <Content Include="Tests\jobs_test1.json" />
     <Content Include="Tests\null.json" />
     <Content Include="Tests\player.json" />

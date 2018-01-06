@@ -5,20 +5,22 @@ JOBS_JSON_HELP_STR = r"""
 {"jobs": ["noLetterboxing"],
 "#Only that list of jobs will be performed": 0,
 "#Not all jobs in the file will necessarily be run": 0,
-"noLetterboxing":
-  {
-  "JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\player\\player.json",
-  "skip keys with # in them": true,
-  "# keys with # in them are used as comments, don't change the values": 0,
-  "rFactor escape slash": true,
-  "# rFactor 2 escapes /. Also remove space after the :": 0,
+"jobs library":{
+  "noLetterboxing":
+    {
+    "JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\player\\player.json",
+    "skip keys with # in them": true,
+    "# keys with # in them are used as comments, don't change the values": 0,
+    "rFactor escape slash": true,
+    "# rFactor 2 escapes /. Also remove space after the :": 0,
 
-  "edits": {
-    "Graphic Options":{
-        "Allow Letterboxing":false,
-        "Allow Letterboxing#":"whether we allow letterboxing (during replays, for example)",
-        "Automap":3,
-        "Automap#":"0=off 1=race-only 2=non-race-only 3=all sessions"
+    "edits": {
+      "Graphic Options":{
+          "Allow Letterboxing":false,
+          "Allow Letterboxing#":"whether we allow letterboxing (during replays, for example)",
+          "Automap":3,
+          "Automap#":"0=off 1=race-only 2=non-race-only 3=all sessions"
+        }
       }
     }
   }

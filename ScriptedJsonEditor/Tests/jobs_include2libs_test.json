@@ -1,0 +1,6 @@
+{ "jobs": ["job1"],
+"jobs library":{
+"...": "<jobs_lib_test2.json>",
+"...": "<jobs_lib_test1.json>"
+}
+}

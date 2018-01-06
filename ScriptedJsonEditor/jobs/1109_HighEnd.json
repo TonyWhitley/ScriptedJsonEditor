@@ -8,6 +8,7 @@
     "Low end GPU",
     "Mid range GPU",
     "High end GPU",
+    "Max frame rate 60",
     "VR universal",
     "VR mid range",
     "VR high end",
@@ -18,15 +19,14 @@
   "# These are the ones that are executed": 0,
   "# Edit the list to suit": 0,
   "jobs": [
-    "VR universal",
-    "VR high end",
-    "VR sound",
+    "High end GPU",
+    "Max frame rate 60",
     "Pro driving aid settings"
   ],
 
   "# The jobs follow. Add more if you want": 0,
   "############################################": 0,
-  "jobs library":{
+  
   "Low end GPU": {
     "# Set graphic options for Low end GPU as recommended in": 0,
     "# https://forum.studio-397.com/index.php?threads/latest-release-1109-rain-effects-and-more.58675/": 0,
@@ -45,11 +45,11 @@
         "Auto Detail Framerate#": "Details and visible vehicles will be automatically reduced (by up to half) if framerate is under this threshold (0 to disable)",
         "Environment Reflections": 2,
         "Environment Reflections#": "Off\/Low\/HIgh = live cubic mapping is used (if track and car are setup properly)",
-			"# These are not mentioned but seem like a good idea": 0,
-			"Garage Detail": 0.01,
-			"Garage Detail#": "LOD multiplier when vehicle is in garage (0.01-1.00)",
-			"Max Headlights": 20,
-			"Max Headlights#": "Max headlights visible relative to your car.",
+      "# These are not mentioned but seem like a good idea": 0,
+      "Garage Detail": 0.01,
+      "Garage Detail#": "LOD multiplier when vehicle is in garage (0.01-1.00)",
+      "Max Headlights": 20,
+      "Max Headlights#": "Max headlights visible relative to your car.",
         "Rearview_Back_Clip": 30,
         "Rearview_Back_Clip#": "Back plane distance for mirror (0.0 = use default for scene)",
         "HUD": 0,
@@ -103,11 +103,11 @@
         "Auto Detail Framerate#": "Details and visible vehicles will be automatically reduced (by up to half) if framerate is under this threshold (0 to disable)",
         "Environment Reflections": 2,
         "Environment Reflections#": "Off\/Low\/HIgh = live cubic mapping is used (if track and car are setup properly)",
-			"# These are not mentioned but seem like a good idea": 0,
-			"Garage Detail": 0.01,
-			"Garage Detail#": "LOD multiplier when vehicle is in garage (0.01-1.00)",
-			"Max Headlights": 20,
-			"Max Headlights#": "Max headlights visible relative to your car.",
+      "# These are not mentioned but seem like a good idea": 0,
+      "Garage Detail": 0.01,
+      "Garage Detail#": "LOD multiplier when vehicle is in garage (0.01-1.00)",
+      "Max Headlights": 20,
+      "Max Headlights#": "Max headlights visible relative to your car.",
         "HUD": 7,
         "HUD MFD": 1,
         "HUD Race Stats": 1,
@@ -159,11 +159,11 @@
         "Auto Detail Framerate#": "Details and visible vehicles will be automatically reduced (by up to half) if framerate is under this threshold (0 to disable)",
         "Environment Reflections": 2,
         "Environment Reflections#": "Off\/Low\/HIgh = live cubic mapping is used (if track and car are setup properly)",
-			"# These are not mentioned but seem like a good idea": 0,
-			"Garage Detail": 0.01,
-			"Garage Detail#": "LOD multiplier when vehicle is in garage (0.01-1.00)",
-			"Max Headlights": 20,
-			"Max Headlights#": "Max headlights visible relative to your car.",
+      "# These are not mentioned but seem like a good idea": 0,
+      "Garage Detail": 0.01,
+      "Garage Detail#": "LOD multiplier when vehicle is in garage (0.01-1.00)",
+      "Max Headlights": 20,
+      "Max Headlights#": "Max headlights visible relative to your car.",
         "HUD": 7,
         "HUD MFD": 1,
         "HUD Race Stats": 1,
@@ -197,6 +197,26 @@
     }
   },
   
+  "Max frame rate 60": {
+    "# Set graphic options for Mid range GPU as recommended in": 0,
+    "# https://forum.studio-397.com/index.php?threads/latest-release-1109-rain-effects-and-more.58675/": 0,
+    "JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\player.JSON",
+    "# Note: JSONfileToBeEdited .JSON is case-sensitive": 0,
+    "skip keys with # in them": true,
+    "# keys with # in them are used as comments, don't change the values": 0,
+    "rFactor escape slash": true,
+    "# rFactor 2 escapes /. Also remove space after the :": 0,
+    "edits": {
+      "Game Options": {
+        "Message Center Detail": 0
+      },
+      "Graphic Options": {
+        "Max Framerate":60,
+        "Max Framerate#":"0 to disable (note: positive numbers only, we always use the 'alternate' method now)"
+        }
+      }
+    },
+
   "VR universal": {
     "# Set graphic options for VR as recommended in": 0,
     "# https://forum.studio-397.com/index.php?threads/rfactor2-the-vr-thread-settings-tips.55249/": 0,
@@ -367,6 +387,5 @@
         "GPRIX AI Driver Strength#": "100 should approximate real life"
       }
     }
-  }
   }
 }

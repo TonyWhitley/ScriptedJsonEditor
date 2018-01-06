@@ -45,7 +45,7 @@ class Test_test_main(unittest.TestCase):
     # Execute
     # For each job in jobsFile
     for job in _jobs["jobs"]:
-      _j = ScriptedJsonEditor.Job(_jobs[job])
+      _j = ScriptedJsonEditor.Job(_jobs["jobs library"][job])
       #   read the file to be edited
       _j._load(test_test_strings.playerJSONstr)
       #   do the edits

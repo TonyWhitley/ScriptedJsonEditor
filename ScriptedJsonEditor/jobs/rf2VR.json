@@ -3,6 +3,8 @@
     "VR"
   ],
 
+    "jobs library":{
+
   "VR": {
     "# Set graphic options for VR as recommended in": 0,
     "# https://forum.studio-397.com/index.php?threads/rfactor2-the-vr-thread-settings-tips.55249/": 0,
@@ -58,5 +60,6 @@
         "Track Detail#": "0=Low 1=Medium 2=High 3=Full"
       }
     }
+  }
   }
 }

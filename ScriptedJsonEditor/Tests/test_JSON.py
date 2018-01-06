@@ -36,9 +36,9 @@ class Test_test_JSON(unittest.TestCase):
     def test_get_jobs(self):
         _jsonJob = ScriptedJsonEditor.JsonJobsFile()
         P_JSON = _jsonJob._load(test_test_strings.JOBS_JSON_HELP_STR)
-        assert P_JSON["noLetterboxing"] != None
-        assert P_JSON["noLetterboxing"]["JSONfileToBeEdited"] != None
-        assert len(P_JSON["noLetterboxing"]["edits"]) > 0, P_JSON["job1"]["edits"]
+        assert P_JSON["jobs library"]["noLetterboxing"] != None
+        assert P_JSON["jobs library"]["noLetterboxing"]["JSONfileToBeEdited"] != None
+        assert len(P_JSON["jobs library"]["noLetterboxing"]["edits"]) > 0, P_JSON["jobs library"]["noLetterboxing"]["edits"]
         jobs = _jsonJob.get_jobs()
         assert len(jobs) > 0
         assert jobs[0]["JSONfileToBeEdited"] != None
@@ -47,9 +47,9 @@ class Test_test_JSON(unittest.TestCase):
     def test_run_job(self):
         _jsonJob = ScriptedJsonEditor.JsonJobsFile()
         P_JSON = _jsonJob._load(test_test_strings.JOBS_JSON_HELP_STR)
-        assert P_JSON["noLetterboxing"] != None
-        assert P_JSON["noLetterboxing"]["JSONfileToBeEdited"] != None
-        assert len(P_JSON["noLetterboxing"]["edits"]) > 0, P_JSON["noLetterboxing"]["edits"]
+        assert P_JSON["jobs library"]["noLetterboxing"] != None
+        assert P_JSON["jobs library"]["noLetterboxing"]["JSONfileToBeEdited"] != None
+        assert len(P_JSON["jobs library"]["noLetterboxing"]["edits"]) > 0, P_JSON["jobs library"]["noLetterboxing"]["edits"]
         jobs = _jsonJob.get_jobs()
         assert len(jobs) > 0
         assert jobs[0]["JSONfileToBeEdited"] != None
@@ -76,9 +76,9 @@ class Test_test_JSON(unittest.TestCase):
         # Expect job2 to fail
         _jsonJob = ScriptedJsonEditor.JsonJobsFile()
         P_JSON = _jsonJob._load(test_test_strings.jobsJSONstrBadKey2)
-        assert P_JSON["job1"] != None
-        assert P_JSON["job1"]["JSONfileToBeEdited"] != None
-        assert len(P_JSON["job1"]["edits"]) > 0, P_JSON["job1"]["edits"]
+        assert P_JSON["jobs library"]["job1"] != None
+        assert P_JSON["jobs library"]["job1"]["JSONfileToBeEdited"] != None
+        assert len(P_JSON["jobs library"]["job1"]["edits"]) > 0, P_JSON["jobs library"]["job1"]["edits"]
         jobs = _jsonJob.get_jobs()
         assert len(jobs) > 0
         assert jobs[0]["JSONfileToBeEdited"] != None

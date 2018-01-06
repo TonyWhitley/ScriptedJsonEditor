@@ -1,0 +1,20 @@
+{
+  "# Config file for ScriptedJsonEditor": 0,
+  "# V1.0.0": 0,
+  "# 'jobs' file to set up a G25 for use with a monitor": 0,
+  "# Note: any key with a # is a comment": 0,
+  "# These are the jobs that are executed": 0,
+  "# Edit the list to suit": 0,
+  "jobs": [
+    "Driver aid buttons disable",
+    "Cursor keys control seat",
+    "G25 wheel settings",
+    "G25 monitor buttons",
+    "G25 POV hat LCD control",
+    "G25 minor controls"
+  ],
+  "############################################": 0,
+  "jobs library": {
+    "...": "<jobs_library.json>"
+  }
+}

@@ -84,23 +84,25 @@ jobsJSONstr1 = r"""
 {"jobs": ["job1"],
 "#Only that list of jobs will be performed": 0,
 "#Not all jobs in the file will necessarily be run": 0,
-"job1":
-	{
-	"JSONfileToBeEdited": "tests/player.json",
-  "skip keys with # in them": true,
-  "# keys with # in them are used as comments, don't change the values": 0,
-  "rFactor escape slash": true,
-  "# rFactor 2 escapes /. Also remove space after the :": 0,
+"jobs library":{
+  "job1":
+	  {
+	  "JSONfileToBeEdited": "tests/player.json",
+    "skip keys with # in them": true,
+    "# keys with # in them are used as comments, don't change the values": 0,
+    "rFactor escape slash": true,
+    "# rFactor 2 escapes /. Also remove space after the :": 0,
 
-	"edits": {
-		"Graphic Options":{
-		"Track Detail": 1,  
-		"Track Detail#": "0=Low 1=Medium 2=High 3=Full",
-		"Texture Filter": 4,
-		"Texture Filter#": "0, bilinear, 1, trilinear, 2, X2 AF, 3, X4 AF, 4, X8 AF, 5, X16 AF"
-		}
+	  "edits": {
+		  "Graphic Options":{
+		  "Track Detail": 1,  
+		  "Track Detail#": "0=Low 1=Medium 2=High 3=Full",
+		  "Texture Filter": 4,
+		  "Texture Filter#": "0, bilinear, 1, trilinear, 2, X2 AF, 3, X4 AF, 4, X8 AF, 5, X16 AF"
+		  }
+	    }
 	  }
-	}
+  }
 }
 """
 valid_JSON_strings.append(jobsJSONstr1)
@@ -108,40 +110,42 @@ valid_JSON_strings.append(jobsJSONstr1)
 # Valid JSON but key name in job2 is wrong
 jobsJSONstrBadKey2 = r"""
 {"jobs": ["job1", "job2"],
-"job1":
-	{
-	"JSONfileToBeEdited": "tests/player.json",
-  "skip keys with # in them": true,
-  "# keys with # in them are used as comments, don't change the values": 0,
-  "rFactor escape slash": true,
-  "# rFactor 2 escapes /. Also remove space after the :": 0,
+"jobs library":{
+  "job1":
+	  {
+	  "JSONfileToBeEdited": "tests/player.json",
+    "skip keys with # in them": true,
+    "# keys with # in them are used as comments, don't change the values": 0,
+    "rFactor escape slash": true,
+    "# rFactor 2 escapes /. Also remove space after the :": 0,
 
-	"edits": {
-		"Graphic Options":{
-		"Track Detail": 1,  
-		"Track Detail#": "0=Low 1=Medium 2=High 3=Full",
-		"Texture Filter": 4,
-		"Texture Filter#": "0, bilinear, 1, trilinear, 2, X2 AF, 3, X4 AF, 4, X8 AF, 5, X16 AF"
-		}
-	  }
-	},
-"job2":
-	{
-	"JSONfileToBeEdited": "tests/player.json",
-  "skip keys with # in them": true,
-  "# keys with # in them are used as comments, don't change the values": 0,
-  "rFactor escape slash": true,
-  "# rFactor 2 escapes /. Also remove space after the :": 0,
+	  "edits": {
+		  "Graphic Options":{
+		  "Track Detail": 1,  
+		  "Track Detail#": "0=Low 1=Medium 2=High 3=Full",
+		  "Texture Filter": 4,
+		  "Texture Filter#": "0, bilinear, 1, trilinear, 2, X2 AF, 3, X4 AF, 4, X8 AF, 5, X16 AF"
+		  }
+	    }
+	  },
+  "job2":
+	  {
+	  "JSONfileToBeEdited": "tests/player.json",
+    "skip keys with # in them": true,
+    "# keys with # in them are used as comments, don't change the values": 0,
+    "rFactor escape slash": true,
+    "# rFactor 2 escapes /. Also remove space after the :": 0,
 
-	"edits": {
-		"Graphic Options":{
-		"Shadows": 1,  
-		"Shadows#": "0=Low 1=Medium 2=High 3=Full",
-		"Shadow Blue": 4,
-		"Shadow Blur#": "0=Off, 1=Fast, 2=Optimal, 3=Quality"
-		}
+	  "edits": {
+		  "Graphic Options":{
+		  "Shadows": 1,  
+		  "Shadows#": "0=Low 1=Medium 2=High 3=Full",
+		  "Shadow Blue": 4,
+		  "Shadow Blur#": "0=Off, 1=Fast, 2=Optimal, 3=Quality"
+		  }
+	    }
 	  }
-	}
+  }
 }
 """
 valid_JSON_strings.append(jobsJSONstrBadKey2)
@@ -149,26 +153,28 @@ valid_JSON_strings.append(jobsJSONstrBadKey2)
 # Valid JSON but key name is wrong
 jobsJSONstrBadKey = r"""
 {"jobs": ["job1"],
-"job1":
-	{
-	"JSONfileToBeEdited": "tests/player.json",
-  "skip keys with # in them": true,
-  "# keys with # in them are used as comments, don't change the values": 0,
-  "rFactor escape slash": true,
-  "# rFactor 2 escapes /. Also remove space after the :": 0,
+"jobs library":{
+  "job1":
+	  {
+	  "JSONfileToBeEdited": "tests/player.json",
+    "skip keys with # in them": true,
+    "# keys with # in them are used as comments, don't change the values": 0,
+    "rFactor escape slash": true,
+    "# rFactor 2 escapes /. Also remove space after the :": 0,
 
-	"edits": {
-		"Graphic Options":{
-                            "Allow Letterboxing":false,
-                            "Allow Letterboxing#":"whether we allow letterboxing (during replays, for example)",
-                            "Auto Detail Framerate":50,
-                            "Auto Detail Framerate#":"Details and visible vehicles will be automatically reduced (by up to half) if framerate is under this threshold (0 to disable)",
-                            "Max Headlights": 20,
-                            "MaxHeadlights": 20,
-                            "Key above misspelled#": 0
-		                  }
-	          }
-	}
+	  "edits": {
+		  "Graphic Options":{
+                              "Allow Letterboxing":false,
+                              "Allow Letterboxing#":"whether we allow letterboxing (during replays, for example)",
+                              "Auto Detail Framerate":50,
+                              "Auto Detail Framerate#":"Details and visible vehicles will be automatically reduced (by up to half) if framerate is under this threshold (0 to disable)",
+                              "Max Headlights": 20,
+                              "MaxHeadlights": 20,
+                              "Key above misspelled#": 0
+		                    }
+	            }
+	  }
+  }
 }
 """
 valid_JSON_strings.append(jobsJSONstrBadKey)
@@ -176,20 +182,22 @@ valid_JSON_strings.append(jobsJSONstrBadKey)
 # Valid JSON, check JSONfileToBeEdited
 jobsJSONfileToBeEdited = r"""
 {"jobs": ["jobJSONfileToBeEdited"],
-"jobJSONfileToBeEdited":
-	{
-	"JSONfileToBeEdited": "test/player.json",
-  "skip keys with # in them": true,
-  "# keys with # in them are used as comments, don't change the values": 0,
-  "rFactor escape slash": true,
-  "# rFactor 2 escapes /. Also remove space after the :": 0,
+"jobs library":{
+  "jobJSONfileToBeEdited":
+	  {
+	  "JSONfileToBeEdited": "test/player.json",
+    "skip keys with # in them": true,
+    "# keys with # in them are used as comments, don't change the values": 0,
+    "rFactor escape slash": true,
+    "# rFactor 2 escapes /. Also remove space after the :": 0,
 
-	"edits": {
-		"Graphic Options":{
-                            "Allow Letterboxing":false
-		                  }
-	          }
-	}
+	  "edits": {
+		  "Graphic Options":{
+                              "Allow Letterboxing":false
+		                    }
+	            }
+	  }
+  }
 }
 """
 valid_JSON_strings.append(jobsJSONfileToBeEdited)
@@ -197,11 +205,13 @@ valid_JSON_strings.append(jobsJSONfileToBeEdited)
 # Type 2 jobs file
 jobs2base = r"""
 { "jobs": ["job1", "fred", "harry"],
-"job1": {},
-"job2": {},
-"fred": {},
-"harry": {},
-"job3": {}
+"jobs library":{
+  "job1": {},
+  "job2": {},
+  "fred": {},
+  "harry": {},
+  "job3": {}
+  }
 }
 """
 valid_JSON_strings.append(jobs2base)
