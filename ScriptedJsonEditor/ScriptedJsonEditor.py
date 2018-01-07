@@ -17,7 +17,7 @@ from json_include import build_json_include
 from backups import Backups
 from command_line import CommandLine
 
-BUILD_REVISION = 33 # The git commit count
+BUILD_REVISION = 37 # The git commit count
 
 # User-defined exceptions
 class EmptyJsonError(Exception):
@@ -155,20 +155,29 @@ class JsonJobsFile(JsonFile):
     super().__init__()
     self.config = \
       {"JSONfileToBeEdited":
-       r"c:\Program Files (x86)\Steam\steamapps\common\rFactor 2\UserData\player\player.json",
+       r"c:\Program Files (x86)\Steam\steamapps\common\rFactor 2\UserData\player\player.JSON",
+       "PLAYER.JSON": 
+       r"c:\Program Files (x86)\Steam\steamapps\common\rFactor 2\UserData\player\player.JSON",
+       "CONTROLLER.JSON": 
+       r"c:\Program Files (x86)\Steam\steamapps\common\rFactor 2\UserData\player\controller.JSON",
        "skip keys with # in them": True,
        "rFactor escape slash": True
       }
 
   def read(self, filepath, dirpath=None):
     self.json_dict = super().read(filepath)
+    return self._read()
+
+  def _read(self):
     if self.json_dict:
       for key in ["JSONfileToBeEdited",
+                  "PLAYER.JSON",
+                  "CONTROLLER.JSON",
                   "skip keys with # in them",
                   "rFactor escape slash"]:
         if key in self.json_dict:
           self.config[key] = self.json_dict[key]
-    return self.json_dict
+    return self.json_dict, self.config
 
   def get_jobs(self):
     """
@@ -205,9 +214,10 @@ class JsonRfactorFile(JsonFile):
 
 class Job():
   """ Run a job """
-  def __init__(self, job):
+  def __init__(self, job, config):
     self.job = job
-    if 'rFactor escape slash' in job and job['rFactor escape slash']:
+    self.config = config
+    if self.config['rFactor escape slash']:
       self.json_o = JsonRfactorFile()
     else:
       self.json_o = JsonFile()
@@ -217,7 +227,12 @@ class Job():
     Read the file specified by the job file key 'JSONfileToBeEdited'
     May raise JsonContentError
     """
-    self.json_o.read(self.job["JSONfileToBeEdited"])
+    _json_file = self.job["JSONfileToBeEdited"]
+    if _json_file == 'PLAYER.JSON':
+      _json_file = self.config['PLAYER.JSON']
+    if _json_file == 'CONTROLLER.JSON':
+      _json_file = self.config['CONTROLLER.JSON']
+    self.json_o.read(_json_file)
 
   def _load(self, json_str):
     """ For unit tests - load the JSON dict with values to be edited """
@@ -257,7 +272,7 @@ def main():
 
   _JSNO_O = JsonJobsFile()
   try:
-    _JSNO_O.read(jobsFile)
+    __, config = _JSNO_O.read(jobsFile)
     _jobs = _JSNO_O.get_jobs()
   except JsonContentError:
     return 99
@@ -269,7 +284,7 @@ def main():
   # Execute
   # For each job in jobsFile
   for job in _jobs:
-    _j = Job(job)
+    _j = Job(job, config)
     #   read the file to be edited
     try:
       _j.read_json_file_to_be_edited()
@@ -293,6 +308,6 @@ def main():
   return 0
 
 if __name__ == '__main__':
-  print('Scripted JSON Editor V0.4.%d\n' % BUILD_REVISION)
+  print('Scripted JSON Editor V0.5.%d\n' % BUILD_REVISION)
   _result = main()
   sys.exit(_result)

@@ -1,0 +1,24 @@
+{
+  "jobs": [
+    "job1"
+  ],
+  "PLAYER.JSON": "Tests\\player.JSON",
+  "jobs library":{
+	  "job1": {
+		"JSONfileToBeEdited": "PLAYER.JSON",
+		"skip keys with # in them": true,
+		"# keys with # in them are used as comments, don't change the values": 0,
+		"rFactor escape slash": true,
+		"# rFactor 2 escapes /. Also remove space after the :": 0,
+
+		"edits": {
+		  "Graphic Options": {
+			"Track Detail": 1,
+			"#": "0=Low 1=Medium 2=High 3=Full",
+			"Texture Filter": 4,
+			"#": "0, bilinear, 1, trilinear, 2, X2 AF, 3, X4 AF, 4, X8 AF, 5, X16 AF"
+		  }
+		}
+	  }
+	}
+}

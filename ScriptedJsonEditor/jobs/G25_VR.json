@@ -23,6 +23,7 @@
   ],
   "# The jobs follow. Add more if you want": 0,
   "############################################": 0,
+  "jobs library":{
   "Wheel settings": {
     "JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\Controller.JSON",
     "# Note: JSONfileToBeEdited .JSON is case-sensitive": 0,
@@ -252,4 +253,5 @@
       }
     }
   }
+ }
 }

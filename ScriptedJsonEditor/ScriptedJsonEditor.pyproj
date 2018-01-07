@@ -76,7 +76,9 @@
     <Content Include="requirements.txt" />
     <Content Include="run_PyLint.bat" />
     <Content Include="Tests\jobs_include_test.json" />
+    <Content Include="Tests\jobs_lib_test1.json" />
     <Content Include="Tests\jobs_test1.json" />
+    <Content Include="Tests\jobs_test_configs.json" />
     <Content Include="Tests\null.json" />
     <Content Include="Tests\player.json" />
     <Content Include="Tests\requirements.txt" />

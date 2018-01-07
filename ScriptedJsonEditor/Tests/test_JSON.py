@@ -46,7 +46,8 @@ class Test_test_JSON(unittest.TestCase):
 
     def test_run_job(self):
         _jsonJob = ScriptedJsonEditor.JsonJobsFile()
-        P_JSON = _jsonJob._load(test_test_strings.JOBS_JSON_HELP_STR)
+        _jsonJob._load(test_test_strings.JOBS_JSON_HELP_STR)
+        P_JSON, config = _jsonJob._read()
         assert P_JSON["jobs library"]["noLetterboxing"] != None
         assert P_JSON["jobs library"]["noLetterboxing"]["JSONfileToBeEdited"] != None
         assert len(P_JSON["jobs library"]["noLetterboxing"]["edits"]) > 0, P_JSON["jobs library"]["noLetterboxing"]["edits"]
@@ -56,7 +57,7 @@ class Test_test_JSON(unittest.TestCase):
         assert len(jobs[0]["edits"]) > 0, jobs[0]["edits"]
         
         for job in jobs:
-          _j = ScriptedJsonEditor.Job(job)
+          _j = ScriptedJsonEditor.Job(job, config)
           #   read the file to be edited
           P_JSON = _j._load(test_test_strings.playerJSONstr)
           assert P_JSON["Graphic Options"] != None
@@ -75,7 +76,8 @@ class Test_test_JSON(unittest.TestCase):
     def test_run_2jobs(self, print_):                 # Note added , print_ to mock print()
         # Expect job2 to fail
         _jsonJob = ScriptedJsonEditor.JsonJobsFile()
-        P_JSON = _jsonJob._load(test_test_strings.jobsJSONstrBadKey2)
+        _jsonJob._load(test_test_strings.jobsJSONstrBadKey2)
+        P_JSON, config = _jsonJob._read()
         assert P_JSON["jobs library"]["job1"] != None
         assert P_JSON["jobs library"]["job1"]["JSONfileToBeEdited"] != None
         assert len(P_JSON["jobs library"]["job1"]["edits"]) > 0, P_JSON["jobs library"]["job1"]["edits"]
@@ -86,7 +88,7 @@ class Test_test_JSON(unittest.TestCase):
         
         # job 1
         job = jobs[0]
-        _j = ScriptedJsonEditor.Job(job)
+        _j = ScriptedJsonEditor.Job(job, config)
         #   read the file to be edited
         P_JSON = _j._load(test_test_strings.playerJSONstr)
         assert P_JSON["Graphic Options"] != None
@@ -101,7 +103,7 @@ class Test_test_JSON(unittest.TestCase):
 
         # job 2
         job = jobs[1]
-        _j = ScriptedJsonEditor.Job(job)
+        _j = ScriptedJsonEditor.Job(job, config)
         #   read the file to be edited
         P_JSON = _j._load(test_test_strings.playerJSONstr)
 

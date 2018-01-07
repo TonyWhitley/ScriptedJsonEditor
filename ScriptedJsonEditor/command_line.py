@@ -44,6 +44,8 @@ and the edits to be performed. Example contents:
 %s
         """ % (sys.argv[0], JOBS_JSON_HELP_STR))
 
+      self.jobs_file = input('Enter jobs file name (just Enter to quit): ')
+
   def get_jobs_file(self):
     """ get the jobs file from the command line """
     return self.jobs_file
