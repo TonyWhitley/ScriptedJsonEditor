@@ -1,9 +1,13 @@
 # ScriptedJsonEditor
-Scripted JSON editor to make changes for example to rFactor 2 player.json
+Scripted JSON editor is a command line program to make changes for example to rFactor 2 player.json
 
 Rather than a list of instructions to "edit player.json setting 'blah' to 15" and so on, instead provide a JSON file (or just the text to paste into one) then run ScriptedJsonEditor.
 
-An example file is
+To run it, open a cmd window and enter (as an example)
+
+ ScriptedJsonEditor jobs/1109.json
+
+An example jobs file is
 
     {"jobs": ["noLetterboxing"],
      "# Only that list of jobs will be performed": 0,
@@ -30,4 +34,4 @@ An example file is
       }
     }
 
-See ScriptedJsonEditor/jobs/1109.json for a complete example.
+See ScriptedJsonEditor/jobs/1109.json for a complete example of a jobs file.
