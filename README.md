@@ -9,29 +9,57 @@ To run it, open a cmd window and enter (as an example)
 
 An example jobs file is
 
-    {"jobs": ["noLetterboxing"],
-     "# Only that list of jobs will be performed": 0,
-     "# Not all jobs in the file will necessarily be run": 0,
-     
-     "noLetterboxing":
-      {
-      "JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\player\\player.JSON",
-      "# Note: JSONfileToBeEdited .JSON is case-sensitive": 0,
-      
-      "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": 0,
-      "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": 0,
+{
+  "<CONTROLLER.JSON>": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\Controller.JSON",
+  "jobs file format": 6,
+  "job definition files": [
+    "jobs\\Keyboard_jobs.json"
+  ],
+  "jobs": [
+    {
+      "Keyboard_jobs": [
+        "Driver aid buttons disable",
+        "Cursor keys control seat"
+      ]
+    }
+  ]
+}
 
+
+That makes use of the one of the "Jobs definition files" Keyboard_jobs.json
+that handles the details of the edits.  These files are shared (though you
+are of course free to edit them).
+Example contents of that are:
+
+{
+  "# Keyboard - job definitions file for ScriptedJsonEditor": 0,
+  "# V1.0.0": 0,
+  "# Note: any key with a # is a comment": 0,
+  "job definitions": {
+    "Cursor keys control seat": {
+      "JSONfileToBeEdited": "<CONTROLLER.JSON>",
       "edits": {
-        "Graphic Options":{
-            "Allow Letterboxing":false,
-            "Allow Letterboxing#":"whether we allow letterboxing (during replays, for example)",
-            "Automap":3,
-            "Automap#":"0=off 1=race-only 2=non-race-only 3=all sessions"
-          }
+        "Input": {
+          "# Cursor keys control seat": 0,
+          "Control - Adjust Seat Aft": [
+            0,
+            203
+          ],
+          "Control - Adjust Seat Down": [
+            0,
+            208
+          ],
+          "Control - Adjust Seat Fore": [
+            0,
+            205
+          ],
+          "Control - Adjust Seat Up": [
+            0,
+            200
+          ]
         }
       }
     }
+  }
+}
 
-See ScriptedJsonEditor/jobs/1109.json for a complete example of a jobs file.

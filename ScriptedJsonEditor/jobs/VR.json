@@ -1,0 +1,16 @@
+{
+  "<PLAYER.JSON>": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\player.JSON",
+  "jobs file format": 6,
+  "job definition files": [
+    "jobs\\VR_jobs.json"
+  ],
+  "jobs": [
+    {
+      "VR_jobs": [
+        "universal",
+        "high end graphics card",
+        "sound levels"
+      ]
+    }
+  ]
+}

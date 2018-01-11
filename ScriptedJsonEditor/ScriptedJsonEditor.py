@@ -17,7 +17,7 @@ from json_include import build_json_include
 from backups import Backups
 from command_line import CommandLine
 
-BUILD_REVISION = 37 # The git commit count
+BUILD_REVISION = 40 # The git commit count
 
 # User-defined exceptions
 class EmptyJsonError(Exception):
@@ -28,6 +28,14 @@ class JsonContentError(Exception):
   """ The JSON string (usually loaded from a .JSON file) is invalid in some way """
   pass
 
+class JobFileFormatError(Exception):
+  """ The job file format does not match the program """
+  pass
+
+class JobFailedError(Exception):
+  """ The job failed to run """
+  pass
+
 
 class JsonFile():
   """
@@ -35,6 +43,7 @@ class JsonFile():
   """
   def __init__(self):
     self.json_dict = None
+    self.filename = None
     self.filepath = None
     self.config = {
       "skip keys with # in them": True
@@ -64,16 +73,17 @@ class JsonFile():
       if dirpath is None:
         dirpath = os.path.abspath(os.path.dirname(os.path.realpath(filepath)))
 
-      try:
-        _filepath = os.path.basename(filepath)
-        self.json_dict = json.loads(build_json_include(dirpath, _filepath, indent=2))
-        self.filepath = filepath
-        return self.json_dict
-      except ValueError as err:
-        print('JSON content error in "%s"' % filepath)
-        print(err)
+      _filepath = os.path.basename(filepath)
+      self.json_dict = json.loads(build_json_include(dirpath, _filepath, indent=2))
+      self.filepath = filepath
+      return self.json_dict
+    except ValueError as err:
+      print('JSON content error in "%s"' % filepath)
+      print(err)
     except IOError:
       print('Failed to open JSON file "%s"' % filepath)
+    else:
+      raise
     raise JsonContentError
 
   def write(self, _filepath=None):
@@ -116,6 +126,8 @@ class JsonFile():
             except ValueError:
               print('Invalid number %d in "%s":"%s"' % (new_value, main_key, sub_key))
             raise ValueError
+          else:
+            pass #what?
         else:
           print('No existing sub key "%s" in main key "%s"' % (sub_key, main_key))
           raise KeyError
@@ -123,11 +135,14 @@ class JsonFile():
         print('No existing main key "%s":"%s"' % (main_key, sub_key))
         raise KeyError
 
-  def _load(self, json_str):
-    """ For unit tests - load the JSON dict with values to be edited """
+  def _load(self, json_str, string_name):
+    """
+    For unit tests - load the JSON dict with a string giving values to be edited.
+    Use the string name as a dummy filename
+    """
     try:
       self.json_dict = json.loads(json_str)
-      self.filepath = 'from string'
+      self.filename = string_name
       return self.json_dict
     except ValueError:
       print('JSON string content error in _load()')
@@ -156,9 +171,9 @@ class JsonJobsFile(JsonFile):
     self.config = \
       {"JSONfileToBeEdited":
        r"c:\Program Files (x86)\Steam\steamapps\common\rFactor 2\UserData\player\player.JSON",
-       "PLAYER.JSON": 
+       "<PLAYER.JSON>":
        r"c:\Program Files (x86)\Steam\steamapps\common\rFactor 2\UserData\player\player.JSON",
-       "CONTROLLER.JSON": 
+       "<CONTROLLER.JSON>":
        r"c:\Program Files (x86)\Steam\steamapps\common\rFactor 2\UserData\player\controller.JSON",
        "skip keys with # in them": True,
        "rFactor escape slash": True
@@ -169,10 +184,16 @@ class JsonJobsFile(JsonFile):
     return self._read()
 
   def _read(self):
+    """ accessed directly by unit tests """
+    try:
+      self.json_dict["jobs file format"] == 6
+    except (KeyError, AssertionError):
+      print('Warning: %s "jobs file format" should be 6' % self.filepath)
+      #raise JobFileFormatError
     if self.json_dict:
       for key in ["JSONfileToBeEdited",
-                  "PLAYER.JSON",
-                  "CONTROLLER.JSON",
+                  "<PLAYER.JSON>",
+                  "<CONTROLLER.JSON>",
                   "skip keys with # in them",
                   "rFactor escape slash"]:
         if key in self.json_dict:
@@ -181,12 +202,64 @@ class JsonJobsFile(JsonFile):
 
   def get_jobs(self):
     """
-    Get the list of jobs in this JSON dict
+    Get the list of jobs in this JSON dict,
+    each one a (job definition file, job) tuple
     """
-    _result = []
-    for _job in self.json_dict["jobs"]:
-      _result.append(self.json_dict['jobs library'][_job])
+    _job_definitions = {}
+    try:
+      for _job_description_file in self.json_dict["job definition files"]:
+        _JDFO = JsonJobsDefinitionsFile(self.config)
+        _JDFO.read(_job_description_file)
+        _job_definitions[_JDFO.get_filename()] = _JDFO
+
+      _result = []
+      for _job_definition_file_set in self.json_dict["jobs"]:
+        for _job_definition_file in _job_definition_file_set:
+          for _job in _job_definition_file_set[_job_definition_file]:
+            _result.append(_job_definitions[_job_definition_file].get_job(_job))
+    except KeyError:
+      print('%s has no "job definition files"' % self.filepath)
     return _result
+
+class JsonJobsDefinitionsFile(JsonFile):
+  """
+  Get a list of job definitions.
+  Substitute any macro definitions from the config provided.
+  """
+  def __init__(self, config):
+    super().__init__()
+    self.config = config
+    self.filename = None
+    self.filepath = None
+
+  def read(self, filepath, dirpath=None):
+    self.json_dict = super().read(filepath)
+    # Extract filename (without extension) used to fully specify jobs
+    self.filepath = os.path.basename(filepath)
+    self.filename, _ = os.path.splitext(self.filepath)
+    return self._read()
+
+  def _read(self):
+    try:
+      json_dict = self.json_dict["job definitions"]
+    except:
+      print('"job definitions" absent from %s' % self.filepath)
+      raise JsonContentError
+    for job in json_dict:
+      if json_dict[job]["JSONfileToBeEdited"] in self.config:
+        # substitute the macro
+        json_dict[job]["JSONfileToBeEdited"] = self.config[json_dict[job]["JSONfileToBeEdited"]]
+    this_file_dict = {self.filename: json_dict}
+    return this_file_dict
+
+  def get_filename(self):
+    """ get filename (without extension) """
+    return self.filename
+
+  def get_job(self, job_name):
+    """ get the job 'job_name' """
+    return self.json_dict['job definitions'][job_name]
+
 
 class JsonRfactorFile(JsonFile):
   """
@@ -196,6 +269,8 @@ class JsonRfactorFile(JsonFile):
     """ Write the JSON file, maintaining the rFactor 2 JSON "style"
     _filepath is for unit testing
     """
+    if _filepath is None:
+      _filepath = self.filepath
     _json_txt = json.dumps(self.json_dict, indent=2).splitlines()
     # json.dumps() puts a space after the :  rF2 doesn't
     # So strip it out to make it easier to compare before and after
@@ -228,16 +303,15 @@ class Job():
     May raise JsonContentError
     """
     _json_file = self.job["JSONfileToBeEdited"]
-    if _json_file == 'PLAYER.JSON':
-      _json_file = self.config['PLAYER.JSON']
-    if _json_file == 'CONTROLLER.JSON':
-      _json_file = self.config['CONTROLLER.JSON']
+    if _json_file in self.config :
+      # Substitute the path defined in the macro
+      _json_file = self.config[_json_file]
     self.json_o.read(_json_file)
 
-  def _load(self, json_str):
+  def _load(self, json_str, filepath):
     """ For unit tests - load the JSON dict with values to be edited """
     # pylint: disable=protected-access
-    return self.json_o._load(json_str)
+    return self.json_o._load(json_str, filepath)
 
   def _get_value(self, main_key, sub_key):
     # pylint: disable=protected-access
@@ -262,52 +336,78 @@ class Job():
     """ Write the edited file """
     self.json_o.write()
 
+#####################################################
+
+def read_jobs_file(jobs_file_name):
+  """
+  Read the jobs file. Return
+  * the config
+  * the list of job definition file, job name pairs
+  """
+  _JSNO_O = JsonJobsFile()
+  __, config = _JSNO_O.read(jobs_file_name)
+  _jobs = _JSNO_O.get_jobs()
+  return config, _jobs
+
+def run_job(job, config):
+  """
+  Run the job, editing the file and backing it up.
+  Return status report string.
+  Exceptions:
+  * JobFailedError    could not execute the job
+  * FileNotFoundError could not open the file to edit
+  """
+  _j = Job(job, config)
+  #   read the file to be edited
+  try:
+    _j.read_json_file_to_be_edited()
+    #   do the edits
+    try:
+      _j.run_edits()
+      #   if successful:
+      #     backup 'filepath'
+      #     save new contents to 'filepath
+      _report = _j.backup_file()
+      _j.write()
+      return _report
+    except (KeyError, ValueError, EmptyJsonError):
+      raise JobFailedError
+  except JsonContentError:
+    raise FileNotFoundError
+
 def main():
   """ Main """
   _clo = CommandLine()
-  jobsFile = _clo.get_jobs_file()
-  if jobsFile is None:
+  jobs_file_name = _clo.get_jobs_file()
+  if jobs_file_name is None:
     # No jobs file in command line
     return 1
 
-  _JSNO_O = JsonJobsFile()
   try:
-    __, config = _JSNO_O.read(jobsFile)
+    _JSNO_O = JsonJobsFile()
+    __, config = _JSNO_O.read(jobs_file_name)
     _jobs = _JSNO_O.get_jobs()
   except JsonContentError:
     return 99
 
   if _jobs is None:
-    print('No jobs in"%s"' % jobsFile)
+    print('No jobs in"%s"' % jobs_file_name)
     return 99
 
   # Execute
   # For each job in jobsFile
   for job in _jobs:
-    _j = Job(job, config)
-    #   read the file to be edited
     try:
-      _j.read_json_file_to_be_edited()
-      #   do the edits
-      try:
-        _j.run_edits()
-      except KeyError:
-        break # failed, try the next job
-      except ValueError:
-        break # failed, try the next job
-      except EmptyJsonError:
-        break # failed, try the next job
-      #   if successful:
-      #     backup 'filepath'
-      #     save new contents to 'filepath
-      print(_j.backup_file())
-      _j.write()
-    except JsonContentError:
-      print('Job %s failed opening "%s"' % (job, _jobs[job]['JSONfileToBeEdited']))
+      _report = run_job(job, config)
+      print(_report)
+    except JobFailedError: # failed to execute job
+      return 98
+    except FileNotFoundError:
+      print('Failed opening "%s"' % (job['JSONfileToBeEdited']))
       return 99
   return 0
 
 if __name__ == '__main__':
-  print('Scripted JSON Editor V0.5.%d\n' % BUILD_REVISION)
+  print('Scripted JSON Editor V0.6.%d\n' % BUILD_REVISION)
   _result = main()
   sys.exit(_result)

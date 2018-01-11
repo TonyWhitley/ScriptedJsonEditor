@@ -1,0 +1,25 @@
+{
+  "# Demo_jobs - job definitions file for ScriptedJsonEditor": 0,
+  "# V1.0.0": 0,
+  "# Note: any key with a # is a comment": 0,
+  "job definitions": {
+    "Letterboxing off": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "edits": {
+        "Graphic Options": {
+          "Allow Letterboxing": false,
+          "Allow Letterboxing#": "whether we allow letterboxing (during replays, for example)"
+        }
+      }
+    },
+    "Map 3": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "edits": {
+        "Graphic Options": {
+          "Automap": 3,
+          "Automap#": "0=off 1=race-only 2=non-race-only 3=all sessions"
+        }
+      }
+    }
+  }
+}

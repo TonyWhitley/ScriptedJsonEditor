@@ -1,0 +1,12 @@
+{
+    "<CONTROLLER.JSON>": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\Controller.JSON",
+    "job definition files": [
+        "Keyboard_jobs.json"
+    ],
+    "jobs": {
+        "Keyboard_jobs": [
+            "Driver aid buttons disable",
+            "Cursor keys control seat"
+        ]
+    }
+}

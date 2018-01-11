@@ -1,24 +1,44 @@
 """ Parse the command line """
 import sys
 
-JOBS_JSON_HELP_STR = r"""
-{"jobs": ["noLetterboxing"],
-"#Only that list of jobs will be performed": 0,
-"#Not all jobs in the file will necessarily be run": 0,
-"jobs library":{
-  "noLetterboxing":
+JOBS_FILE_HELP_STR = r"""
+{
+  "<PLAYER.JSON>": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\player.JSON",
+  "jobs file format": 6,
+  "job definition files": [
+    "jobs\\demo_jobs.json"
+  ],
+  "jobs": [
     {
-    "JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\player\\player.json",
-    "skip keys with # in them": true,
-    "# keys with # in them are used as comments, don't change the values": 0,
-    "rFactor escape slash": true,
-    "# rFactor 2 escapes /. Also remove space after the :": 0,
+      "demo_jobs": [
+        "Letterboxing off",
+        "Map 2"
+      ]
+    }
+  ]
+}
+"""
 
-    "edits": {
+JOB_DEFINITIONS_FILE_HELP_STR = r"""
+{
+  "# Demo_jobs - job definitions file for ScriptedJsonEditor": 0,
+  "# V1.0.0": 0,
+  "# Note: any key with a # is a comment": 0,
+  "job definitions": {
+    "Letterboxing off": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "edits": {
       "Graphic Options":{
           "Allow Letterboxing":false,
-          "Allow Letterboxing#":"whether we allow letterboxing (during replays, for example)",
-          "Automap":3,
+          "Allow Letterboxing#":"whether we allow letterboxing (during replays, for example)"
+        }
+      }
+    },
+    "Map 2": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "edits": {
+      "Graphic Options":{
+          "Automap":2,
           "Automap#":"0=off 1=race-only 2=non-race-only 3=all sessions"
         }
       }
@@ -39,10 +59,17 @@ class CommandLine(object):
 %s <jobs file name>
 
 <jobs file name> is a JSON file specifying the JSON file to be edited
-and the edits to be performed. Example contents:
+and the edits to be performed. This you edit to your requirements.
+Example contents:
 
 %s
-        """ % (sys.argv[0], JOBS_JSON_HELP_STR))
+
+That makes use of the one of the "Jobs definition files" demo_jobs.json
+that handles the details of the edits.  These files are shared (though you
+are of course free to edit them).
+Example contents of that are:
+%s
+        """ % (sys.argv[0], JOBS_FILE_HELP_STR, JOB_DEFINITIONS_FILE_HELP_STR))
 
       self.jobs_file = input('Enter jobs file name (just Enter to quit): ')
 

@@ -1,5 +1,5 @@
 { "jobs": ["job1"],
-"jobs library":{
+"job definitions":{
 "...": "<jobs_lib_test1.json>"
 }
 }

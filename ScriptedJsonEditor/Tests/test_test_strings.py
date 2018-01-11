@@ -8,7 +8,9 @@ import unittest
 sys.path.insert(0, os.path.abspath(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
 
 
-from command_line import JOBS_JSON_HELP_STR
+from command_line import JOBS_FILE_HELP_STR,JOB_DEFINITIONS_FILE_HELP_STR
+valid_JSON_strings = [JOBS_FILE_HELP_STR]
+valid_JSON_strings.append(JOB_DEFINITIONS_FILE_HELP_STR)
 
 edits = [
     # General graphics
@@ -76,15 +78,13 @@ playerJSONstr = r"""
   }
 }
 """
-valid_JSON_strings = [playerJSONstr]
-
-valid_JSON_strings.append(JOBS_JSON_HELP_STR)
+valid_JSON_strings.append(playerJSONstr)
 
 jobsJSONstr1 = r"""
 {"jobs": ["job1"],
 "#Only that list of jobs will be performed": 0,
 "#Not all jobs in the file will necessarily be run": 0,
-"jobs library":{
+"job definitions":{
   "job1":
 	  {
 	  "JSONfileToBeEdited": "tests/player.json",
@@ -110,7 +110,7 @@ valid_JSON_strings.append(jobsJSONstr1)
 # Valid JSON but key name in job2 is wrong
 jobsJSONstrBadKey2 = r"""
 {"jobs": ["job1", "job2"],
-"jobs library":{
+"job definitions":{
   "job1":
 	  {
 	  "JSONfileToBeEdited": "tests/player.json",
@@ -153,7 +153,7 @@ valid_JSON_strings.append(jobsJSONstrBadKey2)
 # Valid JSON but key name is wrong
 jobsJSONstrBadKey = r"""
 {"jobs": ["job1"],
-"jobs library":{
+"job definitions":{
   "job1":
 	  {
 	  "JSONfileToBeEdited": "tests/player.json",
@@ -182,7 +182,7 @@ valid_JSON_strings.append(jobsJSONstrBadKey)
 # Valid JSON, check JSONfileToBeEdited
 jobsJSONfileToBeEdited = r"""
 {"jobs": ["jobJSONfileToBeEdited"],
-"jobs library":{
+"job definitions":{
   "jobJSONfileToBeEdited":
 	  {
 	  "JSONfileToBeEdited": "test/player.json",
@@ -205,7 +205,7 @@ valid_JSON_strings.append(jobsJSONfileToBeEdited)
 # Type 2 jobs file
 jobs2base = r"""
 { "jobs": ["job1", "fred", "harry"],
-"jobs library":{
+"job definitions":{
   "job1": {},
   "job2": {},
   "fred": {},
@@ -215,6 +215,214 @@ jobs2base = r"""
 }
 """
 valid_JSON_strings.append(jobs2base)
+
+jobDefinition = r"""
+{
+"job definitions":{
+  "VR": {
+    "JSONfileToBeEdited": "<CONTROLLER.JSON>", 
+    "edits": {
+      "Input": {
+        "# Left wheel button is Esc": 0,
+        "Control - Alternate Esc": [
+          1,
+          39
+        ],
+        "# Right wheel button is re-centres head": 0,
+        "Control - VR :Re-Center head position": [
+          1,
+          38
+        ],
+        "# Disable look left/right": 0,
+        "Control - Look Left": [
+          0,
+          89
+        ],
+        "Control - Look Right": [
+          0,
+          89
+        ]
+      }
+    }
+  },
+  "G25 minor controls": { 
+    "JSONfileToBeEdited": "<CONTROLLER.JSON>", 
+    "edits": { 
+       "Input": { 
+         "Control - Headlights": [ 
+           1, 
+           49 
+         ], 
+         "Control - Reset Force Feedback": [ 
+           1, 
+           34 
+         ] 
+       } 
+      } 
+    }
+  }
+} 
+"""
+valid_JSON_strings.append(jobDefinition)
+
+jobDefinition2 = r"""
+{
+  "job definitions": {
+    "Wheel settings": {
+      "JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\Controller.JSON",
+      "# Note: JSONfileToBeEdited .JSON is case-sensitive": 0,
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": 0,
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": 0,
+      "edits": {
+        "Force Feedback": {
+          "Steering torque filter": 0,
+          "Steering torque filter#": "Number of old samples to use to filter torque from vehicle's steering column (0-32, note that higher values increase effective latency)",
+          "Steering torque minimum": 0.12,
+          "Steering torque minimum#": "Minimum torque to apply in either direction to overcome steering wheel's 'FFB deadzone' caused by friction"
+        },
+        "General Controls": {
+          "Steering Wheel Range": 900,
+          "Steering Wheel Range#": "Degrees of steering wheel rotation, both visual and physical (if available)"
+        }
+      }
+    },
+    "Cursor keys control seat": {
+      "JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\Controller.JSON",
+      "# Note: JSONfileToBeEdited .JSON is case-sensitive": 0,
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": 0,
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": 0,
+      "edits": {
+        "Input": {
+          "# Cursor keys control seat": 0,
+          "Control - Adjust Seat Aft": [
+            0,
+            203
+          ],
+          "Control - Adjust Seat Down": [
+            0,
+            208
+          ],
+          "Control - Adjust Seat Fore": [
+            0,
+            205
+          ],
+          "Control - Adjust Seat Up": [
+            0,
+            200
+          ]
+        }
+      }
+    }
+  }
+}
+"""
+valid_JSON_strings.append(jobDefinition2)
+
+jobsNewJSONfile = r"""
+{
+  "<CONTROLLER.JSON>": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\Controller.JSON",
+  "jobs file format": 6,
+  "job definition files": [
+    "jobs\\Keyboard_jobs.json"
+  ],
+  "jobs": [
+    {
+      "Keyboard_jobs": [
+        "Driver aid buttons disable",
+        "Cursor keys control seat"
+      ]
+    }
+  ]
+}
+"""
+valid_JSON_strings.append(jobsNewJSONfile)
+
+# Contents of jobs\keyboard_jobs.json
+keyboard_jobs_json_file = r"""
+{
+  "# Keyboard - job definitions file for ScriptedJsonEditor": 0,
+  "# V1.0.0": 0,
+  "# Note: any key with a # is a comment": 0,
+  "job definitions": {
+    "Cursor keys control seat": {
+      "JSONfileToBeEdited": "<CONTROLLER.JSON>",
+      "edits": {
+        "Input": {
+          "# Cursor keys control seat": 0,
+          "Control - Adjust Seat Aft": [
+            0,
+            203
+          ],
+          "Control - Adjust Seat Down": [
+            0,
+            208
+          ],
+          "Control - Adjust Seat Fore": [
+            0,
+            205
+          ],
+          "Control - Adjust Seat Up": [
+            0,
+            200
+          ]
+        }
+      }
+    },
+    "Driver aid buttons disable": {
+      "JSONfileToBeEdited": "<CONTROLLER.JSON>",
+      "edits": {
+        "Input": {
+          "Control - Anti-lock Brakes": [
+            0,
+            89
+          ],
+          "Control - Auto Clutch": [
+            0,
+            89
+          ],
+          "Control - Auto Pit Lane": [
+            0,
+            89
+          ],
+          "Control - Auto Shifting": [
+            0,
+            89
+          ],
+          "Control - Braking Help": [
+            0,
+            89
+          ],
+          "Control - Opposite Lock": [
+            0,
+            89
+          ],
+          "Control - Spin Recovery": [
+            0,
+            89
+          ],
+          "Control - Stability Control": [
+            0,
+            89
+          ],
+          "Control - Steering Help": [
+            0,
+            89
+          ],
+          "Control - Traction Control": [
+            0,
+            89
+          ]
+        }
+      }
+    }
+  }
+}
+"""
+valid_JSON_strings.append(keyboard_jobs_json_file)
 
 jobsBadJSONstr = r"""
 {"job1":
@@ -246,7 +454,7 @@ class Test_test_test_strings(unittest.TestCase):
       try:
         json_dict = json.loads(json_str)
       except ValueError:
-        assert True, 'JSON string content error'
+        assert False, 'JSON string content error'
 
   def test_invalid_JSON_strings(self):
     for json_str in invalid_JSON_strings:

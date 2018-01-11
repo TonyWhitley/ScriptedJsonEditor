@@ -1,0 +1,89 @@
+{
+  "# Config file for ScriptedJsonEditor": 0,
+  "# V1.0.0": 0,
+  "# 'jobs' file to set up a G25 for VR": 0,
+  "# Note: any key with a # is a comment": 0,
+  "job definitions": {
+    "Driver aid buttons disable": {
+      "JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\Controller.JSON",
+      "# Note: JSONfileToBeEdited .JSON is case-sensitive": 0,
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": 0,
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": 0,
+      "edits": {
+        "Input": {
+          "Control - Anti-lock Brakes": [
+            0,
+            89
+          ],
+          "Control - Auto Clutch": [
+            0,
+            89
+          ],
+          "Control - Auto Pit Lane": [
+            0,
+            89
+          ],
+          "Control - Auto Shifting": [
+            0,
+            89
+          ],
+          "Control - Braking Help": [
+            0,
+            89
+          ],
+          "Control - Opposite Lock": [
+            0,
+            89
+          ],
+          "Control - Spin Recovery": [
+            0,
+            89
+          ],
+          "Control - Stability Control": [
+            0,
+            89
+          ],
+          "Control - Steering Help": [
+            0,
+            89
+          ],
+          "Control - Traction Control": [
+            0,
+            89
+          ]
+        }
+      }
+    },
+    "Cursor keys control seat": {
+      "JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\Controller.JSON",
+      "# Note: JSONfileToBeEdited .JSON is case-sensitive": 0,
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": 0,
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": 0,
+      "edits": {
+        "Input": {
+          "# Cursor keys control seat": 0,
+          "Control - Adjust Seat Aft": [
+            0,
+            203
+          ],
+          "Control - Adjust Seat Down": [
+            0,
+            208
+          ],
+          "Control - Adjust Seat Fore": [
+            0,
+            205
+          ],
+          "Control - Adjust Seat Up": [
+            0,
+            200
+          ]
+        }
+      }
+    }
+  }
+}

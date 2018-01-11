@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>8b6feaa7-b8f5-4472-bcb3-4bdc7f5ab211</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>ScriptedJsonEditor.py</StartupFile>
+    <StartupFile>Tests\test_jobs.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -57,17 +57,24 @@
     <Compile Include="Tests\test_whole_program.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Tests\_json_write.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Tests\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="jobs\" />
-    <Content Include="jobs\1109.json" />
+    <Content Include="jobs\demo_jobs.json" />
+    <Content Include="jobs\Graphics_1109_jobs.json" />
     <Content Include="jobs\G25.json" />
-    <Content Include="jobs\G25_VR.json" />
-    <Content Include="jobs\jobs_library.json" />
-    <Content Include="jobs\rF2VR.json" />
+    <Content Include="jobs\G25_jobs.json" />
+    <Content Include="jobs\Game_jobs.json" />
+    <Content Include="jobs\Keyboard.json" />
+    <Content Include="jobs\Keyboard_jobs.json" />
+    <Content Include="jobs\VR.json" />
+    <Content Include="jobs\VR_jobs.json" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="makeexe.bat" />
@@ -75,8 +82,10 @@
     <Content Include="pylintrc" />
     <Content Include="requirements.txt" />
     <Content Include="run_PyLint.bat" />
+    <Content Include="Tests\jobs_include2libs_test.json" />
     <Content Include="Tests\jobs_include_test.json" />
     <Content Include="Tests\jobs_lib_test1.json" />
+    <Content Include="Tests\jobs_lib_test2.json" />
     <Content Include="Tests\jobs_test1.json" />
     <Content Include="Tests\jobs_test_configs.json" />
     <Content Include="Tests\null.json" />

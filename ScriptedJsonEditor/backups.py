@@ -14,8 +14,8 @@ class Backups(object):
     self.backup = {}
 
   def backup_file(self, filename, _keep_the_original=False):
-    """ 
-    Back up 'filename' to <temp dir>'filename'.YYYYMMDD-HHMMSS 
+    """
+    Back up 'filename' to <temp dir>'filename'.YYYYMMDD-HHMMSS
     _keep_the_original is for unit testing
     """
     _timestamp = datetime.now().strftime('%Y%m%d-%H%M%S')

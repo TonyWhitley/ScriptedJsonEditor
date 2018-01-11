@@ -2,19 +2,31 @@
   "# Config file for ScriptedJsonEditor": 0,
   "# V1.0.0": 0,
   "# 'jobs' file to set up a G25 for use with a monitor": 0,
-  "# Note: any key with a # is a comment": 0,
-  "# These are the jobs that are executed": 0,
-  "# Edit the list to suit": 0,
-  "jobs": [
-    "Driver aid buttons disable",
-    "Cursor keys control seat",
-    "G25 wheel settings",
-    "G25 monitor buttons",
-    "G25 POV hat LCD control",
-    "G25 minor controls"
+  "<PLAYER.JSON>": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\Player.JSON",
+  "<CONTROLLER.JSON>": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\Controller.JSON",
+  "skip keys with # in them": true,
+  "# keys with # in them are used as comments, don't change the values": 0,
+  "rFactor escape slash": true,
+  "# rFactor 2 escapes /. Also remove space after the :": 0,
+  "jobs file format": 6,
+  "job definition files": [
+    "jobs\\Keyboard_jobs.json",
+    "jobs\\G25_jobs.json"
   ],
-  "############################################": 0,
-  "jobs library": {
-    "...": "<jobs_library.json>"
+  "jobs": [
+    {
+      "Keyboard_jobs": [
+        "Driver aid buttons disable",
+        "Cursor keys control seat"
+      ],
+      "G25_jobs": [
+        "G25 wheel settings",
+        "G25 monitor buttons",
+        "G25 POV hat LCD control",
+        "G25 minor controls"
+      ]
+    ]
   }
+]
+}
 }
