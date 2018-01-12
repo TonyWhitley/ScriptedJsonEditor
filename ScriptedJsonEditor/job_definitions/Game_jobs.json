@@ -1,0 +1,114 @@
+{
+  "# Jobs library file for ScriptedJsonEditor": "",
+  "# V1.0.0": "",
+  "# Note: any key with a # is a comment": "",
+  "job definitions": {
+    "Pro driving aid settings": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "DRIVING AIDS": {
+          "Antilock Brakes": 0,
+          "Auto Blip": true,
+          "Auto Blip#": "Whether to automatically blip with manual shifting but auto-clutch (non-semiautomatic trans only)",
+          "Auto Clutch": 1,
+          "Auto Lift": false,
+          "Auto Lift#": "Whether to automatically lift with manual shifting but auto-clutch (non-semiautomatic trans only)",
+          "Auto Shift Override Time": 0.55,
+          "Auto Shift Override Time#": "How long after an automatic shift before user is allowed to manually shift",
+          "Autopit": 0,
+          "Brake Help": 0,
+          "Hold Brakes": true,
+          "Hold Brakes#": "When you enter the vehicle, hold brakes until it is shifted out of neutral",
+          "Hold Clutch On Start": true,
+          "Hold Clutch On Start#": "For auto-shifting only: whether to hold clutch for standing start (to allow revving without moving)",
+          "Invulnerability": 0,
+          "Opposite Lock": 0,
+          "Shift Mode": 0,
+          "Spin Recovery": 0,
+          "Stability Control": 0,
+          "Steering Help": 0,
+          "Steering Help#": "Now 3 levels, although full level now comes with a weight penalty by default",
+          "Throttle Control": 0
+        },
+        "Game Options": {
+          "AI Aggression": 0.25,
+          "AI Limiter": 0.05,
+          "CURNT AI Driver Strength": 100,
+          "CURNT Damage Multiplier": 50,
+          "GPRIX AI Driver Strength": 100,
+          "GPRIX AI Driver Strength#": "100 should approximate real life"
+        }
+      }
+    },
+    "Flags off": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "edits": {
+        "Game Options": {
+          "Basic Rules": 0
+        },
+        "Race Conditions": {
+          "CURNT Flag Rules": 0,
+          "GPRIX Flag Rules": 0
+        }
+      }
+    },
+    "24 minute race x3": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "edits": {
+        "Game Options": {
+          "CURNT Race Finish Criteria": 2,
+          "CURNT Race Laps": 0,
+          "CURNT Race Time": 24,
+          "GPRIX Race Finish Criteria": 2,
+          "GPRIX Race Laps": 2,
+          "GPRIX Race Time": 24
+        },
+        "Race Conditions": {
+          "CURNT RaceTimeScale": 3,
+          "GPRIX RaceTimeScale": 3
+        }
+      }
+    },
+    "Spotter off": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "edits": {
+        "Game Options": {
+          "Spotter Laptimes": 0,
+          "Spotter Laptimes#": "Report laptimes: 0=never 1=non-race 2=always"
+        }
+      }
+    },
+    "HUD off": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "edits": {
+        "Graphic Options": {
+          "HUD": 4,
+          "HUD MFD": 2,
+          "HUD Tachometer": 0
+        }
+      }
+    },
+    "Virtual mirrors off": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "edits": {
+        "Graphic Options": {
+          "Virtual Rearview In Cockpit": false,
+          "Virtual Rearview In Cockpit#": "applies to cockpit or TV cockpit"
+        }
+      }
+    },
+    "No formation lap": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "edits": {
+        "Race Conditions": {
+          "CURNT Formation Lap": 0,
+          "GPRIX Formation Lap": 0
+        }
+      }
+    }
+  }
+}

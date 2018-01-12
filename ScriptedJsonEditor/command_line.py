@@ -6,7 +6,7 @@ JOBS_FILE_HELP_STR = r"""
   "<PLAYER.JSON>": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\player.JSON",
   "jobs file format": 6,
   "job definition files": [
-    "jobs\\demo_jobs.json"
+    "job_definitions\\demo_jobs.json"
   ],
   "jobs": [
     {

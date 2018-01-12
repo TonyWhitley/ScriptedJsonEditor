@@ -1,7 +1,7 @@
 {
-  "# Config file for ScriptedJsonEditor": 0,
-  "# V1.0.0": 0,
-  "# Note: any key with a # is a comment": 0,
+  "# Config file for ScriptedJsonEditor": "",
+  "# V1.0.0": "",
+  "# Note: any key with a # is a comment": "",
   "# Jobs provided in this file": [
     "Wheel settings",
     "Cursor keys control seat",
@@ -10,15 +10,15 @@
     "POV_hat_LCD_control",
     "Minor controls"
   ],
-  "# The jobs follow. Add more if you want": 0,
-  "############################################": 0,
+  "# The jobs follow. Add more if you want": "",
+  "############################################": "",
   "job definitions": {
     "Wheel settings": {
       "JSONfileToBeEdited": "<CONTROLLER.JSON>",
       "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": 0,
+      "# keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": 0,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Force Feedback": {
           "Steering torque filter": 0,
@@ -35,12 +35,12 @@
     "Cursor keys control seat": {
       "JSONfileToBeEdited": "<CONTROLLER.JSON>",
       "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": 0,
+      "# keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": 0,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Input": {
-          "# Cursor keys control seat": 0,
+          "# Cursor keys control seat": "",
           "Control - Adjust Seat Aft": [
             0,
             203
@@ -63,22 +63,22 @@
     "VR": {
       "JSONfileToBeEdited": "<CONTROLLER.JSON>",
       "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": 0,
+      "# keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": 0,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Input": {
-          "# Left wheel button is Esc": 0,
+          "# Left wheel button is Esc": "",
           "Control - Alternate Esc": [
             1,
             39
           ],
-          "# Right wheel button is re-centres head": 0,
-          "Control - VR :Re-Center head position": [
+          "# Right wheel button is re-centres head": "",
+          "Control - VR : Re-Center head position": [
             1,
             38
           ],
-          "# Disable look left/right": 0,
+          "# Disable look left/right": "",
           "Control - Look Left": [
             0,
             89
@@ -93,22 +93,22 @@
     "Monitor": {
       "JSONfileToBeEdited": "<CONTROLLER.JSON>",
       "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": 0,
+      "# keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": 0,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Input": {
-          "# Disable VR Left/right wheel buttons": 0,
+          "# Disable VR Left/right wheel buttons": "",
           "Control - Alternate Esc": [
             0,
             89
           ],
-          "# Right wheel button is re-centres head": 0,
-          "Control - VR :Re-Center head position": [
+          "# Right wheel button is re-centres head": "",
+          "Control - VR : Re-Center head position": [
             0,
             89
           ],
-          "# Enable look left/right": 0,
+          "# Enable look left/right": "",
           "Control - Look Left": [
             1,
             39
@@ -123,12 +123,12 @@
     "POV_hat_LCD_control": {
       "JSONfileToBeEdited": "<CONTROLLER.JSON>",
       "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": 0,
+      "# keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": 0,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Input": {
-          "# Disable old control of brake bias and ARBs": 0,
+          "# Disable old control of brake bias and ARBs": "",
           "Control - Bias Forward": [
             0,
             89
@@ -145,7 +145,7 @@
             0,
             89
           ],
-          "# Use for pit LCD instead": 0,
+          "# Use for pit LCD instead": "",
           "Control - Pit Menu Dec": [
             1,
             19
@@ -168,9 +168,9 @@
     "Minor controls": {
       "JSONfileToBeEdited": "<CONTROLLER.JSON>",
       "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": 0,
+      "# keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": 0,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Input": {
           "Control - Headlights": [

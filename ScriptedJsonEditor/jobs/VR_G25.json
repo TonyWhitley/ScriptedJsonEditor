@@ -1,0 +1,43 @@
+{
+  "# Example of a typical jobs file that runs jobs found in several job definition files": "",
+  "# This sets up rF2 to run VR on a high end GPU using a G25 wheel": "",
+  "# and a bunch of Game Settings I want": "",
+  "# V1.0.0": "",
+  "<PLAYER.JSON>": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\player.JSON",
+  "jobs file format": 6,
+  "job definition files": [
+    "job_definitions\\Game_jobs.json",
+    "job_definitions\\Keyboard_jobs.json",
+    "job_definitions\\VR_jobs.json",
+    "job_definitions\\G25_jobs.json"
+  ],
+  "jobs": [
+    {
+      "Game_jobs": [
+        "Pro driving aid settings",
+        "Flags off",
+        "24 minute race x3",
+        "Spotter off",
+        "HUD off",
+        "Virtual mirrors off",
+        "No formation lap"
+      ],
+      "Keyboard_jobs": [
+        "Driver aid buttons disable",
+        "Cursor keys control seat"
+      ],
+      "VR_jobs": [
+        "universal",
+        "High end GPU",
+        "sound levels"
+      ],
+      "G25_jobs": [
+        "Wheel settings",
+        "Cursor keys control seat",
+        "POV_hat_LCD_control",
+        "Minor controls",
+        "VR"
+      ]
+    }
+  ]
+}

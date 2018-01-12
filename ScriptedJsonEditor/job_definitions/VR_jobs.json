@@ -1,17 +1,17 @@
 {
-  "# Config file for ScriptedJsonEditor": 0,
-  "# V1.0.0": 0,
-  "# Sample 'jobs' file for rFactor 1109 release": 0,
-  "# Note: any key with a # is a comment": 0,
+  "# Config file for ScriptedJsonEditor": "",
+  "# V1.0.0": "",
+  "# Sample 'jobs' file for rFactor 1109 release": "",
+  "# Note: any key with a # is a comment": "",
   "job definitions": {
     "universal": {
-      "# Set graphic options for VR as recommended in": 0,
-      "# https://forum.studio-397.com/index.php?threads/rfactor2-the-vr-thread-settings-tips.55249/": 0,
+      "# Set graphic options for VR as recommended in": "",
+      "# https://forum.studio-397.com/index.php?threads/rfactor2-the-vr-thread-settings-tips.55249/": "",
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": 0,
+      "# keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": 0,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Graphic Options": {
           "Car Vibration Mult1": 0,
@@ -37,20 +37,86 @@
           "Opponent Detail": 2,
           "Opponent Detail#": "0=Low 1=Medium 2=High 3=Full",
           "Player Detail": 1,
+          "Player Detail#": "0=Low 1=Medium 2=High 3=Full"
+        }
+      }
+    },
+    "Graphic Options undo": {
+      "# revert some of the above": "",
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "Graphic Options": {
+          "Car Vibration Mult1": 0,
+          "Car Vibration Mult2": 0,
+          "Car Vibration Mult1#": "Primary engine vibration multiplier affects position of cameras attached directly to the car",
+          "Cockpit Vibration Mult1": 1,
+          "Cockpit Vibration Mult2": 0,
+          "Cockpit Vibration Mult1#": "Primary aerodynamic vibration multiplier affects eyepoint position (base magnitude is in VEH or cockpit file)",
+          "Environment Reflections": 1,
+          "Environment Reflections#": "Off\/Low\/HIgh = live cubic mapping is used (if track and car are setup properly)",
+          "Exaggerate Yaw": 0.2,
+          "Exaggerate Yaw#": "Visually exaggerates the heading angle of the vehicle by rotating the head (which may improve \"feel\")",
+          "Garage Detail": 0.5,
+          "Garage Detail#": "LOD multiplier when vehicle is in garage (0.01-1.00)",
+          "Head Physics": 1,
+          "Head Physics#": "Fraction of head physics movement applied to cockpit view (position AND rotation)",
+          "Look Roll Angle": 0.75,
+          "Look Roll Angle#": "Angle to lean head (roll) w\/ controller in radians (= degrees \/ 57)",
+          "Look Up/Down Angle": 0.4,
+          "Look Up/Down Angle#": "Angle to look up\/down (pitch) w\/ controller in radians (= degrees \/ 57)",
+          "Max Headlights": 20,
+          "Max Headlights#": "Max headlights visible relative to your car.",
+          "Opponent Detail": 2,
+          "Opponent Detail#": "0=Low 1=Medium 2=High 3=Full",
+          "Player Detail": 1,
           "Player Detail#": "0=Low 1=Medium 2=High 3=Full",
+          "Rearview_Back_Clip": 0,
+          "Rearview_Back_Clip#": "Back plane distance for mirror (0.0 = use default for scene)"
+        }
+      }
+    },
+    "Mid range GPU": {
+      "# Set graphic options for VR as recommended in": "",
+      "# https://forum.studio-397.com/index.php?threads/rfactor2-the-vr-thread-settings-tips.55249/": "",
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "Graphic Options": {
+          "Road Reflections": 2,
+          "Road Reflections#": "Off\/Low\/High = reflected objects are generated for wet road and heat mirage",
+          "Shadow Blur": 0,
+          "Shadow Blur#": "0=Off, 1=Fast, 2=Optimal, 3=Quality",
+          "Shadows": 1,
+          "Shadows#": "0=Low 1=Medium 2=High 3=Full",
+          "Soft Particles": 1,
+          "Soft Particles#": "0=Off, 1=Cheap soft edges, 2=Depth buffered soft edges",
+          "Special FX": 2,
+          "Special FX#": "0=Low 1=Medium 2=High 3=Full",
+          "Texture Detail": 1,
+          "Texture Detail#": "0=Low 1=Medium 2=High 3=Full",
+          "Texture Filter": 4,
+          "Texture Filter#": "Texture Filtering level: 0 = bilinear, 1 = trilinear, 2 = X2 AF, 3 = X4 AF, 4 = X8 AF, 5 = X16 AF",
+          "Track Detail": 1,
+          "Track Detail#": "0=Low 1=Medium 2=High 3=Full",
           "Rearview_Back_Clip": 30,
           "Rearview_Back_Clip#": "Back plane distance for mirror (0.0 = use default for scene)"
         }
       }
     },
-    "mid range graphics card": {
-      "# Set graphic options for VR as recommended in": 0,
-      "# https://forum.studio-397.com/index.php?threads/rfactor2-the-vr-thread-settings-tips.55249/": 0,
+    "High end GPU": {
+      "# Set graphic options for VR for my GTX 1080 / Ryzen 5 1600": "",
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": 0,
+      "# keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": 0,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Graphic Options": {
           "Road Reflections": 2,
@@ -68,45 +134,19 @@
           "Texture Filter": 4,
           "Texture Filter#": "Texture Filtering level: 0 = bilinear, 1 = trilinear, 2 = X2 AF, 3 = X4 AF, 4 = X8 AF, 5 = X16 AF",
           "Track Detail": 1,
-          "Track Detail#": "0=Low 1=Medium 2=High 3=Full"
-        }
-      }
-    },
-    "high end graphics card": {
-      "# Set graphic options for VR for my GTX 1080 / Ryzen 5 1600": 0,
-      "JSONfileToBeEdited": "<PLAYER.JSON>",
-      "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": 0,
-      "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": 0,
-      "edits": {
-        "Graphic Options": {
-          "Road Reflections": 2,
-          "Road Reflections#": "Off\/Low\/High = reflected objects are generated for wet road and heat mirage",
-          "Shadow Blur": 0,
-          "Shadow Blur#": "0=Off, 1=Fast, 2=Optimal, 3=Quality",
-          "Shadows": 1,
-          "Shadows#": "0=Low 1=Medium 2=High 3=Full",
-          "Soft Particles": 1,
-          "Soft Particles#": "0=Off, 1=Cheap soft edges, 2=Depth buffered soft edges",
-          "Special FX": 2,
-          "Special FX#": "0=Low 1=Medium 2=High 3=Full",
-          "Texture Detail": 1,
-          "Texture Detail#": "0=Low 1=Medium 2=High 3=Full",
-          "Texture Filter": 4,
-          "Texture Filter#": "Texture Filtering level: 0 = bilinear, 1 = trilinear, 2 = X2 AF, 3 = X4 AF, 4 = X8 AF, 5 = X16 AF",
-          "Track Detail": 1,
-          "Track Detail#": "0=Low 1=Medium 2=High 3=Full"
+          "Track Detail#": "0=Low 1=Medium 2=High 3=Full",
+          "Rearview_Back_Clip": 0,
+          "Rearview_Back_Clip#": "Back plane distance for mirror (0.0 = use default for scene)"
         }
       }
     },
     "sound levels": {
-      "# Set sound levels for VR ": 0,
+      "# Set sound levels for VR ": "",
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": 0,
+      "# keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": 0,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Sound Options": {
           "Engine Volume": 0.87,

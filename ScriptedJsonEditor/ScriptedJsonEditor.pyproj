@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>8b6feaa7-b8f5-4472-bcb3-4bdc7f5ab211</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Tests\test_jobs.py</StartupFile>
+    <StartupFile>ScriptedJsonEditor.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -13,8 +13,7 @@
     <RootNamespace>ScriptedJsonEditor</RootNamespace>
     <InterpreterId>MSBuild|envPyLint|$(MSBuildProjectFullPath)</InterpreterId>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <CommandLineArguments>
-    </CommandLineArguments>
+    <CommandLineArguments>jobs\monitor_G25.json</CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
     <InterpreterArguments>
     </InterpreterArguments>
@@ -62,19 +61,23 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="C:\Users\tony_\source\repos\ScriptedJsonEditor\ScriptedJsonEditor\job_definitions\" />
+    <Folder Include="job_definitions\" />
     <Folder Include="Tests\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="jobs\" />
-    <Content Include="jobs\demo_jobs.json" />
-    <Content Include="jobs\Graphics_1109_jobs.json" />
+    <Content Include="jobs\Monitor_G25.json" />
+    <Content Include="jobs\VR_G25.json" />
+    <Content Include="job_definitions\demo_jobs.json" />
+    <Content Include="job_definitions\Graphics_1109_jobs.json" />
     <Content Include="jobs\G25.json" />
-    <Content Include="jobs\G25_jobs.json" />
-    <Content Include="jobs\Game_jobs.json" />
+    <Content Include="job_definitions\G25_jobs.json" />
+    <Content Include="job_definitions\Game_jobs.json" />
     <Content Include="jobs\Keyboard.json" />
-    <Content Include="jobs\Keyboard_jobs.json" />
+    <Content Include="job_definitions\Keyboard_jobs.json" />
     <Content Include="jobs\VR.json" />
-    <Content Include="jobs\VR_jobs.json" />
+    <Content Include="job_definitions\VR_jobs.json" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="makeexe.bat" />

@@ -1,16 +1,16 @@
 {
-  "# Config file for ScriptedJsonEditor": 0,
-  "# V1.0.0": 0,
-  "# 'jobs' file to set up a G25 for VR": 0,
-  "# Note: any key with a # is a comment": 0,
+  "# Config file for ScriptedJsonEditor": "",
+  "# V1.0.0": "",
+  "# 'jobs' file to set up a G25 for VR": "",
+  "# Note: any key with a # is a comment": "",
   "job definitions": {
     "Driver aid buttons disable": {
       "JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\Controller.JSON",
-      "# Note: JSONfileToBeEdited .JSON is case-sensitive": 0,
+      "# Note: JSONfileToBeEdited .JSON is case-sensitive": "",
       "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": 0,
+      "# keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": 0,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Input": {
           "Control - Anti-lock Brakes": [
@@ -58,14 +58,14 @@
     },
     "Cursor keys control seat": {
       "JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\Controller.JSON",
-      "# Note: JSONfileToBeEdited .JSON is case-sensitive": 0,
+      "# Note: JSONfileToBeEdited .JSON is case-sensitive": "",
       "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": 0,
+      "# keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": 0,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Input": {
-          "# Cursor keys control seat": 0,
+          "# Cursor keys control seat": "",
           "Control - Adjust Seat Aft": [
             0,
             203

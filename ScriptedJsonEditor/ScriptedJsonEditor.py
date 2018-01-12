@@ -17,7 +17,7 @@ from json_include import build_json_include
 from backups import Backups
 from command_line import CommandLine
 
-BUILD_REVISION = 40 # The git commit count
+BUILD_REVISION = 42 # The git commit count
 
 # User-defined exceptions
 class EmptyJsonError(Exception):
@@ -49,7 +49,7 @@ class JsonFile():
       "skip keys with # in them": True
     }
 
-  def readSimple(self, filepath):
+  def read(self, filepath, dirPath=None):
     """ Read the JSON file """
     try:
       with open(filepath) as f_p:
@@ -64,7 +64,7 @@ class JsonFile():
       print('Failed to open JSON file "%s"' % filepath)
     raise JsonContentError
 
-  def read(self, filepath, dirpath=None):
+  def readInclude(self, filepath, dirpath=None):
     """
     Read the JSON file that may include other JSON files
     (in the same folder unless 'dirpath' is set)
@@ -206,13 +206,15 @@ class JsonJobsFile(JsonFile):
     each one a (job definition file, job) tuple
     """
     _job_definitions = {}
+    _result = []
     try:
       for _job_description_file in self.json_dict["job definition files"]:
         _JDFO = JsonJobsDefinitionsFile(self.config)
-        _JDFO.read(_job_description_file)
-        _job_definitions[_JDFO.get_filename()] = _JDFO
-
-      _result = []
+        try:
+          _JDFO.read(_job_description_file)
+          _job_definitions[_JDFO.get_filename()] = _JDFO
+        except:
+          raise
       for _job_definition_file_set in self.json_dict["jobs"]:
         for _job_definition_file in _job_definition_file_set:
           for _job in _job_definition_file_set[_job_definition_file]:
@@ -246,9 +248,13 @@ class JsonJobsDefinitionsFile(JsonFile):
       print('"job definitions" absent from %s' % self.filepath)
       raise JsonContentError
     for job in json_dict:
-      if json_dict[job]["JSONfileToBeEdited"] in self.config:
-        # substitute the macro
-        json_dict[job]["JSONfileToBeEdited"] = self.config[json_dict[job]["JSONfileToBeEdited"]]
+      try:
+        if json_dict[job]["JSONfileToBeEdited"] in self.config:
+          # substitute the macro
+          json_dict[job]["JSONfileToBeEdited"] = self.config[json_dict[job]["JSONfileToBeEdited"]]
+      except KeyError:
+        print('"JSONfileToBeEdited" not in %s job "%s"' % (self.filepath, job))
+        raise JsonContentError
     this_file_dict = {self.filename: json_dict}
     return this_file_dict
 
@@ -258,8 +264,11 @@ class JsonJobsDefinitionsFile(JsonFile):
 
   def get_job(self, job_name):
     """ get the job 'job_name' """
-    return self.json_dict['job definitions'][job_name]
-
+    try:
+      return self.json_dict['job definitions'][job_name]
+    except KeyError:
+      print('No job "%s" in %s' % (job_name, self.filepath))
+      return None
 
 class JsonRfactorFile(JsonFile):
   """
@@ -272,11 +281,11 @@ class JsonRfactorFile(JsonFile):
     if _filepath is None:
       _filepath = self.filepath
     _json_txt = json.dumps(self.json_dict, indent=2).splitlines()
-    # json.dumps() puts a space after the :  rF2 doesn't
+    # json.dumps() puts a space bwetween :{  rF2 doesn't
     # So strip it out to make it easier to compare before and after
     _whitespace_removed = []
     for _line in _json_txt:
-      _line = _line.replace(': ', ':', 1)
+      _line = _line.replace(': {', ':{', 1)
 
       # For some reason rF2 escapes / in values
       _colon = _line.find(':')
@@ -303,7 +312,7 @@ class Job():
     May raise JsonContentError
     """
     _json_file = self.job["JSONfileToBeEdited"]
-    if _json_file in self.config :
+    if _json_file in self.config:
       # Substitute the path defined in the macro
       _json_file = self.config[_json_file]
     self.json_o.read(_json_file)

@@ -1,7 +1,7 @@
 {
-  "# Demo_jobs - job definitions file for ScriptedJsonEditor": 0,
-  "# V1.0.0": 0,
-  "# Note: any key with a # is a comment": 0,
+  "# Demo_jobs - job definitions file for ScriptedJsonEditor": "",
+  "# V1.0.0": "",
+  "# Note: any key with a # is a comment": "",
   "job definitions": {
     "Letterboxing off": {
       "JSONfileToBeEdited": "<PLAYER.JSON>",
@@ -12,11 +12,11 @@
         }
       }
     },
-    "Map 3": {
+    "Map 2": {
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "edits": {
         "Graphic Options": {
-          "Automap": 3,
+          "Automap": 2,
           "Automap#": "0=off 1=race-only 2=non-race-only 3=all sessions"
         }
       }

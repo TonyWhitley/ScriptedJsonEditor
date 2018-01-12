@@ -45,7 +45,7 @@ class Test_test_main(unittest.TestCase):
       _JSNO_O = ScriptedJsonEditor.JsonRfactorFile()
       _player = _JSNO_O.read(TEST_PLAYER_JSON)
       assert _player["Graphic Options"]["Allow Letterboxing"] == False, _player["Graphic Options"]["Allow Letterboxing"]
-      assert _player["Graphic Options"]["Automap"] == 3, _player["Graphic Options"]["Automap"]
+      assert _player["Graphic Options"]["Automap"] == 2, _player["Graphic Options"]["Automap"]
 
     finally:
       # restore the original player.JSON

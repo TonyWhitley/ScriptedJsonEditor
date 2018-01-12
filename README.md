@@ -5,7 +5,7 @@ Rather than a list of instructions to "edit player.json setting 'blah' to 15" an
 
 To run it, open a cmd window and enter (as an example)
 
- ScriptedJsonEditor jobs/1109.json
+ ScriptedJsonEditor jobs/keyboard.json
 
 An example jobs file is
 
@@ -13,7 +13,7 @@ An example jobs file is
   "<CONTROLLER.JSON>": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\Controller.JSON",
   "jobs file format": 6,
   "job definition files": [
-    "jobs\\Keyboard_jobs.json"
+    "job definitions\\Keyboard_jobs.json"
   ],
   "jobs": [
     {
@@ -32,9 +32,9 @@ are of course free to edit them).
 Example contents of that are:
 
 {
-  "# Keyboard - job definitions file for ScriptedJsonEditor": 0,
-  "# V1.0.0": 0,
-  "# Note: any key with a # is a comment": 0,
+  "# Keyboard - job definitions file for ScriptedJsonEditor": "",
+  "# V1.0.0": "",
+  "# Note: any key with a # is a comment": "",
   "job definitions": {
     "Cursor keys control seat": {
       "JSONfileToBeEdited": "<CONTROLLER.JSON>",
@@ -63,3 +63,4 @@ Example contents of that are:
   }
 }
 
+For a full example see jobs\VR_G25.json.

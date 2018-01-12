@@ -1,24 +1,24 @@
 {
-  "# Config file for ScriptedJsonEditor": 0,
-  "# V1.0.0": 0,
-  "# Sample 'jobs' file for rFactor 1109 release": 0,
-  "# Note: any key with a # is a comment": 0,
+  "# Config file for ScriptedJsonEditor": "",
+  "# V1.0.0": "",
+  "# Sample 'jobs' file for rFactor 1109 release": "",
+  "# Note: any key with a # is a comment": "",
   "# Jobs provided in this file": [
     "Low end GPU",
     "Mid range GPU",
     "High end GPU"
   ],
-  "# The jobs follow. Add more if you want": 0,
-  "############################################": 0,
+  "# The jobs follow. Add more if you want": "",
+  "############################################": "",
   "job definitions": {
     "Low end GPU": {
-      "# Set graphic options for Low end GPU as recommended in": 0,
-      "# https://forum.studio-397.com/index.php?threads/latest-release-1109-rain-effects-and-more.58675/": 0,
+      "# Set graphic options for Low end GPU as recommended in": "",
+      "# https://forum.studio-397.com/index.php?threads/latest-release-1109-rain-effects-and-more.58675/": "",
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": 0,
+      "# keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": 0,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Game Options": {
           "Message Center Detail": 0
@@ -28,7 +28,7 @@
           "Auto Detail Framerate#": "Details and visible vehicles will be automatically reduced (by up to half) if framerate is under this threshold (0 to disable)",
           "Environment Reflections": 2,
           "Environment Reflections#": "Off\/Low\/HIgh = live cubic mapping is used (if track and car are setup properly)",
-          "# These are not mentioned but seem like a good idea": 0,
+          "# These are not mentioned but seem like a good idea": "",
           "Garage Detail": 0.01,
           "Garage Detail#": "LOD multiplier when vehicle is in garage (0.01-1.00)",
           "Max Headlights": 20,
@@ -68,13 +68,13 @@
       }
     },
     "Mid range GPU": {
-      "# Set graphic options for Mid range GPU as recommended in": 0,
-      "# https://forum.studio-397.com/index.php?threads/latest-release-1109-rain-effects-and-more.58675/": 0,
+      "# Set graphic options for Mid range GPU as recommended in": "",
+      "# https://forum.studio-397.com/index.php?threads/latest-release-1109-rain-effects-and-more.58675/": "",
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": 0,
+      "# keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": 0,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Game Options": {
           "Message Center Detail": 0
@@ -84,7 +84,7 @@
           "Auto Detail Framerate#": "Details and visible vehicles will be automatically reduced (by up to half) if framerate is under this threshold (0 to disable)",
           "Environment Reflections": 2,
           "Environment Reflections#": "Off\/Low\/HIgh = live cubic mapping is used (if track and car are setup properly)",
-          "# These are not mentioned but seem like a good idea": 0,
+          "# These are not mentioned but seem like a good idea": "",
           "Garage Detail": 0.01,
           "Garage Detail#": "LOD multiplier when vehicle is in garage (0.01-1.00)",
           "Max Headlights": 20,
@@ -122,13 +122,13 @@
       }
     },
     "High end GPU": {
-      "# Set graphic options for High end GPU as recommended in": 0,
-      "# https://forum.studio-397.com/index.php?threads/latest-release-1109-rain-effects-and-more.58675/": 0,
+      "# Set graphic options for High end GPU as recommended in": "",
+      "# https://forum.studio-397.com/index.php?threads/latest-release-1109-rain-effects-and-more.58675/": "",
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": 0,
+      "# keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": 0,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Game Options": {
           "Message Center Detail": 0
@@ -138,7 +138,7 @@
           "Auto Detail Framerate#": "Details and visible vehicles will be automatically reduced (by up to half) if framerate is under this threshold (0 to disable)",
           "Environment Reflections": 2,
           "Environment Reflections#": "Off\/Low\/HIgh = live cubic mapping is used (if track and car are setup properly)",
-          "# These are not mentioned but seem like a good idea": 0,
+          "# These are not mentioned but seem like a good idea": "",
           "Garage Detail": 0.01,
           "Garage Detail#": "LOD multiplier when vehicle is in garage (0.01-1.00)",
           "Max Headlights": 20,
@@ -176,3 +176,4 @@
       }
     }
   }
+}

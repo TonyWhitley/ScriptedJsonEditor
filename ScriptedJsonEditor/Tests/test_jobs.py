@@ -100,6 +100,7 @@ class Test_test_jobs(unittest.TestCase):
         for j in P_JSON["jobs"]:
           assert P_JSON["job definitions"][j] != None
 
+    """ Excluded from program now
     def test_jobsIncludeJsonFile(self):
         # Jobs file including another JSON file
         filepath = this_path('jobs_include2libs_test.json')
@@ -107,7 +108,8 @@ class Test_test_jobs(unittest.TestCase):
         P_JSON, config = _JSNO_O.read(filepath)
         assert P_JSON["jobs"] != None
         for j in P_JSON["jobs"]:
-          assert P_JSON["job definition files"]["job definitions"][j] != None
+          assert P_JSON["job definition files"]["job definitions"] != None
+    """
 
     def test_jobsConfig(self):
         # Jobs file with config specified
@@ -143,7 +145,7 @@ class Test_test_jobs(unittest.TestCase):
         
     def test_jobsDefinition_realFile(self):
         _JSNO_O = ScriptedJsonEditor.JsonJobsDefinitionsFile(test_config)
-        filepath = this_path(os.path.join('..', 'jobs', 'Keyboard_jobs.json'))
+        filepath = this_path(os.path.join('..', 'job_definitions', 'Keyboard_jobs.json'))
         jobDefinitions = _JSNO_O.read(filepath)
         
         assert "Cursor keys control seat" in jobDefinitions['Keyboard_jobs']

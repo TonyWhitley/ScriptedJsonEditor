@@ -1,17 +1,17 @@
 {
-  "# Config file for ScriptedJsonEditor": 0,
-  "# V1.0.0": 0,
-  "# 'jobs' file to set up a G25 for use with a monitor": 0,
+  "# Config file for ScriptedJsonEditor": "",
+  "# V1.0.0": "",
+  "# 'jobs' file to set up a G25 for use with a monitor": "",
   "<PLAYER.JSON>": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\Player.JSON",
   "<CONTROLLER.JSON>": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\Controller.JSON",
   "skip keys with # in them": true,
-  "# keys with # in them are used as comments, don't change the values": 0,
+  "# keys with # in them are used as comments, don't change the values": "",
   "rFactor escape slash": true,
-  "# rFactor 2 escapes /. Also remove space after the :": 0,
+  "# rFactor 2 escapes /. Also remove space after the :": "",
   "jobs file format": 6,
   "job definition files": [
-    "jobs\\Keyboard_jobs.json",
-    "jobs\\G25_jobs.json"
+    "job_definitions\\Keyboard_jobs.json",
+    "job_definitions\\G25_jobs.json"
   ],
   "jobs": [
     {
@@ -25,8 +25,6 @@
         "G25 POV hat LCD control",
         "G25 minor controls"
       ]
-    ]
-  }
-]
-}
+    }
+  ]
 }

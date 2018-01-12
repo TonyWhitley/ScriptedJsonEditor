@@ -80,15 +80,15 @@ class Test_test_JSON(unittest.TestCase):
           assert P_JSON["Graphic Options"]["Allow HUD in cockpit"], P_JSON["Graphic Options"]["Allow HUD in cockpit"]
 
           # before job
-          assert _j._get_value("Graphic Options", "Allow Letterboxing") == True, P_JSON._get_value("Graphic Options", "Allow Letterboxing")
+          assert _j._get_value("Graphic Options", "Allow Letterboxing") == True, _j._get_value("Graphic Options", "Allow Letterboxing")
 
           #   do the edits
           _j.run_edits()
 
           if i == 0:
-            assert _j._get_value("Graphic Options", "Allow Letterboxing") == False, P_JSON._get_value("Graphic Options", "Allow Letterboxing")
+            assert _j._get_value("Graphic Options", "Allow Letterboxing") == False, _j._get_value("Graphic Options", "Allow Letterboxing")
           else:
-            assert _j._get_value("Graphic Options", "Automap") == 3, P_JSON._get_value("Graphic Options", "Automap")
+            assert _j._get_value("Graphic Options", "Automap") == 2, _j._get_value("Graphic Options", "Automap")
         
     """ this is a job description file now
     @patch('ScriptedJsonEditor.print', create=True)   # Mock the print call in ScriptedJsonEditor()

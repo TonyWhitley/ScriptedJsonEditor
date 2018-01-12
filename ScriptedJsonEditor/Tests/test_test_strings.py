@@ -327,7 +327,7 @@ jobsNewJSONfile = r"""
   "<CONTROLLER.JSON>": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\Controller.JSON",
   "jobs file format": 6,
   "job definition files": [
-    "jobs\\Keyboard_jobs.json"
+    "job_definitions\\Keyboard_jobs.json"
   ],
   "jobs": [
     {

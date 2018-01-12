@@ -2,7 +2,7 @@
   "<PLAYER.JSON>": "tests\\player.JSON",
   "jobs file format": 6,
   "job definition files": [
-    "jobs\\demo_jobs.json"
+    "job_definitions\\demo_jobs.json"
   ],
   "jobs": [
     {
