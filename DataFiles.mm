@@ -26,8 +26,7 @@
       <font face="Courier New" size="2"><b>&quot;jobs file format&quot;: 6,</b></font>
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 <node CREATED="1515501202851" ID="ID_482713436" MODIFIED="1515501441725">
 <richcontent TYPE="NODE"><html>
   <head>
@@ -47,8 +46,7 @@
       <font size="2">minor version number)</font>
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 <node CREATED="1515418084752" ID="ID_1845539891" MODIFIED="1515418135620" TEXT="Macros for files &#xa;to be edited">
@@ -69,7 +67,7 @@
 </node>
 </node>
 <node CREATED="1515418194512" ID="ID_640373349" MODIFIED="1515418226919" TEXT="Other configs">
-<node CREATED="1515419869163" ID="ID_891624062" MODIFIED="1515419891251">
+<node CREATED="1515419869163" FOLDED="true" ID="ID_891624062" MODIFIED="1515843920961">
 <richcontent TYPE="NODE"><html>
   <head>
     
@@ -110,7 +108,7 @@
     </p>
   </body>
 </html></richcontent>
-<node CREATED="1515418395905" ID="ID_1869087592" MODIFIED="1515442316275">
+<node CREATED="1515418395905" ID="ID_1869087592" MODIFIED="1515843864342">
 <richcontent TYPE="NODE"><html>
   <head>
     
@@ -120,23 +118,24 @@
       e.g. <font face="Courier New" size="2"><b>&quot;job definition files&quot;</b>: [ </font>
     </p>
     <p>
-      <font face="Courier New" size="2">&quot;Graphics_1109_jobs.json&quot;, </font>
+      <font face="Courier New" size="2">&quot;job_definitions\\Graphics_1109_jobs.json&quot;, </font>
     </p>
     <p>
-      <font face="Courier New" size="2">&quot;Keyboard_jobs.json&quot;,</font>
+      <font face="Courier New" size="2">&quot;job_definitions\\Keyboard_jobs.json&quot;,</font>
     </p>
     <p>
-      <font color="#0000ff" face="Courier New" size="2">&quot;G25_jobs.json&quot;</font>
+      <font color="#000000" face="Courier New" size="2">&quot;job_definitions\\</font><font color="#0000ff" face="Courier New" size="2"><b>G25_jobs.json</b>&quot;</font>
     </p>
     <p>
       <font face="Courier New" size="2">]</font>
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 </node>
 </node>
 <node CREATED="1515418063296" ID="ID_508297608" MODIFIED="1515418073772" TEXT="List of jobs">
-<node CREATED="1515418302552" ID="ID_1707745729" MODIFIED="1515501497027">
+<node CREATED="1515418302552" FOLDED="true" ID="ID_1707745729" MODIFIED="1515843889256">
 <richcontent TYPE="NODE"><html>
   <head>
     
@@ -152,7 +151,7 @@
       <font face="Courier New" size="2">&#160;&quot;Cursor keys control seat&quot;], </font>
     </p>
     <p>
-      <font color="#0000ff" face="Courier New" size="2">&quot;G25_jobs&quot;</font><font face="Courier New" size="2">:[&quot;wheel settings&quot;, </font>
+      <font color="#0000ff" face="Courier New" size="2">&quot;<b>G25_jobs</b>&quot;</font><font face="Courier New" size="2">:[&quot;wheel settings&quot;, </font>
     </p>
     <p>
       <font face="Courier New" size="2">&#160;&quot;monitor buttons&quot;, </font>
@@ -161,13 +160,14 @@
       <font face="Courier New" size="2">&#160;&quot;POV hat LCD control&quot;, </font>
     </p>
     <p>
-      <font color="#ff3333" face="Courier New" size="2">&#160;&quot;minor controls&quot;</font><font face="Courier New" size="2">&#160;]</font>
+      <font color="#ff3333" face="Courier New" size="2">&#160;&quot;<b>minor controls</b>&quot;</font><font face="Courier New" size="2">&#160;]</font>
     </p>
     <p>
       <font face="Courier New" size="2">]<br face="Courier New" size="2" /></font>
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 <node CREATED="1515501202851" ID="ID_230601946" MODIFIED="1515501602069">
 <richcontent TYPE="NODE"><html>
   <head>
@@ -190,8 +190,7 @@
       <font size="2">Add a warning for that)</font>
     </p>
   </body>
-</html>
-</richcontent>
+</html></richcontent>
 </node>
 </node>
 </node>
@@ -233,7 +232,7 @@
     </p>
   </body>
 </html></richcontent>
-<node CREATED="1515418635697" ID="ID_273646635" MODIFIED="1515442177570">
+<node CREATED="1515418635697" ID="ID_273646635" MODIFIED="1515843908225">
 <richcontent TYPE="NODE"><html>
   <head>
     
@@ -246,7 +245,7 @@
       <font face="Courier New" size="2"><b>&quot;job definitions&quot;</b>:{ </font>
     </p>
     <p>
-      <font face="Courier New" size="2">&#160; </font><font color="#ff3333" face="Courier New" size="2">&quot;minor controls&quot;</font><font face="Courier New" size="2">: { </font>
+      <font face="Courier New" size="2">&#160; </font><font color="#ff3333" face="Courier New" size="2">&quot;<b>minor controls</b>&quot;</font><font face="Courier New" size="2">: { </font>
     </p>
     <p>
       <font face="Courier New" size="2">&#160;&#160;&#160;&#160;<b>&quot;JSONfileToBeEdited&quot;</b>: </font><font color="#009900" face="Courier New" size="2">&quot;&lt;CONTROLLER.JSON&gt;&quot;</font><font face="Courier New" size="2">, </font>
@@ -297,7 +296,8 @@
       <font face="Courier New" size="2">} </font>
     </p>
   </body>
-</html></richcontent>
+</html>
+</richcontent>
 <node CREATED="1515420808510" ID="ID_1066793374" MODIFIED="1515429956902">
 <richcontent TYPE="NODE"><html>
   <head>

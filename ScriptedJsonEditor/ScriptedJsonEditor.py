@@ -49,7 +49,9 @@ class JsonFile():
       "skip keys with # in them": True
     }
 
-  def read(self, filepath, dirPath=None):
+  # pylint: disable=unused-argument
+  # dirpath is there to match readInclude which is not used.
+  def read(self, filepath, dirpath=None):
     """ Read the JSON file """
     try:
       with open(filepath) as f_p:
@@ -69,6 +71,8 @@ class JsonFile():
     Read the JSON file that may include other JSON files
     (in the same folder unless 'dirpath' is set)
     """
+    # pylint: disable=misplaced-bare-raise
+    # "not inside an except clause"?
     try:
       if dirpath is None:
         dirpath = os.path.abspath(os.path.dirname(os.path.realpath(filepath)))

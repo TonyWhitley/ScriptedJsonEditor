@@ -277,3 +277,5 @@ env/
 /.noseids
 /ScriptedJsonEditor/.noseids
 *.exe
+/ScriptedJsonEditor/jobs/Keyboard.py
+/ScriptedJsonEditor/job_definitions/Keyboard_jobs.py
