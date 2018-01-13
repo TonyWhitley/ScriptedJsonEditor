@@ -65,3 +65,8 @@ Example contents of that are:
 
 For a full example see jobs\VR_G25.json.
 
+Here is a Mind Map that shows the contents of the job and job definition files:
+
+![data file
+2](https://raw.githubusercontent.com/TonyWhitley/ScriptedJsonEditor/master/DataFiles.jpeg)
+
