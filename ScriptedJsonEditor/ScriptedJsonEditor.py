@@ -17,7 +17,7 @@ from json_include import build_json_include
 from backups import Backups
 from command_line import CommandLine
 
-BUILD_REVISION = 42 # The git commit count
+BUILD_REVISION = 43 # The git commit count
 
 # User-defined exceptions
 class EmptyJsonError(Exception):
@@ -36,6 +36,9 @@ class JobFailedError(Exception):
   """ The job failed to run """
   pass
 
+class NoSuchJobError(Exception):
+  """ The job failed to run """
+  pass
 
 class JsonFile():
   """
@@ -110,7 +113,7 @@ class JsonFile():
   def edit(self, main_key, sub_key, new_value):
     """
     Change the value of 'main_key''sub_key' in the JSON file to 'new_value'
-    May raise KeyError, ValueError or EmptyJsonError
+    May raise KeyError, ValueError, EmptyJsonError or NoSuchJobError
     """
     if self.json_dict is None:
       print('Empty JSON file "%s"' % self.filepath)
@@ -222,7 +225,11 @@ class JsonJobsFile(JsonFile):
       for _job_definition_file_set in self.json_dict["jobs"]:
         for _job_definition_file in _job_definition_file_set:
           for _job in _job_definition_file_set[_job_definition_file]:
-            _result.append(_job_definitions[_job_definition_file].get_job(_job))
+            __j = _job_definitions[_job_definition_file].get_job(_job)
+            if __j:
+              _result.append(__j)
+            else: # job not found in Job Description file
+              raise NoSuchJobError
     except KeyError:
       print('%s has no "job definition files"' % self.filepath)
     return _result
@@ -333,7 +340,7 @@ class Job():
   def run_edits(self):
     """
     Execute the job's edits on current file
-    May raise KeyError or ValueError
+    May raise KeyError, ValueError, EmptyJsonError or NoSuchJobError
     """
     for main_key in self.job["edits"]:
       for _item in self.job["edits"][main_key]:
@@ -400,7 +407,7 @@ def main():
     _JSNO_O = JsonJobsFile()
     __, config = _JSNO_O.read(jobs_file_name)
     _jobs = _JSNO_O.get_jobs()
-  except JsonContentError:
+  except (JsonContentError, NoSuchJobError):
     return 99
 
   if _jobs is None:

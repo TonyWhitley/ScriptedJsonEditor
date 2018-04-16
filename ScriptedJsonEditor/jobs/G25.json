@@ -20,10 +20,10 @@
         "Cursor keys control seat"
       ],
       "G25_jobs": [
-        "G25 wheel settings",
-        "G25 monitor buttons",
-        "G25 POV hat LCD control",
-        "G25 minor controls"
+        "wheel settings",
+        "monitor buttons",
+        "POV hat LCD control",
+        "minor controls"
       ]
     }
   ]
