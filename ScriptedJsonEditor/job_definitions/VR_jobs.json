@@ -149,7 +149,7 @@
       "# rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Sound Options": {
-          "Engine Volume": 0.87,
+          "Engine Volume": 0.37,
           "Options Volume": 0.30,
           "Options Volume#": "0.0-1.0",
           "Other Volume Ratio": 0.50,
