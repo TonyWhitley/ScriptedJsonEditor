@@ -101,6 +101,24 @@
         }
       }
     },
+    "Pitstop Description on": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "edits": {
+        "Game Options": {
+          "Pitstop Description": true,
+          "Pitstop Description#": "Gives extra info about what's taking time in pitstop"
+        }
+      }
+    },
+    "Showroom zoom on": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "edits": {
+        "Game Options": {
+          "Miscellaneous": 1,
+          "Miscellaneous#": "When viewing a car in the Showroom this allows you to zoom right in and through the car to see the interior and what's under the body panels."
+        }
+      }
+    },
     "No formation lap": {
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "edits": {
