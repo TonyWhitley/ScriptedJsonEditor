@@ -229,6 +229,8 @@ class JsonJobsFile(JsonFile):
             if __j:
               _result.append(__j)
             else: # job not found in Job Description file
+              print('job "%s" not found in Job Description file "%s"' % 
+                    (_job, _job_description_file))
               raise NoSuchJobError
     except KeyError:
       print('%s has no "job definition files"' % self.filepath)
@@ -346,6 +348,15 @@ class Job():
       for _item in self.job["edits"][main_key]:
         self.json_o.edit(main_key, _item, self.job["edits"][main_key][_item])
 
+  def list_edits(self):
+    """
+    List the job's edits
+    May raise KeyError, ValueError, EmptyJsonError or NoSuchJobError
+    """
+    for main_key in self.job:
+      if main_key.startswith('# '):
+        print(main_key)
+
   def backup_file(self):
     """ Move file to datestamped file in temp folder """
     _backupO = Backups()
@@ -394,6 +405,54 @@ def run_job(job, config):
       raise JobFailedError
   except JsonContentError:
     raise FileNotFoundError
+
+def list_job(job, config):
+  """
+  List the job
+  Exceptions:
+  * JobFailedError    could not execute the job
+  * FileNotFoundError could not open the file to edit
+  """
+  _j = Job(job, config)
+  try:
+    #   do the edits
+    try:
+      _j.list_edits()
+    except (KeyError, ValueError, EmptyJsonError):
+      raise JobFailedError
+  except JsonContentError:
+    raise FileNotFoundError
+
+def get_jobs_hierarchy(jobs_file_name):
+  """ Return the jobs details so it can be displayed """
+  try:
+    _JSNO_O = JsonJobsFile()
+    __, config = _JSNO_O.read(jobs_file_name)
+    _jobs = _JSNO_O.get_jobs()
+    for _job in _jobs:
+      for item in _job:
+        if item.startswith('# '):
+          print(item)
+      print()
+  except (JsonContentError, NoSuchJobError):
+    return 99
+
+  if _jobs is None:
+    print('No jobs in"%s"' % jobs_file_name)
+    return 99
+
+  # Execute
+  # For each job in jobsFile
+  for job in _jobs:
+    try:
+      _report = list_job(job, config)
+      print(_report)
+    except JobFailedError: # failed to execute job
+      return 98
+    except FileNotFoundError:
+      print('Failed opening "%s"' % (job['JSONfileToBeEdited']))
+      return 99
+  return 0
 
 def main():
   """ Main """

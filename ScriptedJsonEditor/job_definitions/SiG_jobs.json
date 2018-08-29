@@ -1,0 +1,62 @@
+{
+  "# Jobs library file for ScriptedJsonEditor": "",
+  "# V1.0.0": "",
+  "# Note: any key with a # is a comment": "",
+  "job definitions": {
+    "Endurance Season 2018 settings": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "skip keys with # in them": true,
+      "## keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "## rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "DRIVING AIDS":{
+          "Antilock Brakes":1,
+          "Auto Blip":false,
+          "Throttle Control":2
+          },
+        "Game Options":{
+          "CURNT Fuel Consumption Multiplier":2,
+          "CURNT Race Length":0.5,
+          "CURNT Race Time":96,
+          "CURNT Tire Wear Multiplier":2,
+          "GPRIX Fuel Consumption Multiplier":2,
+          "GPRIX Race Length":0.5,
+          "GPRIX Race Time":96,
+          "GPRIX Race Time#":"minutes",
+          "GPRIX Tire Wear Multiplier":2,
+          "CURNT Failure Rate":2,
+          "GPRIX Failure Rate":2,
+          "GPRIX Failure Rate#":"Mechanical failure rate (0-none, 1-normal, 2-timescaled, disabled: 3-season)",
+          "CURNT RaceTimeScale":15,
+          "GPRIX RaceTimeScale":15
+          }
+        }
+      },
+    "Endurance Season 2018 settings undo": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "skip keys with # in them": true,
+      "## keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "## rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "DRIVING AIDS":{
+          "Antilock Brakes":0,
+          "Auto Blip":false,
+          "Throttle Control":0
+          },
+        "Game Options":{
+          "CURNT Fuel Consumption Multiplier":1,
+          "CURNT Tire Wear Multiplier":1,
+          "GPRIX Fuel Consumption Multiplier":1,
+          "GPRIX Tire Wear Multiplier":1,
+          "CURNT Failure Rate":2,
+          "GPRIX Failure Rate":2,
+          "GPRIX Failure Rate#":"Mechanical failure rate (0-none, 1-normal, 2-timescaled, disabled: 3-season)",
+          "CURNT RaceTimeScale":1,
+          "GPRIX RaceTimeScale":1
+          }
+        }
+      }
+    }
+  }

@@ -9,9 +9,9 @@
       "# https://forum.studio-397.com/index.php?threads/rfactor2-the-vr-thread-settings-tips.55249/": "",
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": "",
+      "## keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "## rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Graphic Options": {
           "Car Vibration Mult1": 0,
@@ -45,9 +45,9 @@
       "# revert some of the above": "",
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": "",
+      "## keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "## rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Graphic Options": {
           "Car Vibration Mult1": 0,
@@ -84,9 +84,9 @@
       "# https://forum.studio-397.com/index.php?threads/rfactor2-the-vr-thread-settings-tips.55249/": "",
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": "",
+      "## keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "## rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Graphic Options": {
           "Road Reflections": 2,
@@ -114,9 +114,9 @@
       "# Set graphic options for VR for my GTX 1080 / Ryzen 5 1600": "",
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": "",
+      "## keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "## rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Graphic Options": {
           "Road Reflections": 2,
@@ -144,9 +144,9 @@
       "# Set sound levels for VR ": "",
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": "",
+      "## keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "## rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Sound Options": {
           "Engine Volume": 0.37,

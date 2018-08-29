@@ -6,9 +6,9 @@
     "Pro driving aid settings": {
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": "",
+      "## keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "## rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "DRIVING AIDS": {
           "Antilock Brakes": 0,
@@ -78,7 +78,8 @@
       "edits": {
         "Game Options": {
           "Spotter Laptimes": 0,
-          "Spotter Laptimes#": "Report laptimes: 0=never 1=non-race 2=always"
+          "Spotter Laptimes#": "Report laptimes: 0=never 1=non-race 2=always",
+          "Spotter Detail":0
         }
       }
     },

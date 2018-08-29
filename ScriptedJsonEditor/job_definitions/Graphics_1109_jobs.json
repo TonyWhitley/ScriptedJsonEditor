@@ -16,9 +16,9 @@
       "# https://forum.studio-397.com/index.php?threads/latest-release-1109-rain-effects-and-more.58675/": "",
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": "",
+      "## keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "## rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Game Options": {
           "Message Center Detail": 0
@@ -72,9 +72,9 @@
       "# https://forum.studio-397.com/index.php?threads/latest-release-1109-rain-effects-and-more.58675/": "",
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": "",
+      "## keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "## rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Game Options": {
           "Message Center Detail": 0
@@ -126,9 +126,9 @@
       "# https://forum.studio-397.com/index.php?threads/latest-release-1109-rain-effects-and-more.58675/": "",
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": "",
+      "## keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "## rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Game Options": {
           "Message Center Detail": 0
@@ -159,8 +159,8 @@
           "Road Reflections": 3,
           "Road Reflections#": "Off\/Low\/High\/Ultra = reflected objects are generated for wet road and heat mirage",
           "Shadow Blur": 2,
-          "Shadow Blur#": "0=Off, 1=Fast, 2=Optimal, 3=Quality",
-          "Shadows": 2,
+          "Shadow Blur#": "0=Off, 1=Fast, 2=Optimal, 3=Quality   (2 flickers badly on my PC)",
+          "Shadows": 4,
           "Shadows#": "0=Low 1=Medium 2=High 3=Full",
           "Soft Particles": 2,
           "Soft Particles#": "0=Off, 1=Cheap soft edges, 2=Depth buffered soft edges",

@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>8b6feaa7-b8f5-4472-bcb3-4bdc7f5ab211</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>ScriptedJsonEditor.py</StartupFile>
+    <StartupFile>GUItreeview.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -31,6 +31,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="command_line.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GUItreeview.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="json_include.py" />
@@ -77,6 +80,7 @@
     <Content Include="jobs\Keyboard.json" />
     <Content Include="job_definitions\Keyboard_jobs.json" />
     <Content Include="jobs\VR.json" />
+    <Content Include="job_definitions\SiG_jobs.json" />
     <Content Include="job_definitions\VR_jobs.json" />
   </ItemGroup>
   <ItemGroup>

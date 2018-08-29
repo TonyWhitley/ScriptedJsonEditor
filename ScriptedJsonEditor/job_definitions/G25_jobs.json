@@ -16,9 +16,9 @@
     "Wheel settings": {
       "JSONfileToBeEdited": "<CONTROLLER.JSON>",
       "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": "",
+      "## keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "## rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Force Feedback": {
           "Steering torque filter": 0,
@@ -35,9 +35,9 @@
     "Cursor keys control seat": {
       "JSONfileToBeEdited": "<CONTROLLER.JSON>",
       "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": "",
+      "## keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "## rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Input": {
           "# Cursor keys control seat": "",
@@ -63,9 +63,9 @@
     "VR": {
       "JSONfileToBeEdited": "<CONTROLLER.JSON>",
       "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": "",
+      "## keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "## rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Input": {
           "# Left wheel button is Esc": "",
@@ -93,9 +93,9 @@
     "Monitor": {
       "JSONfileToBeEdited": "<CONTROLLER.JSON>",
       "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": "",
+      "## keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "## rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Input": {
           "# Disable VR Left/right wheel buttons": "",
@@ -123,9 +123,9 @@
     "POV_hat_LCD_control": {
       "JSONfileToBeEdited": "<CONTROLLER.JSON>",
       "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": "",
+      "## keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "## rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Input": {
           "# Disable old control of brake bias and ARBs": "",
@@ -168,9 +168,9 @@
     "Minor controls": {
       "JSONfileToBeEdited": "<CONTROLLER.JSON>",
       "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": "",
+      "## keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "## rFactor 2 escapes /. Also remove space after the :": "",
       "# Button mapping: b1:32 to b8:39 b16:47 to b19:50  ": "",
       "edits": {
         "Input": {
@@ -213,9 +213,9 @@
     "6 speed shifter": {
       "JSONfileToBeEdited": "<CONTROLLER.JSON>",
       "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": "",
+      "## keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "## rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Input": {
           "Control - First Gear":[
@@ -252,9 +252,9 @@
     "5 speed shifter": {
       "JSONfileToBeEdited": "<CONTROLLER.JSON>",
       "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": "",
+      "## keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "## rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Input": {
           "Control - First Gear":[
@@ -292,9 +292,9 @@
       "# Reverse opposite 1st, 2nd opposite 3rd, 4th opposite 5th": "",
       "JSONfileToBeEdited": "<CONTROLLER.JSON>",
       "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": "",
+      "## keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "## rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Input": {
           "Control - First Gear":[
