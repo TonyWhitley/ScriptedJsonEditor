@@ -21,24 +21,36 @@ class Tab:
     all_jobs = get_all_jobs()
 
     tkLabelframes = []
-    left_right = 1  # put frames in alternating columns
-    _row = 2
-    wraplength = 500
-    # sort jobfiles into order of number of jobs
-    jobfile_names=[]
-    for jobfile_name,jobs in all_jobs.items():
-      jobfile_names.append([jobfile_name,jobs.json_dict['job definitions']])
-    jobfile_names.sort(key=self.__lenSecond, reverse=True)
+    tooltip_wraplength = 500
+    # sort job_definition_files into order of number of jobs
+    job_definition_file_names=[]
+    total_jobs = 0  # and count the jobs
+    for job_definition_file_name,jobs in all_jobs.items():
+      job_definition_file_names.append(
+        [job_definition_file_name,
+         jobs.json_dict['job definitions']])
+      total_jobs += len(jobs.json_dict['job definitions']) +1 #for the frame
+    job_definition_file_names.sort(key=self.__lenSecond, reverse=True)
 
-    # Then display each jobfile in a frame in order of number of jobs
-    for jobfile_name, __ in jobfile_names:
-      jobs = all_jobs[jobfile_name]
-      _tkLabelframe = tk.LabelFrame(parentFrame, text=jobfile_name)
-      tkCheckbuttons = []
+    # Calculate the number of columns
+    columns = total_jobs // 12
+    left_right = 1
+    _row = 2
+
+    # Then display each job_definition_file in a frame in order of number of jobs
+    self.checkbutton_IntVars = {}
+    for job_definition_file_name, __ in job_definition_file_names:
+      self.checkbutton_IntVars[job_definition_file_name] = []
+      jobs = all_jobs[job_definition_file_name]
+      _tkLabelframe = tk.LabelFrame(parentFrame, text=job_definition_file_name)
+      self.checkbutton_IntVars[job_definition_file_name] = {}
       for job in jobs.json_dict['job definitions']:
-        _tkCheckbutton = tk.Checkbutton(_tkLabelframe, text=job)
+        self.checkbutton_IntVars[job_definition_file_name][job] = tk.IntVar()
+        _tkCheckbutton = tk.Checkbutton(
+          _tkLabelframe, text=job, 
+          variable=self.checkbutton_IntVars[job_definition_file_name][job])
         _tkCheckbutton.grid(sticky='w')
-        tkCheckbuttons.append(_tkCheckbutton)
+        # Extract a tooltip from thejob's comments
         _tooltip = ''
         for line in jobs.json_dict['job definitions'][job]:
           if line.startswith('# '):
@@ -48,15 +60,36 @@ class Tab:
             if line.startswith('# '):
               _tooltip += line[2:] + '\n'
         if len(_tooltip):
-          Tooltip(_tkCheckbutton, text=_tooltip[:-1], wraplength=wraplength)
+          Tooltip(_tkCheckbutton, text=_tooltip[:-1], wraplength=tooltip_wraplength)
+
       _tkLabelframe.grid(column=left_right, row=_row, padx=5, pady=5, sticky='new')
-      if left_right == 1:
-        left_right = 2
-      else:
+      
+      # Next column
+      left_right += 1
+      if left_right > columns:
         left_right = 1
         _row += 1
       tkLabelframes.append(_tkLabelframe)
-  def __lenSecond(self, elem):  # for sorting jobfiles by number of jobs
+
+  def set_checkbutton(self, job_definition_file_name, job_name, value):
+    try:
+      self.checkbutton_IntVars[job_definition_file_name][job_name].set(value)
+    except:
+      print('Could not set job definition file "%s" job "%s" to "%s"' % 
+            (job_definition_file_name, job_name, value))
+      raise
+
+  def get_checkbutton(self, job_definition_file_name, job_name):
+    try:
+      value = self.checkbutton_IntVars[job_definition_file_name][job_name].get()
+    except:
+      print('Could not get job definition file "%s" job "%s"' % 
+            (job_definition_file_name, job_name))
+      value = 'ERROR'
+      raise
+    return value
+
+  def __lenSecond(self, elem):  # for sorting job_definition_files by number of jobs
     return len(elem[1])
 
   def getSettings(self):
@@ -70,10 +103,37 @@ class Tab:
 if __name__ == '__main__':
   # To run this tab by itself for development
   root = tk.Tk()
-  tabConditions = ttk.Frame(root, width=1200, height=1200, relief='sunken', borderwidth=5)
+  tabConditions = ttk.Frame(root, width=1200, height=1200, 
+                            relief='sunken', borderwidth=5)
   tabConditions.grid()
    
   o_tab = Tab(tabConditions)
+
+  o_tab.set_checkbutton('G25_jobs', 'Monitor', 1)
+  assert o_tab.get_checkbutton('G25_jobs', 'Monitor') == 1
+
+  o_tab.set_checkbutton('VR_jobs', 'universal', 1)
+  assert o_tab.get_checkbutton('VR_jobs', 'universal') == 1
+
+  o_tab.set_checkbutton('Game_jobs', 'Flags off', 1)
+  o_tab.set_checkbutton('Game_jobs', 'Flags off', 0)
+  assert o_tab.get_checkbutton('Game_jobs', 'Flags off') == 0
+
+  # Error cases
+  try:
+    o_tab.set_checkbutton('OOPS!', 'Monitor', 1)
+    print('Should have raised an error')
+    raise
+  except: # error raised as expected
+    pass
+
+  try:
+    assert o_tab.get_checkbutton('OOPS!', 'Monitor') == 'ERROR'
+    print('Should have raised an error')
+    raise
+  except: # error raised as expected
+    pass
+
   root.mainloop()
 
 
