@@ -21,12 +21,15 @@
       "## rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Force Feedback": {
+		  "# Filter = 0": "",
           "Steering torque filter": 0,
           "Steering torque filter#": "Number of old samples to use to filter torque from vehicle's steering column (0-32, note that higher values increase effective latency)",
+		  "# Minimum torque = 12": "",
           "Steering torque minimum": 0.12,
           "Steering torque minimum#": "Minimum torque to apply in either direction to overcome steering wheel's 'FFB deadzone' caused by friction"
         },
         "General Controls": {
+		  "# Range = 900 degrees": "",
           "Steering Wheel Range": 900,
           "Steering Wheel Range#": "Degrees of steering wheel rotation, both visual and physical (if available)"
         }
@@ -103,7 +106,6 @@
             0,
             89
           ],
-          "# Right wheel button is re-centres head": "",
           "Control - VR : Re-Center head position": [
             0,
             89

@@ -270,7 +270,7 @@ jobDefinition2 = r"""
   "job definitions": {
     "Wheel settings": {
       "JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\Controller.JSON",
-      "# Note: JSONfileToBeEdited .JSON is case-sensitive": 0,
+      "## Note: JSONfileToBeEdited .JSON is case-sensitive": 0,
       "skip keys with # in them": true,
       "# keys with # in them are used as comments, don't change the values": 0,
       "rFactor escape slash": true,
@@ -290,7 +290,7 @@ jobDefinition2 = r"""
     },
     "Cursor keys control seat": {
       "JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\Controller.JSON",
-      "# Note: JSONfileToBeEdited .JSON is case-sensitive": 0,
+      "## Note: JSONfileToBeEdited .JSON is case-sensitive": 0,
       "skip keys with # in them": true,
       "# keys with # in them are used as comments, don't change the values": 0,
       "rFactor escape slash": true,

@@ -9,6 +9,7 @@
  3) Write the file
 """
 
+import glob
 import json
 import os
 import sys
@@ -282,6 +283,22 @@ class JsonJobsDefinitionsFile(JsonFile):
     except KeyError:
       print('No job "%s" in %s' % (job_name, self.filepath))
       return None
+
+def get_all_jobs():
+  """
+  Get the all the jobs in in all the job files,
+  each one a (job definition file, job) tuple
+  """
+  _job_definitions = {}
+  for _job_description_file in glob.glob('job_definitions/*.json'):
+    _JDFO = JsonJobsDefinitionsFile('') # don't care about the config substitutions
+    try:
+      _JDFO.read(_job_description_file)
+      _job_definitions[_JDFO.get_filename()] = _JDFO
+    except:
+      raise
+
+  return _job_definitions
 
 class JsonRfactorFile(JsonFile):
   """
