@@ -3,7 +3,7 @@ import tkinter as tk
 from tkinter import ttk
 
 from _tkToolTip import Tooltip
-from ScriptedJsonEditor import get_jobs_hierarchy, get_all_jobs
+from ScriptedJsonEditor import get_jobs_hierarchy, get_all_jobs, get_all_job_files
 
 
 
@@ -11,13 +11,44 @@ from ScriptedJsonEditor import get_jobs_hierarchy, get_all_jobs
 # The tab's public class:
 #########################
 class Tab:
+  tkLabelframe_jobSettings = None
   def __init__(self, parentFrame):
     """ Put this into the parent frame """
     pass
     tkLabelConditions = tk.Label(parentFrame, 
-                                text='This could be used to display the hierarchy of jobs and job definitions')
-    tkLabelConditions.grid(column=1, row=1, columnspan=2)
+                                text='Displays the hierarchy of job definition files and jobs.\nNeed to add creating new configs')
+    tkLabelConditions.grid(column=0, row=0, columnspan=2, sticky='w')
 
+    # Add a grid
+    jobFilesFrame = tk.LabelFrame(parentFrame, text='Job files')
+    jobFilesFrame.grid(column=0,row=1, columnspan=5, sticky='w')
+    jobFilesFrame.columnconfigure(0, weight=1)
+    jobFilesFrame.rowconfigure(0, weight=1)
+    jobFilesFrame.grid(pady=5, padx=5, ipadx=10)
+ 
+    # Create a Tkinter variable
+    tkvar = tk.StringVar(root)
+ 
+    # Dictionary with options
+    choices = get_all_job_files()
+    
+    tkvar.set(next(iter(choices))) # set the default option to the "first" dict item
+ 
+    popupMenu = tk.OptionMenu(jobFilesFrame, tkvar, *choices)
+    tk.Label(jobFilesFrame, text="Choose a job file").grid(row=1, column=0, sticky='w')
+    popupMenu.grid(row=1, column=1, ipadx=10, sticky='w')
+ 
+    self.tkLabelframe_jobSettings = tk.LabelFrame(parentFrame, text='Job settings')
+    self.tkLabelframe_jobSettings.grid(row=3, pady=5, padx=5, ipadx=10)
+
+  # on change dropdown value
+  def change_dropdown(*args):
+      print( tkvar.get() )
+    
+
+class JobFrames:
+  """ Show the job settings, allow them to be changed """
+  def __init__(self, parentFrame):
     all_jobs = get_all_jobs()
 
     tkLabelframes = []
@@ -107,7 +138,10 @@ if __name__ == '__main__':
                             relief='sunken', borderwidth=5)
   tabConditions.grid()
    
-  o_tab = Tab(tabConditions)
+  x = Tab(tabConditions)
+  tkLabelframe_jobSettings = x.tkLabelframe_jobSettings
+
+  o_tab = JobFrames(tkLabelframe_jobSettings)
 
   o_tab.set_checkbutton('G25_jobs', 'Monitor', 1)
   assert o_tab.get_checkbutton('G25_jobs', 'Monitor') == 1

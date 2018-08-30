@@ -286,7 +286,7 @@ class JsonJobsDefinitionsFile(JsonFile):
 
 def get_all_jobs():
   """
-  Get the all the jobs in in all the job files,
+  Get all the jobs in in all the job definition files,
   each one a (job definition file, job) tuple
   """
   _job_definitions = {}
@@ -299,6 +299,16 @@ def get_all_jobs():
       raise
 
   return _job_definitions
+
+def get_all_job_files():
+  """
+  Get a dict of the names of all the jobs files
+  """
+  job_files = {}
+  for job_file in glob.glob('jobs/*.json'):
+    __, j = os.path.split(job_file)
+    job_files[j] = ''
+  return job_files
 
 class JsonRfactorFile(JsonFile):
   """

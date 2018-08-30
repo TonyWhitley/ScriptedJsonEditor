@@ -11,11 +11,16 @@
       "## rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "DRIVING AIDS":{
+		  "# ABS=1, TC=2": "",
+		  "# Autoblip off": "",
           "Antilock Brakes":1,
           "Auto Blip":false,
           "Throttle Control":2
           },
         "Game Options":{
+		  "# Mechanical failure rate: timescaled": "",
+		  "# Multipliers=2": "",
+		  "# Race time=96 minutes": "",
           "CURNT Fuel Consumption Multiplier":2,
           "CURNT Race Length":0.5,
           "CURNT Race Time":96,
@@ -41,11 +46,14 @@
       "## rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "DRIVING AIDS":{
+		  "# ABS, autoblip, TC off": "",
           "Antilock Brakes":0,
           "Auto Blip":false,
           "Throttle Control":0
           },
         "Game Options":{
+		  "# Mechanical failure rate: timescaled": "",
+		  "# Multipliers=1": "",
           "CURNT Fuel Consumption Multiplier":1,
           "CURNT Tire Wear Multiplier":1,
           "GPRIX Fuel Consumption Multiplier":1,
