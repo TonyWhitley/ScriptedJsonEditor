@@ -21,7 +21,7 @@ JOBS_FILE_HELP_STR = r"""
 
 JOB_DEFINITIONS_FILE_HELP_STR = r"""
 {
-  "# Demo_jobs - job definitions file for ScriptedJsonEditor": 0,
+  "#Tooltip: Demo_jobs - job definitions file for ScriptedJsonEditor": 0,
   "# V1.0.0": 0,
   "# Note: any key with a # is a comment": 0,
   "job definitions": {

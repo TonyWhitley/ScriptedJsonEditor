@@ -5,7 +5,8 @@ import tkinter as tk
 from tkinter import ttk
 
 from _tkToolTip import Tooltip
-from ScriptedJsonEditor import get_jobs_hierarchy, get_all_jobs, get_all_job_files
+from ScriptedJsonEditor import get_jobs_hierarchy, get_all_jobs, get_all_job_files, TooltipStr
+from GUImenu import Menu
 
 
 
@@ -103,15 +104,15 @@ class JobFrames:
           _tkLabelframe, text=job, 
           variable=self.checkbutton_IntVars[job_definition_file_name][job])
         _tkCheckbutton.grid(sticky='w')
-        # Extract a tooltip from thejob's comments
+        # Extract a tooltip from the job's comments
         _tooltip = ''
         for line in jobs.json_dict['job definitions'][job]:
-          if line.startswith('# '):
-            _tooltip += line[2:] + '\n'
+          if line.startswith(TooltipStr):
+            _tooltip += line[len(TooltipStr):] + '\n'
         for __,section in jobs.json_dict['job definitions'][job]['edits'].items():
           for line in section:
-            if line.startswith('# '):
-              _tooltip += line[2:] + '\n'
+            if line.startswith(TooltipStr):
+              _tooltip += line[len(TooltipStr):] + '\n'
         if len(_tooltip):
           Tooltip(_tkCheckbutton, text=_tooltip[:-1], wraplength=tooltip_wraplength)
 
@@ -149,6 +150,7 @@ if __name__ == '__main__':
   # To run this tab by itself for development
   root = tk.Tk()
   root.title('JSON file editor')
+  Menu(root)
 
   tabConditions = ttk.Frame(root, width=1200, height=1200, 
                             relief='sunken', borderwidth=5)

@@ -19,7 +19,7 @@ if not exist env\scripts	python.exe -m venv env && env/Scripts/activate && pytho
 pyinstaller ^
   --onefile ^
   --distpath . ^
-  "%~dp0\ScriptedJsonEditor.py "
+  "%~dp0\GUI.py "
 pause
 REM fails to get pypiwin32 on AppVeyor ####  if not exist env\scripts 	pip install -r requirements.txt
 

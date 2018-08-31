@@ -6,11 +6,11 @@
   "job definitions": {
     "Driver aid buttons disable": {
       "JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\Controller.JSON",
-      "## Note: JSONfileToBeEdited .JSON is case-sensitive": "",
+      "# Note: JSONfileToBeEdited .JSON is case-sensitive": "",
       "skip keys with # in them": true,
-      "## keys with # in them are used as comments, don't change the values": "",
+      "# keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "## rFactor 2 escapes /. Also remove space after the :": "",
+      "# rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Input": {
           "Control - Anti-lock Brakes": [
@@ -58,14 +58,14 @@
     },
     "Cursor keys control seat": {
       "JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\Controller.JSON",
-      "## Note: JSONfileToBeEdited .JSON is case-sensitive": "",
+      "# Note: JSONfileToBeEdited .JSON is case-sensitive": "",
       "skip keys with # in them": true,
-      "## keys with # in them are used as comments, don't change the values": "",
+      "# keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "## rFactor 2 escapes /. Also remove space after the :": "",
+      "# rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Input": {
-          "# Cursor keys control seat": "",
+          "#Tooltip: Cursor keys control seat": "",
           "Control - Adjust Seat Aft": [
             0,
             203

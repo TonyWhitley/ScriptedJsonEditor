@@ -223,17 +223,17 @@ jobDefinition = r"""
     "JSONfileToBeEdited": "<CONTROLLER.JSON>", 
     "edits": {
       "Input": {
-        "# Left wheel button is Esc": 0,
+        "#Tooltip: Left wheel button is Esc": 0,
         "Control - Alternate Esc": [
           1,
           39
         ],
-        "# Right wheel button is re-centres head": 0,
+        "#Tooltip: Right wheel button is re-centres head": 0,
         "Control - VR :Re-Center head position": [
           1,
           38
         ],
-        "# Disable look left/right": 0,
+        "#Tooltip: Disable look left/right": 0,
         "Control - Look Left": [
           0,
           89
@@ -270,7 +270,7 @@ jobDefinition2 = r"""
   "job definitions": {
     "Wheel settings": {
       "JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\Controller.JSON",
-      "## Note: JSONfileToBeEdited .JSON is case-sensitive": 0,
+      "# Note: JSONfileToBeEdited .JSON is case-sensitive": 0,
       "skip keys with # in them": true,
       "# keys with # in them are used as comments, don't change the values": 0,
       "rFactor escape slash": true,
@@ -290,14 +290,14 @@ jobDefinition2 = r"""
     },
     "Cursor keys control seat": {
       "JSONfileToBeEdited": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\Controller.JSON",
-      "## Note: JSONfileToBeEdited .JSON is case-sensitive": 0,
+      "# Note: JSONfileToBeEdited .JSON is case-sensitive": 0,
       "skip keys with # in them": true,
       "# keys with # in them are used as comments, don't change the values": 0,
       "rFactor escape slash": true,
       "# rFactor 2 escapes /. Also remove space after the :": 0,
       "edits": {
         "Input": {
-          "# Cursor keys control seat": 0,
+          "#Tooltip: Cursor keys control seat": 0,
           "Control - Adjust Seat Aft": [
             0,
             203
@@ -352,7 +352,7 @@ keyboard_jobs_json_file = r"""
       "JSONfileToBeEdited": "<CONTROLLER.JSON>",
       "edits": {
         "Input": {
-          "# Cursor keys control seat": 0,
+          "#Tooltip: Cursor keys control seat": 0,
           "Control - Adjust Seat Aft": [
             0,
             203

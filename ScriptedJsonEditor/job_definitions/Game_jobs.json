@@ -6,9 +6,9 @@
     "Pro driving aid settings": {
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "skip keys with # in them": true,
-      "## keys with # in them are used as comments, don't change the values": "",
+      "# keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "## rFactor 2 escapes /. Also remove space after the :": "",
+      "# rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "DRIVING AIDS": {
           "Antilock Brakes": 0,
@@ -35,7 +35,7 @@
           "Throttle Control": 0
         },
         "Game Options": {
-		  "# AI strength 100 which should approximate real life": "",
+		  "#Tooltip: AI strength 100 which should approximate real life": "",
           "AI Aggression": 0.25,
           "AI Limiter": 0.05,
           "CURNT AI Driver Strength": 100,
@@ -52,7 +52,7 @@
           "Basic Rules": 0
         },
         "Race Conditions": {
-		  "# Black and yellow flags off": "",
+		  "#Tooltip: Black and yellow flags off": "",
           "CURNT Flag Rules": 0,
           "GPRIX Flag Rules": 0
         }
@@ -108,7 +108,7 @@
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "edits": {
         "Game Options": {
-		  "# Gives extra info about what's taking time in pitstop": "",
+		  "#Tooltip: Gives extra info about what's taking time in pitstop": "",
           "Pitstop Description": true,
           "Pitstop Description#": "Gives extra info about what's taking time in pitstop"
         }
@@ -118,7 +118,7 @@
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "edits": {
         "Game Options": {
-		  "# When viewing a car in the Showroom this allows you to zoom right in and through the car to see the interior and what's under the body panels.": "",
+		  "#Tooltip: When viewing a car in the Showroom this allows you to zoom right in and through the car to see the interior and what's under the body panels.": "",
           "Miscellaneous": 1,
           "Miscellaneous#": "When viewing a car in the Showroom this allows you to zoom right in and through the car to see the interior and what's under the body panels."
         }

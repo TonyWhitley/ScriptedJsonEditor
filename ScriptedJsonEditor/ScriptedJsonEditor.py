@@ -19,6 +19,11 @@ from backups import Backups
 from command_line import CommandLine
 
 BUILD_REVISION = 43 # The git commit count
+versionStr = 'Scripted JSON Editor V0.6.%d\n' % BUILD_REVISION
+
+TooltipStr = '#Tooltip: ' # The comment in the job descriptions files that
+                          # indicates Tooltip text to be used
+
 
 # User-defined exceptions
 class EmptyJsonError(Exception):
@@ -381,7 +386,7 @@ class Job():
     May raise KeyError, ValueError, EmptyJsonError or NoSuchJobError
     """
     for main_key in self.job:
-      if main_key.startswith('# '):
+      if main_key.startswith(TooltipStr):
         print(main_key)
 
   def backup_file(self):
@@ -458,7 +463,7 @@ def get_jobs_hierarchy(jobs_file_name):
     _jobs = _JSNO_O.get_jobs()
     for _job in _jobs:
       for item in _job:
-        if item.startswith('# '):
+        if item.startswith(Tooltip):
           print(item)
       print()
   except (JsonContentError, NoSuchJobError):
@@ -514,6 +519,6 @@ def main():
   return 0
 
 if __name__ == '__main__':
-  print('Scripted JSON Editor V0.6.%d\n' % BUILD_REVISION)
+  print(versionStr)
   _result = main()
   sys.exit(_result)

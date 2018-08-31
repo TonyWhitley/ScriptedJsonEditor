@@ -36,6 +36,9 @@
     <Compile Include="GUI.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GUImenu.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="json_include.py" />
     <Compile Include="ScriptedJsonEditor.py" />
     <Compile Include="Tests\test_backups.py">

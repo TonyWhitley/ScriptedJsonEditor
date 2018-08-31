@@ -5,13 +5,13 @@
   "# Note: any key with a # is a comment": "",
   "job definitions": {
     "universal": {
-      "# Set graphic options for VR as recommended in": "",
-      "# https://forum.studio-397.com/index.php?threads/rfactor2-the-vr-thread-settings-tips.55249/": "",
+      "#Tooltip: Set graphic options for VR as recommended in": "",
+      "#Tooltip: https://forum.studio-397.com/index.php?threads/rfactor2-the-vr-thread-settings-tips.55249/": "",
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "skip keys with # in them": true,
-      "## keys with # in them are used as comments, don't change the values": "",
+      "# keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "## rFactor 2 escapes /. Also remove space after the :": "",
+      "# rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Graphic Options": {
           "Car Vibration Mult1": 0,
@@ -42,12 +42,12 @@
       }
     },
     "Graphic Options undo": {
-      "# revert some of the above": "",
+      "#Tooltip: revert some of the above": "",
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "skip keys with # in them": true,
-      "## keys with # in them are used as comments, don't change the values": "",
+      "# keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "## rFactor 2 escapes /. Also remove space after the :": "",
+      "# rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Graphic Options": {
           "Car Vibration Mult1": 0,
@@ -80,13 +80,13 @@
       }
     },
     "Mid range GPU": {
-      "# Set graphic options for VR as recommended in": "",
-      "# https://forum.studio-397.com/index.php?threads/rfactor2-the-vr-thread-settings-tips.55249/": "",
+      "#Tooltip: Set graphic options for VR as recommended in": "",
+      "#Tooltip: https://forum.studio-397.com/index.php?threads/rfactor2-the-vr-thread-settings-tips.55249/": "",
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "skip keys with # in them": true,
-      "## keys with # in them are used as comments, don't change the values": "",
+      "# keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "## rFactor 2 escapes /. Also remove space after the :": "",
+      "# rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Graphic Options": {
           "Road Reflections": 2,
@@ -111,12 +111,12 @@
       }
     },
     "High end GPU": {
-      "# Set graphic options for VR for my GTX 1080 / Ryzen 5 1600": "",
+      "#Tooltip: Set graphic options for VR for my GTX 1080 / Ryzen 5 1600": "",
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "skip keys with # in them": true,
-      "## keys with # in them are used as comments, don't change the values": "",
+      "# keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "## rFactor 2 escapes /. Also remove space after the :": "",
+      "# rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Graphic Options": {
           "Road Reflections": 2,
@@ -141,12 +141,12 @@
       }
     },
     "sound levels": {
-      "# Set sound levels for VR ": "",
+      "#Tooltip: Set sound levels for VR ": "",
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "skip keys with # in them": true,
-      "## keys with # in them are used as comments, don't change the values": "",
+      "# keys with # in them are used as comments, don't change the values": "",
       "rFactor escape slash": true,
-      "## rFactor 2 escapes /. Also remove space after the :": "",
+      "# rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Sound Options": {
           "Engine Volume": 0.37,
