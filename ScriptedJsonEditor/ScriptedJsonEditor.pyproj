@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>8b6feaa7-b8f5-4472-bcb3-4bdc7f5ab211</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>GUIframedCheckbuttons.py</StartupFile>
+    <StartupFile>GUI.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -33,7 +33,7 @@
     <Compile Include="command_line.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GUIframedCheckbuttons.py">
+    <Compile Include="GUI.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="json_include.py" />

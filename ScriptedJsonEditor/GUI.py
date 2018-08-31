@@ -1,4 +1,6 @@
 # Python 3
+import os
+import sys
 import tkinter as tk
 from tkinter import ttk
 
@@ -12,11 +14,20 @@ from ScriptedJsonEditor import get_jobs_hierarchy, get_all_jobs, get_all_job_fil
 #########################
 class Tab:
   tkLabelframe_jobSettings = None
-  def __init__(self, parentFrame):
+  def __init__(self, parentFrame, cwd='.'):
     """ Put this into the parent frame """
-    pass
-    tkLabelConditions = tk.Label(parentFrame, 
-                                text='Displays the hierarchy of job definition files and jobs.\nNeed to add creating new configs')
+
+    # Allow this to be used from outside the current directory
+    os.chdir(cwd)
+
+    tkLabelConditions = tk.Label(parentFrame, anchor='w', justify='l',
+                                text='Displays the hierarchy of job definition files and jobs.\n\n\
+Need to add\n\
+* load settings from job file\n\
+* write settings back to job file\n\
+* detecting if changes are made\n\
+* creating new configs\n\
+')
     tkLabelConditions.grid(column=0, row=0, columnspan=2, sticky='w')
 
     # Add a grid
@@ -27,16 +38,19 @@ class Tab:
     jobFilesFrame.grid(pady=5, padx=5, ipadx=10)
  
     # Create a Tkinter variable
-    tkvar = tk.StringVar(root)
+    tkvar = tk.StringVar(parentFrame)
  
     # Dictionary with options
     choices = get_all_job_files()
     
-    tkvar.set(next(iter(choices))) # set the default option to the "first" dict item
+    if choices != {}:
+      tkvar.set(next(iter(choices))) # set the default option to the "first" dict item
  
-    popupMenu = tk.OptionMenu(jobFilesFrame, tkvar, *choices)
-    tk.Label(jobFilesFrame, text="Choose a job file").grid(row=1, column=0, sticky='w')
-    popupMenu.grid(row=1, column=1, ipadx=10, sticky='w')
+      popupMenu = tk.OptionMenu(jobFilesFrame, tkvar, *choices)
+      tk.Label(jobFilesFrame, text="Choose a job file").grid(row=1, column=0, sticky='w')
+      popupMenu.grid(row=1, column=1, ipadx=10, sticky='w')
+    else:
+      print('No job files found in %s' % os.path.join(os.getcwd(), 'jobs'))
  
     self.tkLabelframe_jobSettings = tk.LabelFrame(parentFrame, text='Job settings')
     self.tkLabelframe_jobSettings.grid(row=3, pady=5, padx=5, ipadx=10)
@@ -45,6 +59,14 @@ class Tab:
   def change_dropdown(*args):
       print( tkvar.get() )
     
+  def getSettings(self):
+    """ Return the settings for this tab """
+    return ['Conditions']
+
+  def setSettings(self, settings):
+    """ Set the settings for this tab """
+    pass
+  
 
 class JobFrames:
   """ Show the job settings, allow them to be changed """
@@ -73,7 +95,7 @@ class JobFrames:
     for job_definition_file_name, __ in job_definition_file_names:
       self.checkbutton_IntVars[job_definition_file_name] = []
       jobs = all_jobs[job_definition_file_name]
-      _tkLabelframe = tk.LabelFrame(parentFrame, text=job_definition_file_name)
+      _tkLabelframe = tk.LabelFrame(parentFrame, text=job_definition_file_name+'.json')
       self.checkbutton_IntVars[job_definition_file_name] = {}
       for job in jobs.json_dict['job definitions']:
         self.checkbutton_IntVars[job_definition_file_name][job] = tk.IntVar()
@@ -123,17 +145,11 @@ class JobFrames:
   def __lenSecond(self, elem):  # for sorting job_definition_files by number of jobs
     return len(elem[1])
 
-  def getSettings(self):
-    """ Return the settings for this tab """
-    return ['Conditions']
-
-  def setSettings(self, settings):
-    """ Set the settings for this tab """
-    pass
-  
 if __name__ == '__main__':
   # To run this tab by itself for development
   root = tk.Tk()
+  root.title('JSON file editor')
+
   tabConditions = ttk.Frame(root, width=1200, height=1200, 
                             relief='sunken', borderwidth=5)
   tabConditions.grid()
