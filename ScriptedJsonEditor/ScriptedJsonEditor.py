@@ -289,13 +289,13 @@ class JsonJobsDefinitionsFile(JsonFile):
       print('No job "%s" in %s' % (job_name, self.filepath))
       return None
 
-def get_all_jobs():
+def get_all_job_definitions(jobDefinitionsFolder):
   """
   Get all the jobs in in all the job definition files,
   each one a (job definition file, job) tuple
   """
   _job_definitions = {}
-  for _job_description_file in glob.glob('job_definitions/*.json'):
+  for _job_description_file in glob.glob(os.path.join(jobDefinitionsFolder, '*.json')):
     _JDFO = JsonJobsDefinitionsFile('') # don't care about the config substitutions
     try:
       _JDFO.read(_job_description_file)
@@ -305,12 +305,12 @@ def get_all_jobs():
 
   return _job_definitions
 
-def get_all_job_files():
+def get_all_job_files(jobFolder):
   """
   Get a dict of the names of all the jobs files
   """
   job_files = {}
-  for job_file in glob.glob('jobs/*.json'):
+  for job_file in glob.glob(os.path.join(jobFolder, '*.json')):
     __, j = os.path.split(job_file)
     job_files[j] = ''
   return job_files

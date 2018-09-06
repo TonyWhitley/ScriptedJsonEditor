@@ -5,22 +5,24 @@ import tkinter as tk
 from tkinter import ttk
 
 from _tkToolTip import Tooltip
-from ScriptedJsonEditor import get_jobs_hierarchy, get_all_jobs, get_all_job_files, TooltipStr
+from ScriptedJsonEditor import get_jobs_hierarchy, get_all_job_definitions, get_all_job_files, TooltipStr
 from GUImenu import Menu
 
-
+o_tab = None
 
 #########################
 # The tab's public class:
 #########################
 class Tab:
   tkLabelframe_jobSettings = None
-  def __init__(self, parentFrame, cwd='.'):
+  jobFrames = None
+  def __init__(self, parentFrame, jobDefinitionsFolder):
     """ Put this into the parent frame """
 
     # Allow this to be used from outside the current directory
-    os.chdir(cwd)
+    # os.chdir(cwd)
 
+    self.jobDefinitionsFolder = jobDefinitionsFolder
     tkLabelConditions = tk.Label(parentFrame, anchor='w', justify='l',
                                 text='Displays the hierarchy of job definition files and jobs.\n\n\
 Need to add\n\
@@ -41,8 +43,9 @@ Need to add\n\
     # Create a Tkinter variable
     tkvar = tk.StringVar(parentFrame)
  
+    self.o_menu = Menu(root, jobDefinitionsFolder=jobDefinitionsFolder, jobFolderRefresh=self.jobFolderRefresh)
     # Dictionary with options
-    choices = get_all_job_files()
+    choices = get_all_job_files(self.o_menu.jobDefinitionsFolder)
     
     if choices != {}:
       tkvar.set(next(iter(choices))) # set the default option to the "first" dict item
@@ -55,6 +58,8 @@ Need to add\n\
  
     self.tkLabelframe_jobSettings = tk.LabelFrame(parentFrame, text='Job settings')
     self.tkLabelframe_jobSettings.grid(row=3, pady=5, padx=5, ipadx=10)
+
+    self.jobFrames = self.JobFrames(self.tkLabelframe_jobSettings, jobDefinitionsFolder=self.o_menu.jobDefinitionsFolder)
 
   # on change dropdown value
   def change_dropdown(*args):
@@ -69,118 +74,128 @@ Need to add\n\
     pass
   
 
-class JobFrames:
-  """ Show the job settings, allow them to be changed """
-  def __init__(self, parentFrame):
-    all_jobs = get_all_jobs()
+  class JobFrames:
+    """ Show the job settings, allow them to be changed """
+    def __init__(self, parentFrame, jobDefinitionsFolder):
+      all_jobs = get_all_job_definitions(jobDefinitionsFolder)
 
-    tkLabelframes = []
-    tooltip_wraplength = 500
-    # sort job_definition_files into order of number of jobs
-    job_definition_file_names=[]
-    total_jobs = 0  # and count the jobs
-    for job_definition_file_name,jobs in all_jobs.items():
-      job_definition_file_names.append(
-        [job_definition_file_name,
-         jobs.json_dict['job definitions']])
-      total_jobs += len(jobs.json_dict['job definitions']) +1 #for the frame
-    job_definition_file_names.sort(key=self.__lenSecond, reverse=True)
+      self.tkLabelframes = []
+      tooltip_wraplength = 500
+      # sort job_definition_files into order of number of jobs
+      job_definition_file_names=[]
+      total_jobs = 0  # and count the jobs
+      for job_definition_file_name,jobs in all_jobs.items():
+        job_definition_file_names.append(
+          [job_definition_file_name,
+           jobs.json_dict['job definitions']])
+        total_jobs += len(jobs.json_dict['job definitions']) +1 #for the frame
+      job_definition_file_names.sort(key=self.__lenSecond, reverse=True)
 
-    # Calculate the number of columns
-    columns = total_jobs // 12
-    left_right = 1
-    _row = 2
+      # Calculate the number of columns
+      columns = total_jobs // 12
+      if columns < 2: # at least 2 columns
+        columns = 2
+      left_right = 1
+      _row = 2
 
-    # Then display each job_definition_file in a frame in order of number of jobs
-    self.checkbutton_IntVars = {}
-    for job_definition_file_name, __ in job_definition_file_names:
-      self.checkbutton_IntVars[job_definition_file_name] = []
-      jobs = all_jobs[job_definition_file_name]
-      _tkLabelframe = tk.LabelFrame(parentFrame, text=job_definition_file_name+'.json')
-      self.checkbutton_IntVars[job_definition_file_name] = {}
-      for job in jobs.json_dict['job definitions']:
-        self.checkbutton_IntVars[job_definition_file_name][job] = tk.IntVar()
-        _tkCheckbutton = tk.Checkbutton(
-          _tkLabelframe, text=job, 
-          variable=self.checkbutton_IntVars[job_definition_file_name][job])
-        _tkCheckbutton.grid(sticky='w')
-        # Extract a tooltip from the job's comments
-        _tooltip = ''
-        for line in jobs.json_dict['job definitions'][job]:
-          if line.startswith(TooltipStr):
-            _tooltip += line[len(TooltipStr):] + '\n'
-        for __,section in jobs.json_dict['job definitions'][job]['edits'].items():
-          for line in section:
+      # Then display each job_definition_file in a frame in order of number of jobs
+      self.checkbutton_IntVars = {}
+      for job_definition_file_name, __ in job_definition_file_names:
+        self.checkbutton_IntVars[job_definition_file_name] = []
+        jobs = all_jobs[job_definition_file_name]
+        _tkLabelframe = tk.LabelFrame(parentFrame, text=job_definition_file_name+'.json')
+        self.checkbutton_IntVars[job_definition_file_name] = {}
+        for job in jobs.json_dict['job definitions']:
+          self.checkbutton_IntVars[job_definition_file_name][job] = tk.IntVar()
+          _tkCheckbutton = tk.Checkbutton(
+            _tkLabelframe, text=job, 
+            variable=self.checkbutton_IntVars[job_definition_file_name][job])
+          _tkCheckbutton.grid(sticky='w')
+          # Extract a tooltip from the job's comments
+          _tooltip = ''
+          for line in jobs.json_dict['job definitions'][job]:
             if line.startswith(TooltipStr):
               _tooltip += line[len(TooltipStr):] + '\n'
-        if len(_tooltip):
-          Tooltip(_tkCheckbutton, text=_tooltip[:-1], wraplength=tooltip_wraplength)
+          for __,section in jobs.json_dict['job definitions'][job]['edits'].items():
+            for line in section:
+              if line.startswith(TooltipStr):
+                _tooltip += line[len(TooltipStr):] + '\n'
+          if len(_tooltip):
+            Tooltip(_tkCheckbutton, text=_tooltip[:-1], wraplength=tooltip_wraplength)
 
-      _tkLabelframe.grid(column=left_right, row=_row, padx=5, pady=5, sticky='new')
+        _tkLabelframe.grid(column=left_right, row=_row, padx=5, pady=5, sticky='new')
       
-      # Next column
-      left_right += 1
-      if left_right > columns:
-        left_right = 1
-        _row += 1
-      tkLabelframes.append(_tkLabelframe)
+        # Next column
+        left_right += 1
+        if left_right > columns:
+          left_right = 1
+          _row += 1
+        self.tkLabelframes.append(_tkLabelframe)
 
-  def set_checkbutton(self, job_definition_file_name, job_name, value):
-    try:
-      self.checkbutton_IntVars[job_definition_file_name][job_name].set(value)
-    except:
-      print('Could not set job definition file "%s" job "%s" to "%s"' % 
-            (job_definition_file_name, job_name, value))
-      raise
+    def set_checkbutton(self, job_definition_file_name, job_name, value):
+      try:
+        self.checkbutton_IntVars[job_definition_file_name][job_name].set(value)
+      except:
+        print('Could not set job definition file "%s" job "%s" to "%s"' % 
+              (job_definition_file_name, job_name, value))
+        raise
 
-  def get_checkbutton(self, job_definition_file_name, job_name):
-    try:
-      value = self.checkbutton_IntVars[job_definition_file_name][job_name].get()
-    except:
-      print('Could not get job definition file "%s" job "%s"' % 
-            (job_definition_file_name, job_name))
-      value = 'ERROR'
-      raise
-    return value
+    def get_checkbutton(self, job_definition_file_name, job_name):
+      try:
+        value = self.checkbutton_IntVars[job_definition_file_name][job_name].get()
+      except:
+        print('Could not get job definition file "%s" job "%s"' % 
+              (job_definition_file_name, job_name))
+        value = 'ERROR'
+        raise
+      return value
 
-  def __lenSecond(self, elem):  # for sorting job_definition_files by number of jobs
-    return len(elem[1])
+    def __lenSecond(self, elem):  # for sorting job_definition_files by number of jobs
+      return len(elem[1])
+
+    def destroy(self):
+      for r in self.tkLabelframes:
+        r.destroy()
+
+  def jobFolderRefresh(self):
+    self.jobFrames.destroy()
+    self.jobFrames = self.JobFrames(self.tkLabelframe_jobSettings, self.o_menu.jobDefinitionsFolder)
 
 if __name__ == '__main__':
   # To run this tab by itself for development
   root = tk.Tk()
   root.title('JSON file editor')
-  Menu(root)
+  jobFolder = os.path.join(os.getcwd(), 'jobs')
+  jobDefinitionsFolder = os.path.join(os.getcwd(), 'job_definitions')
 
   tabConditions = ttk.Frame(root, width=1200, height=1200, 
                             relief='sunken', borderwidth=5)
   tabConditions.grid()
    
-  x = Tab(tabConditions)
-  tkLabelframe_jobSettings = x.tkLabelframe_jobSettings
+  o_tab = Tab(tabConditions, jobDefinitionsFolder)
 
-  o_tab = JobFrames(tkLabelframe_jobSettings)
+  _test_frames = o_tab.jobFrames
 
-  o_tab.set_checkbutton('G25_jobs', 'Monitor', 1)
-  assert o_tab.get_checkbutton('G25_jobs', 'Monitor') == 1
+  _test_frames.set_checkbutton('G25_jobs', 'Monitor', 1)
+  assert _test_frames.get_checkbutton('G25_jobs', 'Monitor') == 1
 
-  o_tab.set_checkbutton('VR_jobs', 'universal', 1)
-  assert o_tab.get_checkbutton('VR_jobs', 'universal') == 1
+  _test_frames.set_checkbutton('VR_jobs', 'universal', 1)
+  assert _test_frames.get_checkbutton('VR_jobs', 'universal') == 1
 
-  o_tab.set_checkbutton('Game_jobs', 'Flags off', 1)
-  o_tab.set_checkbutton('Game_jobs', 'Flags off', 0)
-  assert o_tab.get_checkbutton('Game_jobs', 'Flags off') == 0
+  _test_frames.set_checkbutton('Game_jobs', 'Flags off', 1)
+  _test_frames.set_checkbutton('Game_jobs', 'Flags off', 0)
+  assert _test_frames.get_checkbutton('Game_jobs', 'Flags off') == 0
 
   # Error cases
   try:
-    o_tab.set_checkbutton('OOPS!', 'Monitor', 1)
+    _test_frames.set_checkbutton('OOPS!', 'Monitor', 1)
     print('Should have raised an error')
     raise
   except: # error raised as expected
     pass
 
   try:
-    assert o_tab.get_checkbutton('OOPS!', 'Monitor') == 'ERROR'
+    assert _test_frames.get_checkbutton('OOPS!', 'Monitor') == 'ERROR'
     print('Should have raised an error')
     raise
   except: # error raised as expected

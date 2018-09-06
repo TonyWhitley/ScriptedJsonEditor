@@ -149,16 +149,16 @@
       "# rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Sound Options": {
-          "Engine Volume": 0.37,
+          "Engine Volume": 0.22,
           "Options Volume": 0.30,
           "Options Volume#": "0.0-1.0",
-          "Other Volume Ratio": 0.50,
+          "Other Volume Ratio": 0.66,
           "Other Volume Ratio#": "Additional volume multiplier for other vehicles",
-          "Player Volume Ratio": 0.8,
+          "Player Volume Ratio": 0.6,
           "Player Volume Ratio#": "Additional volume multiplier for player's vehicle",
-          "SoundFX Volume": 0.93,
+          "SoundFX Volume": 0.22,
           "SoundFX Volume#": "0.0-1.0",
-          "Tire Volume Ratio": 1,
+          "Tire Volume Ratio": 1.02,
           "Tire Volume Ratio#": "Additional volume multiplier for tires"
         }
       }

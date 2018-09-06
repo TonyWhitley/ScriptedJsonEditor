@@ -281,3 +281,5 @@ env/
 /ScriptedJsonEditor/job_definitions/Keyboard_jobs.py
 /ScriptedJsonEditor/build/GUI
 /ScriptedJsonEditor/GUI.spec
+/ScriptedJsonEditor/jobs2
+/ScriptedJsonEditor/job_definitions2

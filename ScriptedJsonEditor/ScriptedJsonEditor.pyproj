@@ -30,6 +30,9 @@
     <Compile Include="backups.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Brexit.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="command_line.py">
       <SubType>Code</SubType>
     </Compile>
