@@ -3,9 +3,14 @@ import os
 import sys
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox
 
 from _tkToolTip import Tooltip
-from ScriptedJsonEditor import get_jobs_hierarchy, get_all_job_definitions, get_all_job_files, TooltipStr
+from ScriptedJsonEditor import get_jobs_hierarchy, \
+                               get_all_job_definitions, \
+                               get_all_job_files, \
+                               read_jobs_file, \
+                               TooltipStr, JsonJobsFile
 from GUImenu import Menu
 
 o_tab = None
@@ -15,8 +20,8 @@ o_tab = None
 #########################
 class Tab:
   tkLabelframe_jobSettings = None
-  jobFrames = None
-  def __init__(self, parentFrame, jobDefinitionsFolder):
+  jobDefinitionFrames = None
+  def __init__(self, parentFrame, jobDefinitionsFolder, jobsFolder):
     """ Put this into the parent frame """
 
     # Allow this to be used from outside the current directory
@@ -34,36 +39,61 @@ Need to add\n\
     tkLabelConditions.grid(column=0, row=0, columnspan=2, sticky='w')
 
     # Add a grid
-    jobFilesFrame = tk.LabelFrame(parentFrame, text='Job files')
-    jobFilesFrame.grid(column=0,row=1, columnspan=5, sticky='w')
-    jobFilesFrame.columnconfigure(0, weight=1)
-    jobFilesFrame.rowconfigure(0, weight=1)
-    jobFilesFrame.grid(pady=5, padx=5, ipadx=10)
+    self.jobFilesFrame = tk.LabelFrame(parentFrame, text='Job files')
+    self.jobFilesFrame.grid(column=0,row=1, columnspan=5, sticky='w')
+    self.jobFilesFrame.columnconfigure(0, weight=1)
+    self.jobFilesFrame.rowconfigure(0, weight=1)
+    self.jobFilesFrame.grid(pady=5, padx=5, ipadx=10)
  
-    # Create a Tkinter variable
-    tkvar = tk.StringVar(parentFrame)
- 
-    self.o_menu = Menu(root, jobDefinitionsFolder=jobDefinitionsFolder, jobFolderRefresh=self.jobFolderRefresh)
-    # Dictionary with options
-    choices = get_all_job_files(self.o_menu.jobDefinitionsFolder)
-    
-    if choices != {}:
-      tkvar.set(next(iter(choices))) # set the default option to the "first" dict item
- 
-      popupMenu = tk.OptionMenu(jobFilesFrame, tkvar, *choices)
-      tk.Label(jobFilesFrame, text="Choose a job file").grid(row=1, column=0, sticky='w')
-      popupMenu.grid(row=1, column=1, ipadx=10, sticky='w')
-    else:
-      print('No job files found in %s' % os.path.join(os.getcwd(), 'jobs'))
- 
+    self.o_menu = Menu(root, 
+                       jobDefinitionsFolder=jobDefinitionsFolder, 
+                       jobsFolder=jobsFolder, 
+                       jobDefinitionsFolderRefresh=self.jobDefinitionsFolderRefresh,
+                       jobsFolderRefresh=self.jobsFolderRefresh)
+
     self.tkLabelframe_jobSettings = tk.LabelFrame(parentFrame, text='Job settings')
     self.tkLabelframe_jobSettings.grid(row=3, pady=5, padx=5, ipadx=10)
 
-    self.jobFrames = self.JobFrames(self.tkLabelframe_jobSettings, jobDefinitionsFolder=self.o_menu.jobDefinitionsFolder)
+    self.jobDefinitionFrames = self.JobDefinitionFrames(self.tkLabelframe_jobSettings, jobDefinitionsFolder=self.o_menu.jobDefinitionsFolder)
+
+    self.fillJobDropdown(parentFrame)
+ 
+  def fillJobDropdown(self, parentFrame):
+    # Create a Tkinter variable
+    self.tkvar = tk.StringVar(parentFrame)
+ 
+    # Dictionary with options
+    choices = get_all_job_files(self.o_menu.jobsFolder)
+    
+    if choices != {}:
+      popupMenu = tk.OptionMenu(self.jobFilesFrame, self.tkvar, *choices)
+      tk.Label(self.jobFilesFrame, text="Choose a job file").grid(row=1, column=0, sticky='w')
+      popupMenu.grid(row=1, column=1, ipadx=10, sticky='w')
+      self.tkvar.trace('w', self.change_dropdown)
+      self.tkvar.set(next(iter(choices))) # set the default option to the "first" dict item
+    else:
+      messagebox.showinfo('No job files found',
+                         'In %s' % self.o_menu.jobsFolder)
 
   # on change dropdown value
-  def change_dropdown(*args):
-      print( tkvar.get() )
+  def change_dropdown(self, *args):
+    _jobsFile = os.path.join(self.o_menu.jobsFolder, self.tkvar.get())
+    # that's the list of edits  __, _jobs = read_jobs_file(_jobsFile)  
+    # we need a list of job definitions
+    self.jobDefinitionFrames.clear_checkbuttons()
+    # Hack Hack Hack
+    # Should be in ScriptedJsonEditor
+    try:
+      x = JsonJobsFile()
+      y = x.read(_jobsFile)
+      jobs = y[0]['jobs']
+      for job in jobs:
+        for defnFile in job:
+          for defn in job[defnFile]:
+            self.jobDefinitionFrames.set_checkbutton(defnFile, defn, 1)
+    except:
+      messagebox.showinfo('Error in job file',
+                          _jobsFile)
     
   def getSettings(self):
     """ Return the settings for this tab """
@@ -74,7 +104,7 @@ Need to add\n\
     pass
   
 
-  class JobFrames:
+  class JobDefinitionFrames:
     """ Show the job settings, allow them to be changed """
     def __init__(self, parentFrame, jobDefinitionsFolder):
       all_jobs = get_all_job_definitions(jobDefinitionsFolder)
@@ -150,6 +180,11 @@ Need to add\n\
         raise
       return value
 
+    def clear_checkbuttons(self):
+      for job_definition_file_name in self.checkbutton_IntVars:
+        for job_name in self.checkbutton_IntVars[job_definition_file_name]:
+          self.checkbutton_IntVars[job_definition_file_name][job_name].set(0)
+
     def __lenSecond(self, elem):  # for sorting job_definition_files by number of jobs
       return len(elem[1])
 
@@ -157,24 +192,29 @@ Need to add\n\
       for r in self.tkLabelframes:
         r.destroy()
 
-  def jobFolderRefresh(self):
-    self.jobFrames.destroy()
-    self.jobFrames = self.JobFrames(self.tkLabelframe_jobSettings, self.o_menu.jobDefinitionsFolder)
+  def jobDefinitionsFolderRefresh(self):
+    self.jobDefinitionFrames.destroy()
+    self.jobDefinitionFrames = self.JobDefinitionFrames(self.tkLabelframe_jobSettings, self.o_menu.jobDefinitionsFolder)
+
+  def jobsFolderRefresh(self):
+    #self.jobFilesFrame.destroy()
+    #self.jobFilesFrame = self.JobsFrames(self.tkLabelframe_jobSettings, self.o_menu.jobsFolder)
+    pass
 
 if __name__ == '__main__':
   # To run this tab by itself for development
   root = tk.Tk()
   root.title('JSON file editor')
-  jobFolder = os.path.join(os.getcwd(), 'jobs')
+  jobsFolder = os.path.join(os.getcwd(), 'jobs')
   jobDefinitionsFolder = os.path.join(os.getcwd(), 'job_definitions')
 
   tabConditions = ttk.Frame(root, width=1200, height=1200, 
                             relief='sunken', borderwidth=5)
   tabConditions.grid()
    
-  o_tab = Tab(tabConditions, jobDefinitionsFolder)
+  o_tab = Tab(tabConditions, jobDefinitionsFolder, jobsFolder)
 
-  _test_frames = o_tab.jobFrames
+  _test_frames = o_tab.jobDefinitionFrames
 
   _test_frames.set_checkbutton('G25_jobs', 'Monitor', 1)
   assert _test_frames.get_checkbutton('G25_jobs', 'Monitor') == 1

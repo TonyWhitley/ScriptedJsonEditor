@@ -1,12 +1,23 @@
 {
-    "<CONTROLLER.JSON>": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\Controller.JSON",
+  "# Config file for ScriptedJsonEditor": "",
+  "# V1.0.0": "",
+  "# 'jobs' file to do keyboard jobs": "",
+  "<PLAYER.JSON>": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\Player.JSON",
+  "<CONTROLLER.JSON>": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\Controller.JSON",
+  "skip keys with # in them": true,
+  "# keys with # in them are used as comments, don't change the values": "",
+  "rFactor escape slash": true,
+  "# rFactor 2 escapes /. Also remove space after the :": "",
+  "jobs file format": 6,
     "job definition files": [
         "job_definitions\\Keyboard_jobs.json"
     ],
-    "jobs": {
+  "jobs": [
+    {
         "Keyboard_jobs": [
             "Driver aid buttons disable",
             "Cursor keys control seat"
         ]
     }
+  ]
 }

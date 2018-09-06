@@ -406,6 +406,7 @@ def read_jobs_file(jobs_file_name):
   Read the jobs file. Return
   * the config
   * the list of job definition file, job name pairs
+      No, I think it returns a list of jobs (edits)
   """
   _JSNO_O = JsonJobsFile()
   __, config = _JSNO_O.read(jobs_file_name)

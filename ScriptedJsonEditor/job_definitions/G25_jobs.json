@@ -4,7 +4,6 @@
   "# Note: any key with a # is a comment": "",
   "# Jobs provided in this file": [
     "Wheel settings",
-    "Cursor keys control seat",
     "VR",
     "DriverAidsDisable",
     "POV_hat_LCD_control",
@@ -32,34 +31,6 @@
 		  "#Tooltip: Range = 900 degrees": "",
           "Steering Wheel Range": 900,
           "Steering Wheel Range#": "Degrees of steering wheel rotation, both visual and physical (if available)"
-        }
-      }
-    },
-    "Cursor keys control seat": {
-      "JSONfileToBeEdited": "<CONTROLLER.JSON>",
-      "skip keys with # in them": true,
-      "# keys with # in them are used as comments, don't change the values": "",
-      "rFactor escape slash": true,
-      "# rFactor 2 escapes /. Also remove space after the :": "",
-      "edits": {
-        "Input": {
-          "#Tooltip: Cursor keys control seat": "",
-          "Control - Adjust Seat Aft": [
-            0,
-            203
-          ],
-          "Control - Adjust Seat Down": [
-            0,
-            208
-          ],
-          "Control - Adjust Seat Fore": [
-            0,
-            205
-          ],
-          "Control - Adjust Seat Up": [
-            0,
-            200
-          ]
         }
       }
     },
