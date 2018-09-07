@@ -26,6 +26,7 @@ class Tab:
   jobDefinitionFrames = None
   def __init__(self, parentFrame, jobDefinitionsFolder, jobsFolder, goCommand=False):
     """ Put this into the parent frame """
+    global root
 
     self.parentFrame = parentFrame
 
@@ -48,7 +49,9 @@ Need to add\n\
     self.jobFilesFrame.columnconfigure(0, weight=1)
     self.jobFilesFrame.rowconfigure(0, weight=1)
     self.jobFilesFrame.grid(pady=5, padx=5, ipadx=10)
- 
+
+    if root == None:
+      root = parentFrame.master.master.master   # Hack city to make it work as a Tab
     self.o_menu = Menu(root, 
                        jobDefinitionsFolder=jobDefinitionsFolder, 
                        jobsFolder=jobsFolder, 
