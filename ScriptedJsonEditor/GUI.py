@@ -24,11 +24,10 @@ root = None
 class Tab:
   tkLabelframe_jobSettings = None
   jobDefinitionFrames = None
-  def __init__(self, parentFrame, jobDefinitionsFolder, jobsFolder, goCommand=None):
+  def __init__(self, parentFrame, jobDefinitionsFolder, jobsFolder, goCommand=False):
     """ Put this into the parent frame """
 
     self.parentFrame = parentFrame
-    self.goCommand = goCommand
 
     # Create a Tkinter variable
     self.jobFileVar = tk.StringVar(parentFrame)
@@ -106,7 +105,7 @@ Need to add\n\
 
   def goCommandPrepare(self):
     _filepath = os.path.join(self.o_menu.jobsFolder, self.jobFileVar.get())
-    self.goCommand(_filepath)
+    go(_filepath)
     
   def getSettings(self):
     """ Return the settings for this tab """
@@ -244,7 +243,7 @@ def go(filepath):
   """ Execute the job file """
   execute_job_file(filepath)
 
-def Main(test=False, goCommand=None):
+def Main(test=False, goCommand=False):
   global root
   root = tk.Tk()
   root.title('JSON file editor')
@@ -264,7 +263,7 @@ def Main(test=False, goCommand=None):
 
 if __name__ == '__main__':
   # To run this tab by itself for development
-  o_tab = Main(True, goCommand=go)
+  o_tab = Main(True, goCommand=True)
 
   _test_frames = o_tab.jobDefinitionFrames
 

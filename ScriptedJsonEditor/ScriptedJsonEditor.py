@@ -18,8 +18,9 @@ from json_include import build_json_include
 from backups import Backups
 from command_line import CommandLine
 
-BUILD_REVISION = 43 # The git commit count
-versionStr = 'Scripted JSON Editor V0.6.%d\n' % BUILD_REVISION
+BUILD_REVISION = 60 # The git commit count
+versionStr = 'Scripted JSON Editor V0.7.%d' % BUILD_REVISION
+versionDate = '2018-09-07'
 
 TooltipStr = '#Tooltip: ' # The comment in the job descriptions files that
                           # indicates Tooltip text to be used
@@ -525,7 +526,7 @@ def main():
     import GUI  # if imported "normally" there is a deadly embrace
                 # when GUI imports this file.
     # No jobs file in command line
-    GUI.Main()
+    GUI.Main(goCommand=True)
     return 1
   return execute_job_file(jobs_file_name)
 
@@ -555,6 +556,6 @@ def execute_job_file(jobs_file_name):
   return 0
 
 if __name__ == '__main__':
-  print(versionStr)
+  print(versionStr+'\n')
   _result = main()
   sys.exit(_result)

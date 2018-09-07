@@ -5,12 +5,12 @@ from tkinter import messagebox
 from tkinter import filedialog
 from os.path import join
 
-from ScriptedJsonEditor import versionStr
+from ScriptedJsonEditor import versionStr, versionDate
 
 def about():
   messagebox.showinfo(
             'About Scripted JSON Editor',
-            versionStr+'\nby Tony Whitley'
+            '%s  %s\nby Tony Whitley' % (versionStr, versionDate)
         )
 
 class Menu:
