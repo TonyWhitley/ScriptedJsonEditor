@@ -321,7 +321,7 @@ def get_all_job_definitions(jobDefinitionsFolder):
       _JDFO.read(_job_description_file)
       _job_definitions[_JDFO.get_filename()] = _JDFO
     except:
-      raise
+      pass # couldn't read it as a job definitions file
 
   return _job_definitions
 
@@ -522,9 +522,14 @@ def main():
   _clo = CommandLine()
   jobs_file_name = _clo.get_jobs_file()
   if jobs_file_name is None:
+    import GUI  # if imported "normally" there is a deadly embrace
+                # when GUI imports this file.
     # No jobs file in command line
+    GUI.Main()
     return 1
+  return execute_job_file(jobs_file_name)
 
+def execute_job_file(jobs_file_name):
   try:
     _JSNO_O = JsonJobsFile()
     __, config = _JSNO_O.read(jobs_file_name)

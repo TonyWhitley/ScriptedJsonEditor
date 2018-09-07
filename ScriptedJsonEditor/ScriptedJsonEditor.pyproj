@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>8b6feaa7-b8f5-4472-bcb3-4bdc7f5ab211</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>GUI.py</StartupFile>
+    <StartupFile>ScriptedJsonEditor.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -13,7 +13,8 @@
     <RootNamespace>ScriptedJsonEditor</RootNamespace>
     <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
-    <CommandLineArguments>jobs\g25.json</CommandLineArguments>
+    <CommandLineArguments>
+    </CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
     <InterpreterArguments>
     </InterpreterArguments>

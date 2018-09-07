@@ -52,10 +52,11 @@ class CommandLine(object):
   def __init__(self):
     self.jobs_file = None
     if len(sys.argv) > 1:
-      self.jobs_file = sys.argv[1]
-    else:
-      print(\
-        """
+      if sys.argv[1][:-5].lower() == '.json':
+        self.jobs_file = sys.argv[1]
+      else:
+        print(\
+          """
 %s <jobs file name>
 
 <jobs file name> is a JSON file specifying the JSON file to be edited
@@ -72,6 +73,8 @@ Example contents of that are:
         """ % (sys.argv[0], JOBS_FILE_HELP_STR, JOB_DEFINITIONS_FILE_HELP_STR))
 
       self.jobs_file = input('Enter jobs file name (just Enter to quit): ')
+    else:
+      self.jobs_file = None  # Run the GUI
 
   def get_jobs_file(self):
     """ get the jobs file from the command line """

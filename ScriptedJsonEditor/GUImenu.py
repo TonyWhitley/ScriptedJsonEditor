@@ -23,6 +23,7 @@ class Menu:
                jobsFolderRefresh,
                getJobFileName,
                writeJobFile):
+
     self.jobDefinitionsFolder = jobDefinitionsFolder
     self.jobsFolder = jobsFolder
     self.jobDefinitionsFolderRefresh = jobDefinitionsFolderRefresh
@@ -36,7 +37,8 @@ class Menu:
     filemenu = tk.Menu(menubar, tearoff=0)
     filemenu.add_command(label="Open job definitions folder", command=self.openJobDefinitionsFolder)
     filemenu.add_command(label="Open jobs folder", command=self.openJobsFolder)
-    filemenu.add_command(label="Save job file", command=self.save)
+    filemenu.add_command(label="Save job file", command=self.save, accelerator='Ctrl+S')
+    parentFrame.bind_all("<Control-s>", self.save)
     filemenu.add_command(label="Save job file as...", command=self.saveAs)
     filemenu.add_separator()
     filemenu.add_command(label="Exit", command=parentFrame.quit)
@@ -60,16 +62,20 @@ class Menu:
     #print(parentFrame.config())
 
   def openJobDefinitionsFolder(self):
-    self.jobDefinitionsFolder = filedialog.askdirectory(parent=self.parentFrame,
+    _folder = filedialog.askdirectory(parent=self.parentFrame,
                                      initialdir=self.jobDefinitionsFolder,
                                      title="Please select a folder containing job definition files")
-    self.jobDefinitionsFolderRefresh()
+    if _folder:
+      self.jobDefinitionsFolder = _folder
+      self.jobDefinitionsFolderRefresh()
 
   def openJobsFolder(self):
-    self.jobsFolder = filedialog.askdirectory(parent=self.parentFrame,
+    _folder = filedialog.askdirectory(parent=self.parentFrame,
                                      initialdir=self.jobsFolder,
                                      title="Please select a folder containing job files")
-    self.jobsFolderRefresh()
+    if _folder:
+      self.jobsFolder = _folder
+      self.jobsFolderRefresh()
 
   def saveAs(self):
     _filepath = filedialog.asksaveasfilename(
@@ -78,7 +84,8 @@ class Menu:
                                  initialfile=self.getJobFileName(),
                                  defaultextension='.JSON',
                                  filetypes=[('Job files', 'JSON')])
-    self.writeJobFile(_filepath)
+    if _filepath:
+      self.writeJobFile(_filepath)
 
-  def save(self):
+  def save(self, *kw):
     self.writeJobFile(join(self.jobsFolder, self.getJobFileName()))
