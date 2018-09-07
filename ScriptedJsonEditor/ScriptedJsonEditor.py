@@ -192,8 +192,16 @@ class JsonJobsFile(JsonFile):
        "rFactor escape slash": True
       }
 
-  def read(self, filepath, dirpath=None):
+  def _raw_read(self, filepath, dirpath=None):
+    """ return the JSON as a dict """
     self.json_dict = super().read(filepath)
+    return self.json_dict
+  def read(self, filepath, dirpath=None):
+    """ 
+    return the JSON as a dict after substituting config 
+    keys like JSONfileToBeEdited 
+    """
+    self._raw_read(filepath, dirpath)
     return self._read()
 
   def _read(self):
@@ -203,6 +211,7 @@ class JsonJobsFile(JsonFile):
     except (KeyError, AssertionError):
       print('Warning: %s "jobs file format" should be 6' % self.filepath)
       #raise JobFileFormatError
+    # substitute config keys:
     if self.json_dict:
       for key in ["JSONfileToBeEdited",
                   "<PLAYER.JSON>",
@@ -241,6 +250,17 @@ class JsonJobsFile(JsonFile):
     except KeyError:
       print('%s has no "job definition files"' % self.filepath)
     return _result
+
+  def _edit_job_file(self, edits):
+    """
+    Given a dict of edits, for each key
+      replaced the existing values with the new ones
+    """
+    for key in edits:
+      self.json_dict[key] = edits[key]
+
+  def write_as(self, _filepath = None):
+    return super().write(_filepath)
 
 class JsonJobsDefinitionsFile(JsonFile):
   """
@@ -314,6 +334,19 @@ def get_all_job_files(jobFolder):
     __, j = os.path.split(job_file)
     job_files[j] = ''
   return job_files
+
+def edit_job_file(job_file_name, out_file_name, edits):
+  """
+  Read the job file job_file_name
+  Given a dict of edits, for each key
+    replaced the existing values with the new ones
+  Save it as out_file_name
+  """
+  o_job = JsonJobsFile()
+  o_job._raw_read(job_file_name)
+  o_job._edit_job_file(edits)
+  o_job.write_as(out_file_name)
+
 
 class JsonRfactorFile(JsonFile):
   """
@@ -401,17 +434,14 @@ class Job():
 
 #####################################################
 
-def read_jobs_file(jobs_file_name):
+def read_jobs_in_jobs_file(jobs_file_name):
   """
   Read the jobs file. Return
-  * the config
-  * the list of job definition file, job name pairs
-      No, I think it returns a list of jobs (edits)
+  * the list of tuples (job definition file, list of job names)
   """
   _JSNO_O = JsonJobsFile()
-  __, config = _JSNO_O.read(jobs_file_name)
-  _jobs = _JSNO_O.get_jobs()
-  return config, _jobs
+  _jobs, __ = _JSNO_O.read(jobs_file_name)
+  return _jobs['jobs']
 
 def run_job(job, config):
   """

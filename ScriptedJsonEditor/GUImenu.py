@@ -3,11 +3,9 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 from tkinter import filedialog
+from os.path import join
 
 from ScriptedJsonEditor import versionStr
-
-def hello():
-    print("hello!")
 
 def about():
   messagebox.showinfo(
@@ -15,8 +13,6 @@ def about():
             versionStr+'\nby Tony Whitley'
         )
 
-
-  
 class Menu:
   jobDefinitionsFolder = '.'
   jobsFolder = '.'
@@ -24,11 +20,15 @@ class Menu:
                jobDefinitionsFolder, 
                jobsFolder, 
                jobDefinitionsFolderRefresh,
-               jobsFolderRefresh):
+               jobsFolderRefresh,
+               getJobFileName,
+               writeJobFile):
     self.jobDefinitionsFolder = jobDefinitionsFolder
     self.jobsFolder = jobsFolder
     self.jobDefinitionsFolderRefresh = jobDefinitionsFolderRefresh
     self.jobsFolderRefresh = jobsFolderRefresh
+    self.getJobFileName = getJobFileName
+    self.writeJobFile = writeJobFile
     menubar = tk.Menu(parentFrame)
     self.parentFrame = parentFrame
 
@@ -36,8 +36,8 @@ class Menu:
     filemenu = tk.Menu(menubar, tearoff=0)
     filemenu.add_command(label="Open job definitions folder", command=self.openJobDefinitionsFolder)
     filemenu.add_command(label="Open jobs folder", command=self.openJobsFolder)
-    filemenu.add_command(label="Save job file", command=hello)
-    filemenu.add_command(label="Save job file as...", command=hello)
+    filemenu.add_command(label="Save job file", command=self.save)
+    filemenu.add_command(label="Save job file as...", command=self.saveAs)
     filemenu.add_separator()
     filemenu.add_command(label="Exit", command=parentFrame.quit)
     menubar.add_cascade(label="File", menu=filemenu)
@@ -70,3 +70,15 @@ class Menu:
                                      initialdir=self.jobsFolder,
                                      title="Please select a folder containing job files")
     self.jobsFolderRefresh()
+
+  def saveAs(self):
+    _filepath = filedialog.asksaveasfilename(
+                                 title='Save job file as...', 
+                                 initialdir=self.jobsFolder, 
+                                 initialfile=self.getJobFileName(),
+                                 defaultextension='.JSON',
+                                 filetypes=[('Job files', 'JSON')])
+    self.writeJobFile(_filepath)
+
+  def save(self):
+    self.writeJobFile(join(self.jobsFolder, self.getJobFileName()))

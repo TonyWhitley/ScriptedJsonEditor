@@ -11,7 +11,7 @@
     <OutputPath>.</OutputPath>
     <Name>ScriptedJsonEditor</Name>
     <RootNamespace>ScriptedJsonEditor</RootNamespace>
-    <InterpreterId>MSBuild|envPyLint|$(MSBuildProjectFullPath)</InterpreterId>
+    <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
     <CommandLineArguments>jobs\g25.json</CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>

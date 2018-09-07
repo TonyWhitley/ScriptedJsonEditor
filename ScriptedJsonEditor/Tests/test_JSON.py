@@ -8,6 +8,40 @@ import command_line
 
 filepath = r'player.json'
 
+# Edits to command_line.JOBS_FILE_HELP_STR to produce 
+# EDITED_JOBS_FILE_HELP_STR below
+EDITS = {
+  "<PLAYER.JSON>": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\EDITED_player.JSON",
+  "job definition files": [
+    "job_definitions\\Game_jobs.json"
+  ],
+  "jobs": [
+    {
+      "Game_jobs": [
+        "DRIVING AIDS",
+        "Flags off"
+      ]
+    }
+  ]
+}
+
+EDITED_JOBS_FILE_HELP_STR = r"""
+{
+  "<PLAYER.JSON>": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\EDITED_player.JSON",
+  "jobs file format": 6,
+  "job definition files": [
+    "job_definitions\\Game_jobs.json"
+  ],
+  "jobs": [
+    {
+      "Game_jobs": [
+        "DRIVING AIDS",
+        "Flags off"
+      ]
+    }
+  ]
+}
+"""
 
 
 class Test_test_JSON(unittest.TestCase):
@@ -89,55 +123,25 @@ class Test_test_JSON(unittest.TestCase):
             assert _j._get_value("Graphic Options", "Allow Letterboxing") == False, _j._get_value("Graphic Options", "Allow Letterboxing")
           else:
             assert _j._get_value("Graphic Options", "Automap") == 2, _j._get_value("Graphic Options", "Automap")
-        
-    """ this is a job description file now
-    @patch('ScriptedJsonEditor.print', create=True)   # Mock the print call in ScriptedJsonEditor()
-    def test_run_2jobs(self, print_):                 # Note added , print_ to mock print()
-        # Expect job2 to fail
+    
+    def test_edit_job_file(self):
         _jsonJob = ScriptedJsonEditor.JsonJobsFile()
-        _jsonJob._load(test_test_strings.jobsJSONstrBadKey2, 'test_test_strings.jobsJSONstrBadKey2')
-        P_JSON, config = _jsonJob._read()
-        assert P_JSON["job definitions"]["job1"] != None
-        assert P_JSON["job definitions"]["job1"]["JSONfileToBeEdited"] != None
-        assert len(P_JSON["job definitions"]["job1"]["edits"]) > 0, P_JSON["job definitions"]["job1"]["edits"]
-        jobs = _jsonJob.get_jobs()
-        assert len(jobs) > 0
-        assert jobs[0]["JSONfileToBeEdited"] != None
-        assert len(jobs[0]["edits"]) > 0, jobs[0]["edits"]
+        _jsonJob._load(command_line.JOBS_FILE_HELP_STR, 'command_line.JOBS_FILE_HELP_STR')
+        P_JSON, __ = _jsonJob._read()
+        # Copy JOBS_FILE_HELP_STR and edit it - or just use EDITED_JOBS_FILE_HELP_STR
+        # Run edit_job_file
+        # _write it to a string??
+        # compare to the edited JOBS_FILE_HELP_STR
+        _jsonJob.edit_job_file(EDITS)
+        #_jsonJob._write()
+        P_JSON_edited, __ = _jsonJob._read()
+
+        _jsonJobTest = ScriptedJsonEditor.JsonJobsFile()
+        _jsonJobTest._load(EDITED_JOBS_FILE_HELP_STR, 'EDITED_JOBS_FILE_HELP_STR')
+        P_JSON_TEST_STR, __ = _jsonJobTest._read()
+        self.assertEqual(P_JSON_edited, P_JSON_TEST_STR)
+
         
-        # job 1
-        job = jobs[0]
-        _j = ScriptedJsonEditor.Job(job, config)
-        #   read the file to be edited
-        P_JSON = _j._load(test_test_strings.playerJSONstr, 'test_test_strings.playerJSONstr')
-        assert P_JSON["Graphic Options"] != None
-        assert P_JSON["Graphic Options"]["Allow HUD in cockpit"] != None
-        assert P_JSON["Graphic Options"]["Allow HUD in cockpit"], P_JSON["Graphic Options"]["Allow HUD in cockpit"]
-
-        # before job 1
-        assert _j._get_value("Graphic Options", "Track Detail") == 0, _j._get_value("Graphic Options", "Track Detail")
-        #   do the edits
-        _j.run_edits()
-        assert _j._get_value("Graphic Options", "Track Detail") == 1, _j._get_value("Graphic Options", "Track Detail")
-
-        # job 2
-        job = jobs[1]
-        _j = ScriptedJsonEditor.Job(job, config)
-        #   read the file to be edited
-        P_JSON = _j._load(test_test_strings.playerJSONstr, 'test_test_strings.playerJSONstr')
-
-        # before job 2
-        assert _j._get_value("Graphic Options", "Shadows") == 0, _j._get_value("Graphic Options", "Shadows")
-
-        try:
-          #   do the edits
-          _j.run_edits()
-        except KeyError:
-          # That's expected
-          assert _j._get_value("Graphic Options", "Shadow Blur") == 4, _j._get_value("Graphic Options", "Shadow Blur")
-            
-        assert _j._get_value("Graphic Options", "Shadows") == 1, _j._get_value("Graphic Options", "Shadows")
-      """
         
 if __name__ == '__main__':
     unittest.main()

@@ -9,8 +9,9 @@ from _tkToolTip import Tooltip
 from ScriptedJsonEditor import get_jobs_hierarchy, \
                                get_all_job_definitions, \
                                get_all_job_files, \
-                               read_jobs_file, \
-                               TooltipStr, JsonJobsFile
+                               read_jobs_in_jobs_file, \
+                               TooltipStr, \
+                               edit_job_file
 from GUImenu import Menu
 
 o_tab = None
@@ -24,15 +25,14 @@ class Tab:
   def __init__(self, parentFrame, jobDefinitionsFolder, jobsFolder):
     """ Put this into the parent frame """
 
-    # Allow this to be used from outside the current directory
-    # os.chdir(cwd)
-
+    # Create a Tkinter variable
+    self.jobFileVar = tk.StringVar(parentFrame)
+ 
     self.jobDefinitionsFolder = jobDefinitionsFolder
     tkLabelConditions = tk.Label(parentFrame, anchor='w', justify='l',
                                 text='Displays the hierarchy of job definition files and jobs.\n\n\
 Need to add\n\
-* load settings from job file\n\
-* write settings back to job file\n\
+* load job files if dir changed\n\
 * detecting if changes are made\n\
 * creating new configs\n\
 ')
@@ -49,7 +49,9 @@ Need to add\n\
                        jobDefinitionsFolder=jobDefinitionsFolder, 
                        jobsFolder=jobsFolder, 
                        jobDefinitionsFolderRefresh=self.jobDefinitionsFolderRefresh,
-                       jobsFolderRefresh=self.jobsFolderRefresh)
+                       jobsFolderRefresh=self.jobsFolderRefresh,
+                       getJobFileName=self.jobFileVar.get,
+                       writeJobFile=self.writeJobFile)
 
     self.tkLabelframe_jobSettings = tk.LabelFrame(parentFrame, text='Job settings')
     self.tkLabelframe_jobSettings.grid(row=3, pady=5, padx=5, ipadx=10)
@@ -59,35 +61,26 @@ Need to add\n\
     self.fillJobDropdown(parentFrame)
  
   def fillJobDropdown(self, parentFrame):
-    # Create a Tkinter variable
-    self.tkvar = tk.StringVar(parentFrame)
- 
     # Dictionary with options
     choices = get_all_job_files(self.o_menu.jobsFolder)
     
     if choices != {}:
-      popupMenu = tk.OptionMenu(self.jobFilesFrame, self.tkvar, *choices)
+      popupMenu = tk.OptionMenu(self.jobFilesFrame, self.jobFileVar, *choices)
       tk.Label(self.jobFilesFrame, text="Choose a job file").grid(row=1, column=0, sticky='w')
       popupMenu.grid(row=1, column=1, ipadx=10, sticky='w')
-      self.tkvar.trace('w', self.change_dropdown)
-      self.tkvar.set(next(iter(choices))) # set the default option to the "first" dict item
+      self.jobFileVar.trace('w', self.change_dropdown)
+      self.jobFileVar.set(next(iter(choices))) # set the default option to the "first" dict item
     else:
       messagebox.showinfo('No job files found',
                          'In %s' % self.o_menu.jobsFolder)
 
   # on change dropdown value
   def change_dropdown(self, *args):
-    _jobsFile = os.path.join(self.o_menu.jobsFolder, self.tkvar.get())
-    # that's the list of edits  __, _jobs = read_jobs_file(_jobsFile)  
-    # we need a list of job definitions
     self.jobDefinitionFrames.clear_checkbuttons()
-    # Hack Hack Hack
-    # Should be in ScriptedJsonEditor
+    _jobsFile = os.path.join(self.o_menu.jobsFolder, self.jobFileVar.get())
+    _jobs = read_jobs_in_jobs_file(_jobsFile)
     try:
-      x = JsonJobsFile()
-      y = x.read(_jobsFile)
-      jobs = y[0]['jobs']
-      for job in jobs:
+      for job in _jobs:
         for defnFile in job:
           for defn in job[defnFile]:
             self.jobDefinitionFrames.set_checkbutton(defnFile, defn, 1)
@@ -103,6 +96,11 @@ Need to add\n\
     """ Set the settings for this tab """
     pass
   
+  def writeJobFile(self, filepath):
+    _jobsFile = os.path.join(self.o_menu.jobsFolder, self.jobFileVar.get())
+    _edits = self.jobDefinitionFrames.get_checkbutton_edits()
+    edit_job_file(_jobsFile, filepath, _edits)
+    pass
 
   class JobDefinitionFrames:
     """ Show the job settings, allow them to be changed """
@@ -184,6 +182,27 @@ Need to add\n\
       for job_definition_file_name in self.checkbutton_IntVars:
         for job_name in self.checkbutton_IntVars[job_definition_file_name]:
           self.checkbutton_IntVars[job_definition_file_name][job_name].set(0)
+
+    def get_checkbutton_edits(self):
+      """
+      Get a dict of jobs to edit into a jobs file by adding
+      all the selected buttons
+      """
+      _jobs = {'jobs':[{}]}
+      _job_definition_file_names = []
+      for job_definition_file_name in self.checkbutton_IntVars:
+        _jobs['jobs'][0][job_definition_file_name] = []
+        for job_name in self.checkbutton_IntVars[job_definition_file_name]:
+          if self.checkbutton_IntVars[job_definition_file_name][job_name].get():
+            _jobs['jobs'][0][job_definition_file_name].append(job_name)
+        if _jobs['jobs'][0][job_definition_file_name] == []:
+          # No jobs for this job_definition_file_name
+          del _jobs['jobs'][0][job_definition_file_name]
+        else:
+          _job_definition_file_names.append(r'job_definitions\%s.json' % job_definition_file_name)
+      # Edit "job definition files" list too
+      _jobs['job definition files'] = _job_definition_file_names
+      return _jobs
 
     def __lenSecond(self, elem):  # for sorting job_definition_files by number of jobs
       return len(elem[1])
