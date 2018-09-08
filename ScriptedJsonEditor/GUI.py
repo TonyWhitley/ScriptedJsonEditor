@@ -13,7 +13,6 @@ from ScriptedJsonEditor import get_jobs_hierarchy, \
                                TooltipStr, \
                                edit_job_file, \
                                execute_job_file
-from GUImenu import Menu
 
 o_tab = None
 root = None
@@ -24,16 +23,19 @@ root = None
 class Tab:
   tkLabelframe_jobSettings = None
   jobDefinitionFrames = None
-  def __init__(self, parentFrame, jobDefinitionsFolder, jobsFolder, goCommand=False):
+  def __init__(self, parentFrame, menu2tab, goCommand=False):
     """ Put this into the parent frame """
     global root
 
     self.parentFrame = parentFrame
+    self.menu2tab = menu2tab
+    menu2tab.setJobDefinitionsFolderRefresh(self.jobDefinitionsFolderRefresh)
+    menu2tab.setJobsFolderRefresh(self.jobsFolderRefresh)
+    menu2tab.setWriteJobFile(self.writeJobFile)
 
     # Create a Tkinter variable
     self.jobFileVar = tk.StringVar(parentFrame)
  
-    self.jobDefinitionsFolder = jobDefinitionsFolder
     tkLabelConditions = tk.Label(parentFrame, anchor='w', justify='l',
                                 text='Displays the hierarchy of job definition files and jobs.\n\n\
 Need to add\n\
@@ -50,21 +52,10 @@ Need to add\n\
     self.jobFilesFrame.rowconfigure(0, weight=1)
     self.jobFilesFrame.grid(pady=5, padx=5, ipadx=10)
 
-    if root == None:
-      root = parentFrame.master.master.master   # Hack city to make it work as a Tab
-    self.o_menu = Menu(root, 
-                       jobDefinitionsFolder=jobDefinitionsFolder, 
-                       jobsFolder=jobsFolder, 
-                       jobDefinitionsFolderRefresh=self.jobDefinitionsFolderRefresh,
-                       jobsFolderRefresh=self.jobsFolderRefresh,
-                       getJobFileName=self.jobFileVar.get,
-                       writeJobFile=self.writeJobFile)
-
     self.tkLabelframe_jobSettings = tk.LabelFrame(parentFrame, text='Job settings')
     self.tkLabelframe_jobSettings.grid(row=3, pady=5, padx=5, ipadx=10)
 
-    self.jobDefinitionFrames = self.JobDefinitionFrames(self.tkLabelframe_jobSettings, 
-                                      jobDefinitionsFolder=self.o_menu.jobDefinitionsFolder)
+    self.jobDefinitionFrames = self.JobDefinitionFrames(self.tkLabelframe_jobSettings, self.menu2tab)
 
     self.fillJobDropdown(parentFrame)
 
@@ -78,7 +69,7 @@ Need to add\n\
  
   def fillJobDropdown(self, parentFrame):
     # Dictionary with options
-    choices = get_all_job_files(self.o_menu.jobsFolder)
+    choices = get_all_job_files(self.menu2tab.jobsFolder)
     
     if choices != {}:
       popupMenu = tk.OptionMenu(self.jobFilesFrame, self.jobFileVar, *choices)
@@ -88,13 +79,14 @@ Need to add\n\
       self.jobFileVar.set(next(iter(choices))) # set the default option to the "first" dict item
     else:
       messagebox.showinfo('No job files found',
-                         'In %s' % self.o_menu.jobsFolder)
+                         'In %s' % self.menu2tab.jobsFolder)
 
   # on change dropdown value
   def change_dropdown(self, *args):
     self.jobDefinitionFrames.clear_checkbuttons()
     #self.initialJobDefinitions = {} # for detecting if anything has changed
-    _jobsFile = os.path.join(self.o_menu.jobsFolder, self.jobFileVar.get())
+    _jobsFile = os.path.join(self.menu2tab.jobsFolder, self.jobFileVar.get())
+    self.menu2tab.jobFileName = _jobsFile
     try:
       _jobs = read_jobs_in_jobs_file(_jobsFile)
       for job in _jobs:
@@ -107,7 +99,7 @@ Need to add\n\
                           _jobsFile)
 
   def goCommandPrepare(self):
-    _filepath = os.path.join(self.o_menu.jobsFolder, self.jobFileVar.get())
+    _filepath = os.path.join(self.menu2tab.jobsFolder, self.jobFileVar.get())
     go(_filepath)
     
   def getSettings(self):
@@ -119,15 +111,15 @@ Need to add\n\
     pass
   
   def writeJobFile(self, filepath):
-    _jobsFile = os.path.join(self.o_menu.jobsFolder, self.jobFileVar.get())
+    _jobsFile = os.path.join(self.menu2tab.jobsFolder, self.jobFileVar.get())
     _edits = self.jobDefinitionFrames.get_checkbutton_edits()
     edit_job_file(_jobsFile, filepath, _edits)
     pass
 
   class JobDefinitionFrames:
     """ Show the job settings, allow them to be changed """
-    def __init__(self, parentFrame, jobDefinitionsFolder):
-      all_job_definitions = get_all_job_definitions(jobDefinitionsFolder)
+    def __init__(self, parentFrame, menu2tab):
+      all_job_definitions = get_all_job_definitions(menu2tab.jobDefinitionsFolder)
 
       self.tkLabelframes = []
       tooltip_wraplength = 500
@@ -188,7 +180,7 @@ Need to add\n\
         self.checkbutton_IntVars[job_definition_file_name][job_name].set(value)
       except:
         print('Could not set job definition file "%s" job "%s" to "%s"' % 
-              (job_definition_file_name, job_name, value))
+              (self.menu2tab.job_definition_file_name, job_name, value))
         raise
 
     def get_checkbutton(self, job_definition_file_name, job_name):
@@ -196,7 +188,7 @@ Need to add\n\
         value = self.checkbutton_IntVars[job_definition_file_name][job_name].get()
       except:
         print('Could not get job definition file "%s" job "%s"' % 
-              (job_definition_file_name, job_name))
+              (self.menu2tab.job_definition_file_name, job_name))
         value = 'ERROR'
         raise
       return value
@@ -236,28 +228,88 @@ Need to add\n\
 
   def jobDefinitionsFolderRefresh(self):
     self.jobDefinitionFrames.destroy()
-    self.jobDefinitionFrames = self.JobDefinitionFrames(self.tkLabelframe_jobSettings, self.o_menu.jobDefinitionsFolder)
+    self.jobDefinitionFrames = self.JobDefinitionFrames(self.tkLabelframe_jobSettings, self.menu2tab)
 
   def jobsFolderRefresh(self):
     self.fillJobDropdown(self.parentFrame)
     pass
 
+class Menu2tab:
+  """
+  Interface between Menu and Tab classes
+  """
+  def __init__(self, jobDefinitionsFolder, jobsFolder):
+    self.__jobDefinitionsFolder = jobDefinitionsFolder
+    self.__jobsFolder = jobsFolder
+    self.__jobFileName = None
+    self.writeJobFile = None
+  @property
+  def jobDefinitionsFolder(self) :
+    return self.__jobDefinitionsFolder
+  @jobDefinitionsFolder.setter
+  def jobDefinitionsFolder(self, jobDefinitionsFolder):
+    self.__jobDefinitionsFolder = jobDefinitionsFolder
+
+  @property
+  def jobsFolder(self):
+    return self.__jobsFolder
+  @jobsFolder.setter
+  def jobsFolder(self, jobsFolder):
+    self.__jobsFolder = jobsFolder
+
+  @property
+  def jobFileName(self):
+    return self.__jobFileName
+  @jobFileName.setter
+  def jobFileName(self, jobFileName):
+    self.__jobFileName = jobFileName
+
+  def setWriteJobFile(self, writeJobFile):
+    self.writeJobFile = writeJobFile
+  def writeJobFile(self, filepath):
+    self.writeJobFile(filepath)
+
+  def setJobsFolderRefresh(self, jobsFolderRefresh):
+    self.jobsFolderRefresh = jobsFolderRefresh
+  def jobsFolderRefresh(self):
+    self.jobsFolderRefresh()
+
+  def setJobDefinitionsFolderRefresh(self, jobDefinitionsFolderRefresh):
+    self.jobDefinitionsFolderRefresh = jobDefinitionsFolderRefresh
+  def jobDefinitionsFolderRefresh(self):
+    self.jobDefinitionsFolderRefresh()
+
 def go(filepath):
   """ Execute the job file """
   execute_job_file(filepath)
+
+def setMenu2tab(basedir):
+  jobsFolder = os.path.join(basedir, 'jobs')
+  jobDefinitionsFolder = os.path.join(os.getcwd(), 'job_definitions')
+
+  menu2tab = Menu2tab(jobDefinitionsFolder=jobDefinitionsFolder,
+                      jobsFolder=jobsFolder)
+  return menu2tab
 
 def Main(test=False, goCommand=False):
   global root
   root = tk.Tk()
   root.title('JSON file editor')
-  jobsFolder = os.path.join(os.getcwd(), 'jobs')
-  jobDefinitionsFolder = os.path.join(os.getcwd(), 'job_definitions')
 
   tabConditions = ttk.Frame(root, width=1200, height=1200, 
                             relief='sunken', borderwidth=5)
   tabConditions.grid()
    
-  o_tab = Tab(tabConditions, jobDefinitionsFolder, jobsFolder, goCommand=goCommand)
+  menu2tab = setMenu2tab(os.getcwd())
+  o_tab = Tab(tabConditions, menu2tab, goCommand=goCommand)
+
+  menubar = tk.Menu(root)
+  # display the menu
+  root.config(menu=menubar)
+
+  o_menu = Menu(menubar=menubar, 
+                menu2tab=menu2tab)
+
 
   if not test:
     root.mainloop()
@@ -266,6 +318,7 @@ def Main(test=False, goCommand=False):
 
 if __name__ == '__main__':
   # To run this tab by itself for development
+  from GUImenu import Menu
   o_tab = Main(True, goCommand=True)
 
   _test_frames = o_tab.jobDefinitionFrames
