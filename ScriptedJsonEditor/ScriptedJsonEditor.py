@@ -527,7 +527,7 @@ def main():
                 # when GUI imports this file.
     # No jobs file in command line
     GUI.Main(goCommand=True)
-    return 1
+    return 0
   return execute_job_file(jobs_file_name)
 
 def execute_job_file(jobs_file_name):

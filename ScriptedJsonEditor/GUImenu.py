@@ -87,7 +87,7 @@ if __name__ == '__main__':
     pass
   nullFolder = 'c:/temp'
   root = tk.Tk()
-  root.title('JSON file editor menu')
+  root.title('JSON file editor menu testing')
 
   menu2tab = Menu2tab(jobDefinitionsFolder=nullFolder,
                     jobsFolder=nullFolder)
@@ -101,11 +101,18 @@ if __name__ == '__main__':
   tabConditions.grid()
 
   menubar = tk.Menu(root)
+
+  filemenu = tk.Menu(menubar, tearoff=0)
+  menubar.add_cascade(label="JSON Editor", menu=filemenu)
+
+  filemenu2 = tk.Menu(menubar, tearoff=0)
+  menubar.add_cascade(label="Another tab", menu=filemenu2)
+
   # display the menu
   root.config(menu=menubar)
 
 
-  o_menu = Menu(menubar=menubar, 
+  o_menu = Menu(menubar=filemenu, 
                 menu2tab=menu2tab)
 
   root.mainloop()

@@ -14,9 +14,6 @@ from ScriptedJsonEditor import get_jobs_hierarchy, \
                                edit_job_file, \
                                execute_job_file
 
-o_tab = None
-root = None
-
 #########################
 # The tab's public class:
 #########################
@@ -25,7 +22,6 @@ class Tab:
   jobDefinitionFrames = None
   def __init__(self, parentFrame, menu2tab, goCommand=False):
     """ Put this into the parent frame """
-    global root
 
     self.parentFrame = parentFrame
     self.menu2tab = menu2tab
@@ -292,7 +288,7 @@ def setMenu2tab(basedir):
   return menu2tab
 
 def Main(test=False, goCommand=False):
-  global root
+  from GUImenu import Menu
   root = tk.Tk()
   root.title('JSON file editor')
 
@@ -314,12 +310,11 @@ def Main(test=False, goCommand=False):
   if not test:
     root.mainloop()
   else:
-    return o_tab  # For testing
+    return o_tab,root  # For testing
 
 if __name__ == '__main__':
   # To run this tab by itself for development
-  from GUImenu import Menu
-  o_tab = Main(True, goCommand=True)
+  o_tab, root = Main(True, goCommand=True)
 
   _test_frames = o_tab.jobDefinitionFrames
 
