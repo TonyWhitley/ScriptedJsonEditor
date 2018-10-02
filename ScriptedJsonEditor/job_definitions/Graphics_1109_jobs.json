@@ -213,7 +213,7 @@
     "FPS Limit 100 (VR)": {
       "#Tooltip: Set graphic options generally as recommended in": "",
       "#Tooltip: https://forum.studio-397.com/index.php?threads/rfactor2-the-vr-thread-settings-tips.55249/page-77#post-962195": "",
-      "#Tooltip: Ingame FPS should always be limited to 5-15% below your minimum measurable framerate.": "",
+      "#Tooltip: In game FPS should always be limited to 5-15% below your minimum measurable framerate.": "",
       "#Tooltip: Without the limit, your PC is much more vulnerable for any interruptions by other programs": "",
       "#Tooltip: and also actions on track, plus simply varying frametime from corner to corner, making the": "",
       "#Tooltip: experience not smooth even if running high FPS.": "",
@@ -231,7 +231,7 @@
       "# rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Graphic Options": {
-          "Max Framerate": 100,
+          "Max Framerate": 100
         }
       }
     }

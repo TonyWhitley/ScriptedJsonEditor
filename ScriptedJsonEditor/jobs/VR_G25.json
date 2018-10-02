@@ -9,7 +9,8 @@
     "job_definitions\\Game_jobs.json",
     "job_definitions\\Keyboard_jobs.json",
     "job_definitions\\VR_jobs.json",
-    "job_definitions\\G25_jobs.json"
+    "job_definitions\\G25_jobs.json",
+    "job_definitions\\Graphics_1109_jobs.json"
   ],
   "jobs": [
     {
@@ -30,6 +31,10 @@
         "universal",
         "High end GPU",
         "sound levels"
+      ],
+      "Graphics_1109_jobs": [
+        "FPS savers",
+        "FPS Limit 100 (VR)"
       ],
       "G25_jobs": [
         "Wheel settings",

@@ -66,6 +66,7 @@
     <Compile Include="Tests\_json_write.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="_tkToolTip.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="C:\Users\tony_\source\repos\ScriptedJsonEditor\ScriptedJsonEditor\job_definitions\" />

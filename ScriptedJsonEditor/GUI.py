@@ -90,9 +90,9 @@ Need to add\n\
           for defn in job[defnFile]:
             self.jobDefinitionFrames.set_checkbutton(defnFile, defn, 1)
             #self.initialJobDefinitions[defnFile][defn] = 1
-    except:
-      messagebox.showinfo('Error in job file',
-                          _jobsFile)
+    except Exception as e:
+      messagebox.showinfo('Error in job file %s' % _jobsFile,
+                          getattr(e, 'message', repr(e)))
 
   def goCommandPrepare(self):
     _filepath = os.path.join(self.menu2tab.jobsFolder, self.jobFileVar.get())
@@ -118,7 +118,7 @@ Need to add\n\
       all_job_definitions = get_all_job_definitions(menu2tab.jobDefinitionsFolder)
 
       self.tkLabelframes = []
-      tooltip_wraplength = 500
+      tooltip_wraplength = 650
       # sort job_definition_files into order of number of jobs
       job_definition_file_names=[]
       total_jobs = 0  # and count the jobs
