@@ -1,12 +1,14 @@
 {
   "# Config file for ScriptedJsonEditor": "",
-  "# V1.0.0": "",
+  "# V1.0.1": "",
   "# Sample 'jobs' file for rFactor 1109 release": "",
   "# Note: any key with a # is a comment": "",
   "# Jobs provided in this file": [
     "Low end GPU",
     "Mid range GPU",
-    "High end GPU"
+    "High end GPU",
+    "FPS savers",
+	"FPS Limit 100 (VR)"
   ],
   "# The jobs follow. Add more if you want": "",
   "############################################": "",
@@ -172,6 +174,64 @@
           "Texture Filter#": "Texture Filtering level: 0 = bilinear, 1 = trilinear, 2 = X2 AF, 3 = X4 AF, 4 = X8 AF, 5 = X16 AF",
           "Track Detail": 3,
           "Track Detail#": "0=Low 1=Medium 2=High 3=Full"
+        }
+      }
+    },
+    "FPS savers": {
+      "#Tooltip: Set graphic options generally as recommended in": "",
+      "#Tooltip: https://forum.studio-397.com/index.php?threads/rfactor2-the-vr-thread-settings-tips.55249/page-77#post-962195": "",
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "Graphic Options": {
+          "Load Opponent Cockpits":false,
+          "#Load Opponent Cockpits" : "If you dont use driver swap, then this saves a bit of loading time and memory, few FPS",
+          "Pitcrew Detail Level":1, 
+          "#Pitcrew Detail Level": "Shows only your pitcrew in the pits, saves few fps and makes spotting yours easier.",
+          "Rearview_Back_Clip":65, 
+          "#Rearview_Back_Clip": "Limits mirror render distance with the number being meters. WARNING - HUGE FPS BOOST",
+          "Steady Framerate Thresh":0,
+          "#Steady Framerate Thresh": "Something you dont need.",
+          "#A bunch of effects, but you dont need effects for performing in high level simracing esports:": "",
+          "Soft Particles":0,
+          "Spark Flow":0,
+          "Smoke Flow":false,
+          "Special FX":0,
+          "Sun Occlusion":false,
+          "Tire Emitter Flow":false,
+          "Wind and Crowd Motion":false,
+          "Lightning Probability":0,
+          "Rain Drops":false,
+          "Raindrop Flow":0,
+          "Rainspray Flow":0
+        }
+      }
+    },
+    "FPS Limit 100 (VR)": {
+      "#Tooltip: Set graphic options generally as recommended in": "",
+      "#Tooltip: https://forum.studio-397.com/index.php?threads/rfactor2-the-vr-thread-settings-tips.55249/page-77#post-962195": "",
+      "#Tooltip: Ingame FPS should always be limited to 5-15% below your minimum measurable framerate.": "",
+      "#Tooltip: Without the limit, your PC is much more vulnerable for any interruptions by other programs": "",
+      "#Tooltip: and also actions on track, plus simply varying frametime from corner to corner, making the": "",
+      "#Tooltip: experience not smooth even if running high FPS.": "",
+      "#Tooltip: Most importantly, if you are CPU or memory bandwith bottlenecked, you will experience": "",
+      "#Tooltip: serious stutters and going out of real time if you reach 100% CPU usage. Plus it's simply": "",
+      "#Tooltip: a waste of electricity if you are pumping out over 200 frames per second. Just like you can": "",
+      "#Tooltip: tell a difference between 60hz and 120hz but not really between 120hz and 144hz monitors,": "",
+      "#Tooltip: you will hardly notice if your FPS is 150 or 550. Just keep it over your screens refresh": "",
+      "#Tooltip: rate and generally above 100 for good frametime.": "",
+
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "Graphic Options": {
+          "Max Framerate": 100,
         }
       }
     }

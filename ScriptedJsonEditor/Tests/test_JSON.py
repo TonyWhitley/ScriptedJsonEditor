@@ -132,7 +132,7 @@ class Test_test_JSON(unittest.TestCase):
         # Run edit_job_file
         # _write it to a string??
         # compare to the edited JOBS_FILE_HELP_STR
-        _jsonJob.edit_job_file(EDITS)
+        _jsonJob._edit_job_file(EDITS)
         #_jsonJob._write()
         P_JSON_edited, __ = _jsonJob._read()
 

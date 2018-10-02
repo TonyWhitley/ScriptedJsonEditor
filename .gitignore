@@ -284,3 +284,8 @@ env/
 /ScriptedJsonEditor/jobs2
 /ScriptedJsonEditor/job_definitions2
 /ScriptedJsonEditor/jobs/fred.JSON
+/ScriptedJsonEditor/CarDatafiles
+/ScriptedJsonEditor/ScriptedJsonEditor.build
+/ScriptedJsonEditor/ScriptedJsonEditor.dist
+/ScriptedJsonEditor/TrackDatafiles
+/ScriptedJsonEditor/python36.dll

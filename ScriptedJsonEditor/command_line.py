@@ -52,7 +52,7 @@ class CommandLine(object):
   def __init__(self):
     self.jobs_file = None
     if len(sys.argv) > 1:
-      if sys.argv[1][:-5].lower() == '.json':
+      if sys.argv[1][-5:].lower() == '.json':
         self.jobs_file = sys.argv[1]
       else:
         print(\
@@ -72,7 +72,7 @@ Example contents of that are:
 %s
         """ % (sys.argv[0], JOBS_FILE_HELP_STR, JOB_DEFINITIONS_FILE_HELP_STR))
 
-      self.jobs_file = input('Enter jobs file name (just Enter to quit): ')
+        self.jobs_file = input('Enter jobs file name (just Enter to quit): ')
     else:
       self.jobs_file = None  # Run the GUI
 
