@@ -6,6 +6,7 @@
     "Letterboxing off": {
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "edits": {
+        "#Tooltip: whether we allow letterboxing (during replays, for example)": "",
         "Graphic Options": {
           "Allow Letterboxing": false,
           "Allow Letterboxing#": "whether we allow letterboxing (during replays, for example)"
@@ -15,6 +16,7 @@
     "Map 2": {
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "edits": {
+        "#Tooltip: Automap non-race-only, whatever that means": "",
         "Graphic Options": {
           "Automap": 2,
           "Automap#": "0=off 1=race-only 2=non-race-only 3=all sessions"

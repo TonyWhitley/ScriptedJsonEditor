@@ -1,6 +1,6 @@
 {
   "# Jobs library file for ScriptedJsonEditor": "",
-  "# V1.0.0": "",
+  "# V1.0.1": "",
   "# Note: any key with a # is a comment": "",
   "job definitions": {
     "Pro driving aid settings": {
@@ -35,7 +35,7 @@
           "Throttle Control": 0
         },
         "Game Options": {
-		  "#Tooltip: AI strength 100 which should approximate real life": "",
+      "#Tooltip: AI strength 100 which should approximate real life": "",
           "AI Aggression": 0.25,
           "AI Limiter": 0.05,
           "CURNT AI Driver Strength": 100,
@@ -52,7 +52,7 @@
           "Basic Rules": 0
         },
         "Race Conditions": {
-		  "#Tooltip: Black and yellow flags off": "",
+      "#Tooltip: Black and yellow flags off": "",
           "CURNT Flag Rules": 0,
           "GPRIX Flag Rules": 0
         }
@@ -108,7 +108,7 @@
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "edits": {
         "Game Options": {
-		  "#Tooltip: Gives extra info about what's taking time in pitstop": "",
+      "#Tooltip: Gives extra info about what's taking time in pitstop": "",
           "Pitstop Description": true,
           "Pitstop Description#": "Gives extra info about what's taking time in pitstop"
         }
@@ -118,7 +118,7 @@
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "edits": {
         "Game Options": {
-		  "#Tooltip: When viewing a car in the Showroom this allows you to zoom right in and through the car to see the interior and what's under the body panels.": "",
+          "#Tooltip: When viewing a car in the Showroom this allows you to zoom right in and through the car to see the interior and what's under the body panels.": "",
           "Miscellaneous": 1,
           "Miscellaneous#": "When viewing a car in the Showroom this allows you to zoom right in and through the car to see the interior and what's under the body panels."
         }
@@ -130,6 +130,61 @@
         "Race Conditions": {
           "CURNT Formation Lap": 0,
           "GPRIX Formation Lap": 0
+        }
+      }
+    },
+    "Race replays only": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "edits": {
+        "Game options": {
+          "#Tooltip: https://forum.studio-397.com/index.php?threads/share-your-best-json-file-tip-tweak.61034/page-2#post-958735": "",
+          "#Tooltip: Replays of race only": "",
+          "Save All Replay Sessions":false,
+          "Save All Replay Sessions#":"whether to save the replay from each session"
+        }
+      }
+    },
+    "AI mistakes 50%": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "edits": {
+        "DRIVING AIDS": {
+          "#Tooltip: https://forum.studio-397.com/index.php?threads/share-your-best-json-file-tip-tweak.61034/page-2#post-958735": "",
+          "#Tooltip: Alter this based on the cars I'm running against so they're more 'my skill level'": "",
+          "AI Mistakes":0.5,
+          "AI Mistakes#":"0 a range of (intentional) AI mistakes from 0.0 (none) to 1.0 (sometimes). Anything above 1.0 multiplies the frequency"
+        }
+      }
+    },
+    "AI mistakes 60%": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "edits": {
+        "DRIVING AIDS": {
+          "#Tooltip: https://forum.studio-397.com/index.php?threads/share-your-best-json-file-tip-tweak.61034/page-2#post-958735": "",
+          "#Tooltip: Alter this based on the cars I'm running against so they're more 'my skill level'": "",
+          "AI Mistakes":0.6,
+          "AI Mistakes#":"0 a range of (intentional) AI mistakes from 0.0 (none) to 1.0 (sometimes). Anything above 1.0 multiplies the frequency"
+        }
+      }
+    },
+    "AI mistakes 70%": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "edits": {
+        "DRIVING AIDS": {
+          "#Tooltip: https://forum.studio-397.com/index.php?threads/share-your-best-json-file-tip-tweak.61034/page-2#post-958735": "",
+          "#Tooltip: Alter this based on the cars I'm running against so they're more 'my skill level'": "",
+          "AI Mistakes":0.7,
+          "AI Mistakes#":"0 a range of (intentional) AI mistakes from 0.0 (none) to 1.0 (sometimes). Anything above 1.0 multiplies the frequency"
+        }
+      }
+    },
+    "Repeat shifts": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "edits": {
+        "DRIVING AIDS": {
+          "#Tooltip: https://forum.studio-397.com/index.php?threads/share-your-best-json-file-tip-tweak.61034/page-2#post-958735": "",
+          "#Tooltip: Avoid accidental double gear change": "",
+          "Repeat Shifts":4,
+          "Repeat Shifts#":"0 = no repeat shift detection, 1 = detect and eliminate accidental repeat shifts within 100ms, 2 = 150ms, 3 = 200ms, 4 = 250ms, 5 = prevent shifting again before previous shift is completed"
         }
       }
     }

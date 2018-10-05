@@ -203,10 +203,67 @@
           "Sun Occlusion":false,
           "Tire Emitter Flow":false,
           "Wind and Crowd Motion":false,
+          "Lightning Probability":0
+        }
+      }
+    },
+    "No rain": {
+      "#Tooltip: Turn off rain graphics": "",
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "Graphic Options": {
           "Lightning Probability":0,
-          "Rain Drops":false,
+		  "Lightning Probability#":"Probability of seeing lightning (0.0-1.5)",
+          "Rain FX Quality":0,
+		  "Rain FX Quality#":"If 1, enable rain drops, if >1 enable rain effects from Low to High",
           "Raindrop Flow":0,
-          "Rainspray Flow":0
+		  "Raindrop Flow#":"Add to enable: 1=flow over current 2=flow over other vehicles",
+          "Rainspray Flow":0,
+		  "Rainspray Flow#":"Add to enable: 1=flow over current 2=flow over other vehicles"
+        }
+      }
+    },
+    "Rain medium": {
+      "#Tooltip: Turn on rain graphics": "",
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "Graphic Options": {
+          "Lightning Probability":1,
+		  "Lightning Probability#":"Probability of seeing lightning (0.0-1.5)",
+          "Rain FX Quality":2,
+		  "Rain FX Quality#":"If 1, enable rain drops, if >1 enable rain effects from Low to High",
+          "Raindrop Flow":1,
+		  "Raindrop Flow#":"Add to enable: 1=flow over current 2=flow over other vehicles",
+          "Rainspray Flow":1,
+		  "Rainspray Flow#":"Add to enable: 1=flow over current 2=flow over other vehicles"
+        }
+      }
+    },
+    "Rain high": {
+      "#Tooltip: Turn on rain graphics": "",
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "Graphic Options": {
+          "Lightning Probability":1,
+		  "Lightning Probability#":"Probability of seeing lightning (0.0-1.5)",
+          "Rain FX Quality":3,
+		  "Rain FX Quality#":"If 1, enable rain drops, if >1 enable rain effects from Low to High",
+          "Raindrop Flow":2,
+		  "Raindrop Flow#":"Add to enable: 1=flow over current 2=flow over other vehicles",
+          "Rainspray Flow":2,
+		  "Rainspray Flow#":"Add to enable: 1=flow over current 2=flow over other vehicles"
         }
       }
     },

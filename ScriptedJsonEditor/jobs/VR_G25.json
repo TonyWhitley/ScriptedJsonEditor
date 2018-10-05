@@ -7,10 +7,10 @@
   "jobs file format": 6,
   "job definition files": [
     "job_definitions\\Game_jobs.json",
-    "job_definitions\\Keyboard_jobs.json",
-    "job_definitions\\VR_jobs.json",
     "job_definitions\\G25_jobs.json",
-    "job_definitions\\Graphics_1109_jobs.json"
+    "job_definitions\\Graphics_1109_jobs.json",
+    "job_definitions\\VR_jobs.json",
+    "job_definitions\\Keyboard_jobs.json"
   ],
   "jobs": [
     {
@@ -21,27 +21,32 @@
         "Spotter off",
         "HUD off",
         "Virtual mirrors off",
-        "No formation lap"
+        "Pitstop Description on",
+        "Showroom zoom on",
+        "No formation lap",
+        "Race replays only",
+        "AI mistakes 60%"
       ],
-      "Keyboard_jobs": [
-        "Driver aid buttons disable",
-        "Cursor keys control seat"
+      "G25_jobs": [
+        "Wheel settings",
+        "VR",
+        "POV_hat_LCD_control",
+        "Minor controls",
+        "6 speed shifter"
+      ],
+      "Graphics_1109_jobs": [
+        "FPS savers",
+        "No rain",
+        "FPS Limit 100 (VR)"
       ],
       "VR_jobs": [
         "universal",
         "High end GPU",
         "sound levels"
       ],
-      "Graphics_1109_jobs": [
-        "FPS savers",
-        "FPS Limit 100 (VR)"
-      ],
-      "G25_jobs": [
-        "Wheel settings",
-        "POV_hat_LCD_control",
-        "Minor controls",
-        "VR",
-        "6 speed shifter"
+      "Keyboard_jobs": [
+        "Driver aid buttons disable",
+        "Cursor keys control seat"
       ]
     }
   ]
