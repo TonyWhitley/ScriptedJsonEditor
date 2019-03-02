@@ -1,3 +1,4 @@
+# GUI for Scripted JSON Editor
 # Python 3
 import os
 import sys
@@ -281,7 +282,7 @@ def go(filepath):
 
 def setMenu2tab(basedir):
   jobsFolder = os.path.join(basedir, 'jobs')
-  jobDefinitionsFolder = os.path.join(os.getcwd(), 'job_definitions')
+  jobDefinitionsFolder = os.path.join(basedir, 'job_definitions')
 
   menu2tab = Menu2tab(jobDefinitionsFolder=jobDefinitionsFolder,
                       jobsFolder=jobsFolder)

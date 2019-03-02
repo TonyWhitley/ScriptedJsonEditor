@@ -42,7 +42,7 @@
       }
     },
     "Graphic Options undo": {
-      "#Tooltip: revert some of the above": "",
+      "#Tooltip: revert some of the graphic options for VR": "",
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "skip keys with # in them": true,
       "# keys with # in them are used as comments, don't change the values": "",
@@ -103,6 +103,8 @@
           "Texture Detail#": "0=Low 1=Medium 2=High 3=Full",
           "Texture Filter": 4,
           "Texture Filter#": "Texture Filtering level: 0 = bilinear, 1 = trilinear, 2 = X2 AF, 3 = X4 AF, 4 = X8 AF, 5 = X16 AF",
+          "Texture Sharpening":3,
+          "Texture Sharpening#":"Sharpen textures using MIP LOD bias - 0=Off, 1=+2.0(very blurry), 2=+1.0(blurry), 3=-1.0(sharp), 4=-2.0(very sharp), 5=0.0(auto)",
           "Track Detail": 1,
           "Track Detail#": "0=Low 1=Medium 2=High 3=Full",
           "Rearview_Back_Clip": 30,
@@ -133,6 +135,8 @@
           "Texture Detail#": "0=Low 1=Medium 2=High 3=Full",
           "Texture Filter": 4,
           "Texture Filter#": "Texture Filtering level: 0 = bilinear, 1 = trilinear, 2 = X2 AF, 3 = X4 AF, 4 = X8 AF, 5 = X16 AF",
+          "Texture Sharpening":3,
+          "Texture Sharpening#":"Sharpen textures using MIP LOD bias - 0=Off, 1=+2.0(very blurry), 2=+1.0(blurry), 3=-1.0(sharp), 4=-2.0(very sharp), 5=0.0(auto)",
           "Track Detail": 1,
           "Track Detail#": "0=Low 1=Medium 2=High 3=Full",
           "Rearview_Back_Clip": 0,

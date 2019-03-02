@@ -83,6 +83,7 @@
     <Content Include="job_definitions\G25_jobs.json" />
     <Content Include="job_definitions\Game_jobs.json" />
     <Content Include="jobs\Keyboard.json" />
+    <Content Include="job_definitions\HUD_jobs.json" />
     <Content Include="job_definitions\Keyboard_jobs.json" />
     <Content Include="jobs\VR.json" />
     <Content Include="job_definitions\SiG_jobs.json" />

@@ -136,7 +136,7 @@
     "Race replays only": {
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "edits": {
-        "Game options": {
+        "Game Options": {
           "#Tooltip: https://forum.studio-397.com/index.php?threads/share-your-best-json-file-tip-tweak.61034/page-2#post-958735": "",
           "#Tooltip: Replays of race only": "",
           "Save All Replay Sessions":false,
@@ -147,7 +147,7 @@
     "AI mistakes 50%": {
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "edits": {
-        "DRIVING AIDS": {
+        "Game Options": {
           "#Tooltip: https://forum.studio-397.com/index.php?threads/share-your-best-json-file-tip-tweak.61034/page-2#post-958735": "",
           "#Tooltip: Alter this based on the cars I'm running against so they're more 'my skill level'": "",
           "AI Mistakes":0.5,
@@ -158,7 +158,7 @@
     "AI mistakes 60%": {
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "edits": {
-        "DRIVING AIDS": {
+        "Game Options": {
           "#Tooltip: https://forum.studio-397.com/index.php?threads/share-your-best-json-file-tip-tweak.61034/page-2#post-958735": "",
           "#Tooltip: Alter this based on the cars I'm running against so they're more 'my skill level'": "",
           "AI Mistakes":0.6,
@@ -169,7 +169,7 @@
     "AI mistakes 70%": {
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "edits": {
-        "DRIVING AIDS": {
+        "Game Options": {
           "#Tooltip: https://forum.studio-397.com/index.php?threads/share-your-best-json-file-tip-tweak.61034/page-2#post-958735": "",
           "#Tooltip: Alter this based on the cars I'm running against so they're more 'my skill level'": "",
           "AI Mistakes":0.7,

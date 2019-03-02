@@ -1,0 +1,34 @@
+{
+  "# Jobs library file for ScriptedJsonEditor": "",
+  "# V1.0.01": "",
+  "# Note: any key with a # is a comment": "",
+  "# Jobs provided in this file": [
+    "HUD off",
+    "Lap delta"
+  ],
+  "# The jobs follow. Add more if you want": "",
+  "############################################": "",
+  "job definitions": {
+    "HUD off": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "edits": {
+        "Graphic Options": {
+          "HUD": 4,
+          "HUD MFD": 2,
+          "HUD Race Stats":0,
+          "HUD Tachometer": 0
+        }
+      }
+    },
+    "Lap time delta": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "#Tooltip: Just the lap time delta": "",
+      "edits": {
+        "Graphic Options": {
+          "HUD": 7,
+          "HUD Tachometer": 1
+        }
+      }
+    }
+  }
+}
