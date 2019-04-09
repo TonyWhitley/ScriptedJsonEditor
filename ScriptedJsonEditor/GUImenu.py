@@ -9,10 +9,26 @@ from ScriptedJsonEditor import versionStr, versionDate
 from GUI import Menu2tab
 
 def about():
-  messagebox.showinfo(
+  messagebox.askokcancel(
             'About Scripted JSON Editor',
             '%s  %s\nby Tony Whitley' % (versionStr, versionDate)
         )
+
+def faq():
+  messagebox.askokcancel(
+            'Scripted JSON Editor FAQ',
+            'Scripted JSON editor is a program to make changes for example '
+            'to rFactor 2 player.json'
+            '\n'
+            'Rather than a list of instructions to "edit player.json setting '
+            '\'blah\' to 15" and so on, instead a JSON file is provided and '
+            'ScriptedJsonEditor will edit it for you.'
+            '\n'
+            'The GUI allows you to select a job file that executes a number '
+            'of such "jobs".  You can then change which jobs are selected '
+            'and save as a new job file.'
+        )
+
 
 class Menu:
   jobDefinitionsFolder = '.'
@@ -45,6 +61,7 @@ class Menu:
     """
 
     helpmenu = tk.Menu(menubar, tearoff=0)
+    helpmenu.add_command(label="FAQ", command=faq)
     helpmenu.add_command(label="About", command=about)
     menubar.add_cascade(label="Help", menu=helpmenu)
 

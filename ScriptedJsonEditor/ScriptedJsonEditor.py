@@ -18,7 +18,7 @@ from json_include import build_json_include
 from backups import Backups
 from command_line import CommandLine
 
-BUILD_REVISION = 67 # The git commit count
+BUILD_REVISION = 68 # The git commit count
 versionStr = 'Scripted JSON Editor V0.7.%d' % BUILD_REVISION
 versionDate = '2019-03-02'
 
