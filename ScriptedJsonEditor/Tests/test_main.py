@@ -14,15 +14,15 @@ class Test_test_main(unittest.TestCase):
   @patch('ScriptedJsonEditor.print', create=True)     # Mock the print call in main()
   def test_main_non_existent_jobs_file(self, print_): # Note added , print_ to mock print()
     sys.argv = ['ScriptedJsonEditor', 'JsonEditorJobs.json']
-    assert ScriptedJsonEditor.main() != 0
+    assert ScriptedJsonEditor.main()[0] != 0
 
   @patch('ScriptedJsonEditor.print', create=True)     # Mock the print call in main()
   @patch('command_line.print', create=True)           # Mock the print call in command_line()
   def test_main_no_jobs_file_specified(self, print_, print__): # Note added , print_ to mock print()
     sys.argv = ['ScriptedJsonEditor']
     with patch('builtins.input', return_value=''):
-      _exit_code = ScriptedJsonEditor.main()
-    assert _exit_code != 0
+      _exit_code, _status = ScriptedJsonEditor.main()
+    assert _exit_code == 0
   #"""
 
   @patch('ScriptedJsonEditor.print', create=True)     # Mock the print call in main()
@@ -39,7 +39,7 @@ class Test_test_main(unittest.TestCase):
 
       sys.argv = ['ScriptedJsonEditor', r'Tests\jobs_test1.json']
 
-      _exit_code = ScriptedJsonEditor.main()
+      _exit_code, _status = ScriptedJsonEditor.main()
 
       # check the changes were made
       _JSNO_O = ScriptedJsonEditor.JsonRfactorFile()
@@ -67,7 +67,7 @@ class Test_test_main(unittest.TestCase):
 
         sys.argv = ['ScriptedJsonEditor', r'Tests\jobs_test_configs.json']
 
-        _exit_code = ScriptedJsonEditor.main()
+        _exit_code, _status = ScriptedJsonEditor.main()
 
         # check the changes were made
         _JSNO_O = ScriptedJsonEditor.JsonRfactorFile()

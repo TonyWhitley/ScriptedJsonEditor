@@ -97,8 +97,17 @@ Need to add\n\
 
   def goCommandPrepare(self):
     _filepath = os.path.join(self.menu2tab.jobsFolder, self.jobFileVar.get())
-    go(_filepath)
-    
+    _result, _status = go(_filepath)
+    if _result:
+      messagebox.showerror('Job error',
+                           '\n'.join(_status))
+    elif len(_status):
+      messagebox.showinfo('Job completed, edits made',
+                           '\n'.join(_status))
+    else:
+      messagebox.showinfo('Job completed',
+                          'No edits necessary')
+
   def getSettings(self):
     """ Return the settings for this tab """
     return ['Conditions']
@@ -278,7 +287,7 @@ class Menu2tab:
 
 def go(filepath):
   """ Execute the job file """
-  execute_job_file(filepath)
+  return execute_job_file(filepath)
 
 def setMenu2tab(basedir):
   jobsFolder = os.path.join(basedir, 'jobs')

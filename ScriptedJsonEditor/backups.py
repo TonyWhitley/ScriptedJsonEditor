@@ -39,3 +39,6 @@ class Backups(object):
       del self.backup[filename]
     else:
       raise FileNotFoundError
+
+  def get_tempdir(self):
+    return self.tempdir

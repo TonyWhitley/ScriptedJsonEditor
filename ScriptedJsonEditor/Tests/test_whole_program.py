@@ -40,7 +40,7 @@ class Test_test_whole_program(unittest.TestCase):
       _backupFilename = _backupO.backup_file(PLAYER_JSON, _keep_the_original=True)
       _backupFilename = _backupO.backup_file(CONTROLLER_JSON, _keep_the_original=True)
       
-      _exit_code = ScriptedJsonEditor.main()
+      _exit_code, _status = ScriptedJsonEditor.main()
 
       # check the changes were made
       _JSNO_O = ScriptedJsonEditor.JsonRfactorFile()

@@ -4,8 +4,10 @@ from tkinter import ttk
 from tkinter import messagebox
 from tkinter import filedialog
 from os.path import join
+import pyperclip
 
 from ScriptedJsonEditor import versionStr, versionDate
+from backups import Backups
 from GUI import Menu2tab
 
 def about():
@@ -15,6 +17,7 @@ def about():
         )
 
 def faq():
+  _backupDir = Backups().get_tempdir()
   messagebox.askokcancel(
             'Scripted JSON Editor FAQ',
             'Scripted JSON editor is a program to make changes for example '
@@ -26,8 +29,12 @@ def faq():
             '\n'
             'The GUI allows you to select a job file that executes a number '
             'of such "jobs".  You can then change which jobs are selected '
-            'and save as a new job file.'
+            'and save as a new job file.\n\n'
+            'Whenever a file is edited a timestamped backup is placed in %s\n'
+            '(which has been pasted in the clipboard)'
+            % _backupDir
         )
+  pyperclip.copy(_backupDir)
 
 
 class Menu:

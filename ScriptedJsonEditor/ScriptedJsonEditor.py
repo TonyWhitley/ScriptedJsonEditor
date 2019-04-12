@@ -18,9 +18,9 @@ from json_include import build_json_include
 from backups import Backups
 from command_line import CommandLine
 
-BUILD_REVISION = 68 # The git commit count
-versionStr = 'Scripted JSON Editor V0.7.%d' % BUILD_REVISION
-versionDate = '2019-03-02'
+BUILD_REVISION = 69 # The git commit count
+versionStr = 'Scripted JSON Editor V1.8.%d' % BUILD_REVISION
+versionDate = '2019-04-12'
 
 TooltipStr = '#Tooltip: ' # The comment in the job descriptions files that
                           # indicates Tooltip text to be used
@@ -120,8 +120,12 @@ class JsonFile():
   def edit(self, main_key, sub_key, new_value):
     """
     Change the value of 'main_key''sub_key' in the JSON file to 'new_value'
+    Returns
+      0 : No change
+      1 : Edit made
     May raise KeyError, ValueError, EmptyJsonError or NoSuchJobError
     """
+    _status = 0 # No change
     if self.json_dict is None:
       print('Empty JSON file "%s"' % self.filepath)
       raise EmptyJsonError
@@ -133,7 +137,9 @@ class JsonFile():
       if main_key in self.json_dict:
         if sub_key in self.json_dict[main_key]:
           try:
-            self.json_dict[main_key][sub_key] = new_value
+            if self.json_dict[main_key][sub_key] != new_value:
+              self.json_dict[main_key][sub_key] = new_value
+              _status = 1 # Edit made
           except ValueError:
             try:
               print('Invalid value "%s" in "%s":"%s"' % (new_value, main_key, sub_key))
@@ -148,6 +154,7 @@ class JsonFile():
       else:
         print('No existing main key "%s":"%s"' % (main_key, sub_key))
         raise KeyError
+    return _status
 
   def _load(self, json_str, string_name):
     """
@@ -408,11 +415,14 @@ class Job():
   def run_edits(self):
     """
     Execute the job's edits on current file
+    Returns edit count : 0 => no edits needed
     May raise KeyError, ValueError, EmptyJsonError or NoSuchJobError
     """
+    _edit_count = 0
     for main_key in self.job["edits"]:
       for _item in self.job["edits"][main_key]:
-        self.json_o.edit(main_key, _item, self.job["edits"][main_key][_item])
+        _edit_count += self.json_o.edit(main_key, _item, self.job["edits"][main_key][_item])
+    return _edit_count
 
   def list_edits(self):
     """
@@ -458,12 +468,15 @@ def run_job(job, config):
     _j.read_json_file_to_be_edited()
     #   do the edits
     try:
-      _j.run_edits()
-      #   if successful:
-      #     backup 'filepath'
-      #     save new contents to 'filepath
-      _report = _j.backup_file()
-      _j.write()
+      _edit_count = _j.run_edits()
+      if _edit_count:
+        #   if successful:
+        #     backup 'filepath'
+        #     save new contents to 'filepath
+        _report = _j.backup_file()
+        _j.write()
+      else:
+        _report = ''
       return _report
     except (KeyError, ValueError, EmptyJsonError):
       raise JobFailedError
@@ -527,37 +540,50 @@ def main():
                 # when GUI imports this file.
     # No jobs file in command line
     GUI.Main(goCommand=True)
-    return 0
+    return 0, ''
   return execute_job_file(jobs_file_name)
 
 def execute_job_file(jobs_file_name):
+  """
+  Returns
+  Status : 0  OK
+           98 failed to execute job
+           99 file error (empty, unknown)
+  Status text:
+           blank if no changes needed to be made
+  """
+  _status = []
   try:
     _JSNO_O = JsonJobsFile()
     __, config = _JSNO_O.read(jobs_file_name)
     _jobs = _JSNO_O.get_jobs()
-  except (JsonContentError, NoSuchJobError):
-    return 99
+  except (JsonContentError, NoSuchJobError) as e:
+    _status.append(e)
+    return 99, _status
 
   if _jobs is None:
-    print('No jobs in"%s"' % jobs_file_name)
-    return 99
+    _status.append('No jobs in"%s"' % jobs_file_name)
+    return 99, _status
 
   # Execute
   # For each job in jobsFile
   for job in _jobs:
     try:
       _report = run_job(job, config)
-      print(_report)
-    except JobFailedError: # failed to execute job
-      return 98
+      if len(_report):
+        _status.append(_report)
+    except JobFailedError as e: # failed to execute job
+      _status.append(e)
+      return 98, _status
     except FileNotFoundError:
-      print('Failed opening "%s"' % (job['JSONfileToBeEdited']))
-      return 99
-  return 0
+      _status.append('Failed opening "%s"' % (job['JSONfileToBeEdited']))
+      return 99, _status
+  return 0, _status
 
 if __name__ == '__main__':
   print(versionStr+'\n')
-  _result = main()
+  _result, _status = main()
+  print('\n'.join(_status))
   if _result:
     print('\n\nExecution error\nPress Enter to exit')
     input()

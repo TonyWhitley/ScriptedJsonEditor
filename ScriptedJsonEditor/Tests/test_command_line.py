@@ -15,8 +15,10 @@ class Test_test_command_line(unittest.TestCase):
         with patch('builtins.input', return_value=''):
           self.CLo = CommandLine()
         jobsFile = self.CLo.get_jobs_file()
-        assert jobsFile == '', jobsFile
+        assert jobsFile == None, jobsFile
 
+    '''
+    No job file in command line now calls the GUI
     @patch('command_line.print', create=True)                   # Mock the print call in CommandLine()
     def test_command_line_jobs_file_entered(self, print_):      # Note added , print_ to mock print()
         """ Test console entry of the job file name """ 
@@ -25,6 +27,7 @@ class Test_test_command_line(unittest.TestCase):
           self.CLo = CommandLine()
         jobsFile = self.CLo.get_jobs_file()
         assert jobsFile == 'JsonEditorJobs.json', jobsFile
+    '''
 
     def test_command_line(self):
         sys.argv = ['ScriptedJsonEditor', 'JsonEditorJobs.json']
