@@ -22,8 +22,10 @@
       "rFactor escape slash": true,
       "# rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
+        "# 'Headlights Are Now Required' is hidden if MCD set to 0": "",
+        "# Crew Chief 'rFactor 2 Unofficial Features' need it to be 3 (the default)": "",
         "Game Options": {
-          "Message Center Detail": 0
+          "Message Center Detail": 3
         },
         "Graphic Options": {
           "Auto Detail Framerate": 0,
@@ -79,7 +81,9 @@
       "# rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Game Options": {
-          "Message Center Detail": 0
+          "# 'Headlights Are Now Required' is hidden if MCD set to 0": "",
+          "# Crew Chief 'rFactor 2 Unofficial Features' need it to be 3 (the default)": "",
+          "Message Center Detail": 3
         },
         "Graphic Options": {
           "Auto Detail Framerate": 0,
@@ -132,8 +136,10 @@
       "rFactor escape slash": true,
       "# rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
+        "# 'Headlights Are Now Required' is hidden if MCD set to 0": "",
+        "# Crew Chief 'rFactor 2 Unofficial Features' need it to be 3 (the default)": "",
         "Game Options": {
-          "Message Center Detail": 0
+          "Message Center Detail": 3
         },
         "Graphic Options": {
           "Auto Detail Framerate": 0,

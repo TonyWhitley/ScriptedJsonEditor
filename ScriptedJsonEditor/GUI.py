@@ -102,10 +102,10 @@ Need to add\n\
       messagebox.showerror('Job error',
                            '\n'.join(_status))
     elif len(_status):
-      messagebox.showinfo('Job completed, edits made',
+      messagebox.askokcancel('Job completed, edits made',
                            '\n'.join(_status))
     else:
-      messagebox.showinfo('Job completed',
+      messagebox.askokcancel('Job completed',
                           'No edits necessary')
 
   def getSettings(self):
@@ -302,12 +302,12 @@ def Main(test=False, goCommand=False):
   root = tk.Tk()
   root.title('JSON file editor')
 
-  tabConditions = ttk.Frame(root, width=1200, height=1200, 
+  tabGraphics = ttk.Frame(root, width=1200, height=1200, 
                             relief='sunken', borderwidth=5)
-  tabConditions.grid()
+  tabGraphics.grid()
    
   menu2tab = setMenu2tab(os.getcwd())
-  o_tab = Tab(tabConditions, menu2tab, goCommand=goCommand)
+  o_tab = Tab(tabGraphics, menu2tab, goCommand=goCommand)
 
   menubar = tk.Menu(root)
   # display the menu

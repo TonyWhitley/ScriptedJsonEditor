@@ -32,7 +32,17 @@ class EmptyJsonError(Exception):
   pass
 
 class JsonContentError(Exception):
-  """ The JSON string (usually loaded from a .JSON file) is invalid in some way """
+  def __init__(self):
+    # Only necessary if a text version of the error is required (which it isn't)
+    self.msg = """ The JSON string (usually loaded from a .JSON file) is invalid in some way """
+  pass
+
+class NoSuchFileError(Exception):
+  def __init__(self, path=''):
+    # Only necessary if a text version of the error is required (which it isn't)
+    #self.msg = "File '%s' '%s' not found" % (os.path.normpath(), path)
+    self.msg = "File '%s' not found" % (path)
+    pass
   pass
 
 class JobFileFormatError(Exception):
@@ -73,7 +83,8 @@ class JsonFile():
           print('JSON content error in "%s"' % filepath)
           print(err)
     except IOError:
-      print('Failed to open JSON file "%s"' % filepath)
+      print('Failed to open JSON file "%s" "%s"' % (os.path.abspath(''), filepath))
+      raise NoSuchFileError(filepath)
     raise JsonContentError
 
   def readInclude(self, filepath, dirpath=None):
@@ -252,11 +263,11 @@ class JsonJobsFile(JsonFile):
             if __j:
               _result.append(__j)
             else: # job not found in Job Description file
-              print('job "%s" not found in Job Description file "%s"' % 
+              _result.append('job "%s" not found in Job Description file "%s"' % 
                     (_job, _job_description_file))
               raise NoSuchJobError
     except KeyError:
-      print('%s has no "job definition files"' % self.filepath)
+      _result.append('%s has no "job definition files"' % self.filepath)
     return _result
 
   def _edit_job_file(self, edits):
@@ -557,8 +568,8 @@ def execute_job_file(jobs_file_name):
     _JSNO_O = JsonJobsFile()
     __, config = _JSNO_O.read(jobs_file_name)
     _jobs = _JSNO_O.get_jobs()
-  except (JsonContentError, NoSuchJobError) as e:
-    _status.append(e)
+  except (JsonContentError, NoSuchJobError, NoSuchFileError) as e:
+    _status.append(e.msg)
     return 99, _status
 
   if _jobs is None:

@@ -120,9 +120,9 @@ if __name__ == '__main__':
   menu2tab.setWriteJobFile(nullFn)
   menu2tab.jobFileName = nullFolder
 
-  tabConditions = ttk.Frame(root, width=800, height=800, 
+  tabGraphics = ttk.Frame(root, width=800, height=800, 
                             relief='sunken', borderwidth=5)
-  tabConditions.grid()
+  tabGraphics.grid()
 
   menubar = tk.Menu(root)
 
