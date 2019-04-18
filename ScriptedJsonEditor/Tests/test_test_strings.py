@@ -84,6 +84,7 @@ jobsJSONstr1 = r"""
 {"jobs": ["job1"],
 "#Only that list of jobs will be performed": 0,
 "#Not all jobs in the file will necessarily be run": 0,
+"jobs file format": 6,
 "job definitions":{
   "job1":
 	  {
@@ -110,6 +111,7 @@ valid_JSON_strings.append(jobsJSONstr1)
 # Valid JSON but key name in job2 is wrong
 jobsJSONstrBadKey2 = r"""
 {"jobs": ["job1", "job2"],
+"jobs file format": 6,
 "job definitions":{
   "job1":
 	  {
@@ -153,6 +155,7 @@ valid_JSON_strings.append(jobsJSONstrBadKey2)
 # Valid JSON but key name is wrong
 jobsJSONstrBadKey = r"""
 {"jobs": ["job1"],
+"jobs file format": 6,
 "job definitions":{
   "job1":
 	  {
@@ -182,6 +185,7 @@ valid_JSON_strings.append(jobsJSONstrBadKey)
 # Valid JSON, check JSONfileToBeEdited
 jobsJSONfileToBeEdited = r"""
 {"jobs": ["jobJSONfileToBeEdited"],
+"jobs file format": 6,
 "job definitions":{
   "jobJSONfileToBeEdited":
 	  {
@@ -205,6 +209,7 @@ valid_JSON_strings.append(jobsJSONfileToBeEdited)
 # Type 2 jobs file
 jobs2base = r"""
 { "jobs": ["job1", "fred", "harry"],
+"jobs file format": 6,
 "job definitions":{
   "job1": {},
   "job2": {},
@@ -347,6 +352,7 @@ keyboard_jobs_json_file = r"""
   "# Keyboard - job definitions file for ScriptedJsonEditor": 0,
   "# V1.0.0": 0,
   "# Note: any key with a # is a comment": 0,
+  "jobs file format": 6,
   "job definitions": {
     "Cursor keys control seat": {
       "JSONfileToBeEdited": "<CONTROLLER.JSON>",

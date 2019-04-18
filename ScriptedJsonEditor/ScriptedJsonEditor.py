@@ -18,9 +18,9 @@ from json_include import build_json_include
 from backups import Backups
 from command_line import CommandLine
 
-BUILD_REVISION = 69 # The git commit count
-versionStr = 'Scripted JSON Editor V1.8.%d' % BUILD_REVISION
-versionDate = '2019-04-12'
+BUILD_REVISION = 71 # The git commit count
+versionStr = 'Scripted JSON Editor V1.9.%d' % BUILD_REVISION
+versionDate = '2019-04-18'
 
 TooltipStr = '#Tooltip: ' # The comment in the job descriptions files that
                           # indicates Tooltip text to be used
@@ -82,7 +82,7 @@ class JsonFile():
         except ValueError as err:
           print('JSON content error in "%s"' % filepath)
           print(err)
-    except IOError:
+    except (IOError, FileNotFoundError):
       print('Failed to open JSON file "%s" "%s"' % (os.path.abspath(''), filepath))
       raise NoSuchFileError(filepath)
     raise JsonContentError
@@ -465,7 +465,7 @@ def read_jobs_in_jobs_file(jobs_file_name):
   _jobs, __ = _JSNO_O.read(jobs_file_name)
   return _jobs['jobs']
 
-def run_job(job, config):
+def run_job(playerID, rF2root, job, config):
   """
   Run the job, editing the file and backing it up.
   Return status report string.
@@ -489,7 +489,7 @@ def run_job(job, config):
       else:
         _report = ''
       return _report
-    except (KeyError, ValueError, EmptyJsonError):
+    except (KeyError, ValueError, EmptyJsonError) as e:
       raise JobFailedError
   except JsonContentError:
     raise FileNotFoundError
@@ -506,7 +506,7 @@ def list_job(job, config):
     #   do the edits
     try:
       _j.list_edits()
-    except (KeyError, ValueError, EmptyJsonError):
+    except (KeyError, ValueError, EmptyJsonError) as e:
       raise JobFailedError
   except JsonContentError:
     raise FileNotFoundError
@@ -542,19 +542,21 @@ def get_jobs_hierarchy(jobs_file_name):
       return 99
   return 0
 
-def main():
+def main(versionStr=''):
   """ Main """
-  _clo = CommandLine()
+  _clo = CommandLine(versionStr)
   jobs_file_name = _clo.get_jobs_file()
+  playerID = _clo.get_playerID()
+  rF2root = _clo.get_rF2root()
   if jobs_file_name is None:
     import GUI  # if imported "normally" there is a deadly embrace
                 # when GUI imports this file.
     # No jobs file in command line
-    GUI.Main(goCommand=True)
+    GUI.Main(playerID, rF2root, goCommand=True)
     return 0, ''
-  return execute_job_file(jobs_file_name)
+  return execute_job_file(playerID, rF2root, jobs_file_name)
 
-def execute_job_file(jobs_file_name):
+def execute_job_file(playerID, rF2root, jobs_file_name):
   """
   Returns
   Status : 0  OK
@@ -567,6 +569,10 @@ def execute_job_file(jobs_file_name):
   try:
     _JSNO_O = JsonJobsFile()
     __, config = _JSNO_O.read(jobs_file_name)
+    config["<PLAYER.JSON>"] = config["<PLAYER.JSON>"].replace('<PLAYER>', playerID)
+    config["<PLAYER.JSON>"] = config["<PLAYER.JSON>"].replace('<RF2ROOT>', rF2root)
+    config["<CONTROLLER.JSON>"] = config["<CONTROLLER.JSON>"].replace('<PLAYER>', playerID)
+    config["<CONTROLLER.JSON>"] = config["<CONTROLLER.JSON>"].replace('<RF2ROOT>', rF2root)
     _jobs = _JSNO_O.get_jobs()
   except (JsonContentError, NoSuchJobError, NoSuchFileError) as e:
     _status.append(e.msg)
@@ -580,7 +586,7 @@ def execute_job_file(jobs_file_name):
   # For each job in jobsFile
   for job in _jobs:
     try:
-      _report = run_job(job, config)
+      _report = run_job(playerID, rF2root, job, config)
       if len(_report):
         _status.append(_report)
     except JobFailedError as e: # failed to execute job
@@ -592,8 +598,7 @@ def execute_job_file(jobs_file_name):
   return 0, _status
 
 if __name__ == '__main__':
-  print(versionStr+'\n')
-  _result, _status = main()
+  _result, _status = main(versionStr)
   print('\n'.join(_status))
   if _result:
     print('\n\nExecution error\nPress Enter to exit')

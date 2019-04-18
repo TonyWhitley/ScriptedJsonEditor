@@ -6,6 +6,7 @@
     "Driver aid buttons disable",
     "Cursor keys control seat"
   ],
+  "jobs file format": 6,
   "job definitions": {
     "Driver aid buttons disable": {
       "JSONfileToBeEdited": "<CONTROLLER.JSON>",

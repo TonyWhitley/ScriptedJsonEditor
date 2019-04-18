@@ -1,9 +1,10 @@
 """ Test the main program """
+import os
 import sys
 import unittest
-from unittest.mock import patch
+from unittest.mock import patch, mock_open
 
-from command_line import CommandLine
+import command_line
 import ScriptedJsonEditor
 import test_test_strings
 import backups
@@ -16,6 +17,7 @@ class Test_test_main(unittest.TestCase):
     sys.argv = ['ScriptedJsonEditor', 'JsonEditorJobs.json']
     assert ScriptedJsonEditor.main()[0] != 0
 
+  """ just calls GUI now
   @patch('ScriptedJsonEditor.print', create=True)     # Mock the print call in main()
   @patch('command_line.print', create=True)           # Mock the print call in command_line()
   def test_main_no_jobs_file_specified(self, print_, print__): # Note added , print_ to mock print()
@@ -23,7 +25,7 @@ class Test_test_main(unittest.TestCase):
     with patch('builtins.input', return_value=''):
       _exit_code, _status = ScriptedJsonEditor.main()
     assert _exit_code == 0
-  #"""
+  """
 
   @patch('ScriptedJsonEditor.print', create=True)     # Mock the print call in main()
   def test_main(self, print_):                        # Note added , print_ to mock print()
@@ -122,7 +124,7 @@ class Test_test_main(unittest.TestCase):
 
   def test_main_JSONfileToBeEdited(self):
     sys.argv = ['ScriptedJsonEditor', 'jobs\\VR.json']
-    _clo = CommandLine()
+    _clo = command_line.CommandLine()
     jobsFile = _clo.get_jobs_file()
     if jobsFile:
 
@@ -141,6 +143,46 @@ class Test_test_main(unittest.TestCase):
         assert False, 'No jobs in jobs\\VR.json'
     else:
       assert False, 'No jobsfile jobs\VR.json'
+
+  # PlayerID is defined at 3 levels:
+  # * In the program:                 lowest, fallback
+  # * In ScriptedJsonEditorCfg.json:  outranks the program constant
+  # * In the command line switch:     outranks all
+  #  Ditto for rF2path except it's not a command line switch
+
+  def test_main_no_playerID(self):
+    # The program's values
+    sys.argv = ['ScriptedJsonEditor']
+    _clo = command_line.CommandLine()
+    _playerID = _clo.get_playerID()
+    _rF2root = _clo.get_rF2root()
+    assert _playerID == 'player', _playerID
+    assert _rF2root == 'C:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2', _rF2root
+
+  @patch('ScriptedJsonEditor.os.path.isfile')
+  def test_main_configFile_playerID(self, mock_os_isfile):
+    # The config file's values
+    rF2root = r"%ProgramFiles(x86)%\\Steam\\steamapps\\common\\rFactor 2CONFIG"
+    sys.argv = ['ScriptedJsonEditor']
+    file_content_mock = '{ "player": "playerCONFIG",\n' \
+                        ' "rF2root": "%s" }' % rF2root
+    fake_file_path = 'ScriptedJsonEditorCfg.json'
+    #mock_os_is_file.return_value = True
+
+    with patch('command_line.open', mock_open(read_data=file_content_mock), create=True) as m:
+      _clo = command_line.CommandLine()
+      _playerID = _clo.get_playerID()
+      _rF2root = _clo.get_rF2root()
+    assert _playerID == 'playerCONFIG', _playerID
+    assert _rF2root == os.path.normpath(os.path.expandvars(rF2root)), _rF2root
+
+
+  def test_main_playerID(self):
+    # The command line switches
+    sys.argv = ['ScriptedJsonEditor', '--player', 'playerTEST']
+    _clo = command_line.CommandLine()
+    _playerID = _clo.get_playerID()
+    assert _playerID == 'playerTEST', _playerID
 
 if __name__ == '__main__':
     unittest.main()

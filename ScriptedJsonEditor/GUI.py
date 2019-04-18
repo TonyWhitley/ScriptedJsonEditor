@@ -297,7 +297,10 @@ def setMenu2tab(basedir):
                       jobsFolder=jobsFolder)
   return menu2tab
 
-def Main(test=False, goCommand=False):
+def Main(playerID='player', 
+         rF2root=r'"c:\Program Files (x86)\Steam\steamapps\common\rFactor 2"', 
+         test=False,
+         goCommand=False):
   from GUImenu import Menu
   root = tk.Tk()
   root.title('JSON file editor')

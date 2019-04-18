@@ -1,5 +1,5 @@
 {
-  "<PLAYER.JSON>": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\player.JSON",
+  "<PLAYER.JSON>": "<RF2ROOT>\\UserData\\<PLAYER>\\player.JSON",
   "jobs file format": 6,
   "job definition files": [
     "job_definitions\\VR_jobs.json"

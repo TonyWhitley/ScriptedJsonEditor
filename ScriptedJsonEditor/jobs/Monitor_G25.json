@@ -3,7 +3,7 @@
   "# This sets up rF2 on a high end GPU using a G25 wheel (switching back to a monitor from VR)": "",
   "# and a bunch of Game Settings I want": "",
   "# V1.0.0": "",
-  "<PLAYER.JSON>": "c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\player.JSON",
+  "<PLAYER.JSON>": "<RF2ROOT>\\UserData\\<PLAYER>\\player.JSON",
   "jobs file format": 6,
   "job definition files": [
     "job_definitions\\Game_jobs.json",
