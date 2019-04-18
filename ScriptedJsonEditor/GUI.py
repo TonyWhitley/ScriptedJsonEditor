@@ -96,8 +96,13 @@ Need to add\n\
                           getattr(e, 'message', repr(e)))
 
   def goCommandPrepare(self):
+    """
+    'Execute job file' pressed, do it. 
+    """
     _filepath = os.path.join(self.menu2tab.jobsFolder, self.jobFileVar.get())
-    _result, _status = go(_filepath)
+    playerID = self.menu2tab.playerID
+    rF2root = self.menu2tab.rF2root
+    _result, _status = go(playerID, rF2root, _filepath)
     if _result:
       messagebox.showerror('Job error',
                            '\n'.join(_status))
@@ -244,9 +249,11 @@ class Menu2tab:
   """
   Interface between Menu and Tab classes
   """
-  def __init__(self, jobDefinitionsFolder, jobsFolder):
+  def __init__(self, jobDefinitionsFolder, jobsFolder, playerID, rF2root):
     self.__jobDefinitionsFolder = jobDefinitionsFolder
     self.__jobsFolder = jobsFolder
+    self.__playerID = playerID
+    self.__rF2root = rF2root
     self.__jobFileName = None
     self.writeJobFile = None
   @property
@@ -270,6 +277,20 @@ class Menu2tab:
   def jobFileName(self, jobFileName):
     self.__jobFileName = jobFileName
 
+  @property
+  def playerID(self):
+    return self.__playerID
+  @playerID.setter
+  def playerID(self, playerID):
+    self.__playerID = playerID  # that has to get back to the main program
+
+  @property
+  def rF2root(self):
+    return self.__rF2root
+  @rF2root.setter
+  def rF2root(self, rF2root):
+    self.__rF2root = rF2root  # that has to get back to the main program
+
   def setWriteJobFile(self, writeJobFile):
     self.writeJobFile = writeJobFile
   def writeJobFile(self, filepath):
@@ -285,16 +306,21 @@ class Menu2tab:
   def jobDefinitionsFolderRefresh(self):
     self.jobDefinitionsFolderRefresh()
 
-def go(filepath):
+def go(playerID, rF2root, filepath):
   """ Execute the job file """
-  return execute_job_file(filepath)
+  return execute_job_file(playerID, rF2root, filepath)
 
-def setMenu2tab(basedir):
+def setMenu2tab(basedir, playerID, rF2root):
+  """
+  Called from Main()
+  """
   jobsFolder = os.path.join(basedir, 'jobs')
   jobDefinitionsFolder = os.path.join(basedir, 'job_definitions')
 
   menu2tab = Menu2tab(jobDefinitionsFolder=jobDefinitionsFolder,
-                      jobsFolder=jobsFolder)
+                      jobsFolder=jobsFolder,
+                      playerID=playerID,
+                      rF2root=rF2root)
   return menu2tab
 
 def Main(playerID='player', 
@@ -309,7 +335,7 @@ def Main(playerID='player',
                             relief='sunken', borderwidth=5)
   tabGraphics.grid()
    
-  menu2tab = setMenu2tab(os.getcwd())
+  menu2tab = setMenu2tab(os.getcwd(), playerID, rF2root)
   o_tab = Tab(tabGraphics, menu2tab, goCommand=goCommand)
 
   menubar = tk.Menu(root)

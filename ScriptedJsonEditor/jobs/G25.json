@@ -2,7 +2,7 @@
   "# Config file for ScriptedJsonEditor": "",
   "# V1.0.0": "",
   "# 'jobs' file to set up a G25 for use with a monitor": "",
-  "<PLAYER.JSON>": "<RF2ROOT>\\UserData\\<PLAYER>\\Player.JSON",
+  "<PLAYER.JSON>": "<RF2ROOT>\\UserData\\<PLAYER>\\<PLAYER>.JSON",
   "<CONTROLLER.JSON>": "<RF2ROOT>\\UserData\\<PLAYER>\\Controller.JSON",
   "skip keys with # in them": true,
   "# keys with # in them are used as comments, don't change the values": "",

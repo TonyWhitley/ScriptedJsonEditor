@@ -3,7 +3,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 from tkinter import filedialog
-from os.path import join
+from os.path import join, normpath, split
 import pyperclip
 
 from ScriptedJsonEditor import versionStr, versionDate
@@ -55,6 +55,8 @@ class Menu:
     menubar.master.bind_all("<Control-s>", self.save)
     filemenu.add_command(label="Save job file as...", command=self.saveAs)
     filemenu.add_separator()
+    filemenu.add_command(label="Change rFactor player folder", command=self.changeRF2player)
+    filemenu.add_separator()
     filemenu.add_command(label="Exit", command=menubar.master.quit)
     menubar.add_cascade(label="File", menu=filemenu)
 
@@ -102,6 +104,21 @@ class Menu:
 
   def save(self, *kw):
     self.menu2tab.writeJobFile(join(self.menu2tab.jobsFolder, self.menu2tab.jobFileName))
+
+  def changeRF2player(self):
+    """
+    Change the player ID that is being edited
+    """
+    _player = join(self.menu2tab.rF2root, 'UserData')
+    _folder = filedialog.askdirectory(parent=self.parentFrame,
+                                     initialdir=_player,
+                                     title="Please select the player folder")
+    if _folder:
+      _folder = normpath(_folder)
+      self.menu2tab.rF2root, self.menu2tab.playerID = split(_folder)
+      # Now get rid of /UserData/
+      self.menu2tab.rF2root, __ = split(self.menu2tab.rF2root)
+      # GUI.py reads self.menu2tab.playerID/rF2root
 
 if __name__ == '__main__':
   # To run this tab by itself for development

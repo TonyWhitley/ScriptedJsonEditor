@@ -1,5 +1,5 @@
 {
-  "<PLAYER.JSON>": "<RF2ROOT>\\UserData\\<PLAYER>\\player.JSON",
+  "<PLAYER.JSON>": "<RF2ROOT>\\UserData\\<PLAYER>\\<PLAYER>.JSON",
   "jobs file format": 6,
   "job definition files": [
     "job_definitions\\VR_jobs.json"

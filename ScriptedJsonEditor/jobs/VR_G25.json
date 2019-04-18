@@ -3,7 +3,7 @@
   "# This sets up rF2 to run VR on a high end GPU using a G25 wheel": "",
   "# and a bunch of Game Settings I want": "",
   "# V1.0.0": "",
-  "<PLAYER.JSON>": "<RF2ROOT>\\UserData\\<PLAYER>\\player.JSON",
+  "<PLAYER.JSON>": "<RF2ROOT>\\UserData\\<PLAYER>\\<PLAYER>.JSON",
   "jobs file format": 6,
   "job definition files": [
     "job_definitions\\Game_jobs.json",

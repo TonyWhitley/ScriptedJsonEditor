@@ -18,7 +18,7 @@ from json_include import build_json_include
 from backups import Backups
 from command_line import CommandLine
 
-BUILD_REVISION = 71 # The git commit count
+BUILD_REVISION = 72 # The git commit count
 versionStr = 'Scripted JSON Editor V1.9.%d' % BUILD_REVISION
 versionDate = '2019-04-18'
 
@@ -74,6 +74,7 @@ class JsonFile():
   def read(self, filepath, dirpath=None):
     """ Read the JSON file """
     try:
+      #filepath = os.path.normpath(filepath)
       with open(filepath) as f_p:
         try:
           self.json_dict = json.load(f_p)

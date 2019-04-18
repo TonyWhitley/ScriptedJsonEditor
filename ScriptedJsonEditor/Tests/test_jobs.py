@@ -13,7 +13,7 @@ test_config = {"<CONTROLLER.JSON>":"c:\\Program Files (x86)\\Steam\\steamapps\\c
                "<PLAYER.JSON>":"c:\\Program Files (x86)\\Steam\\steamapps\\common\\rFactor 2\\UserData\\Player\\Player.JSON"}
 
 test_config_w_macros = {"<CONTROLLER.JSON>":"<RF2ROOT>\\UserData\\<PLAYER>\\Controller.JSON",
-               "<PLAYER.JSON>":"<RF2ROOT>\\UserData\\<PLAYER>\\Player.JSON"}
+               "<PLAYER.JSON>":"<RF2ROOT>\\UserData\\<PLAYER>\\<PLAYER>.JSON"}
 
 def this_path(filename):
   return os.path.join(this_folder, filename)
