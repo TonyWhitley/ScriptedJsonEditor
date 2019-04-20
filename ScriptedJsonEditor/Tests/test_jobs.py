@@ -3,7 +3,7 @@ import sys
 import unittest
 from unittest.mock import patch
 
-import test_test_strings
+import Tests.test_test_strings as test_test_strings
 
 import ScriptedJsonEditor
 

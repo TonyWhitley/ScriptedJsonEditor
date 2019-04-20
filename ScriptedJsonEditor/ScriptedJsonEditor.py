@@ -18,9 +18,9 @@ from json_include import build_json_include
 from backups import Backups
 from command_line import CommandLine
 
-BUILD_REVISION = 72 # The git commit count
+BUILD_REVISION = 73 # The git commit count
 versionStr = 'Scripted JSON Editor V1.9.%d' % BUILD_REVISION
-versionDate = '2019-04-18'
+versionDate = '2019-04-20'
 
 TooltipStr = '#Tooltip: ' # The comment in the job descriptions files that
                           # indicates Tooltip text to be used
@@ -51,6 +51,8 @@ class JobFileFormatError(Exception):
 
 class JobFailedError(Exception):
   """ The job failed to run """
+  def __init__(self):
+    self.msg = """ The job failed """
   pass
 
 class NoSuchJobError(Exception):
@@ -591,7 +593,7 @@ def execute_job_file(playerID, rF2root, jobs_file_name):
       if len(_report):
         _status.append(_report)
     except JobFailedError as e: # failed to execute job
-      _status.append(e)
+      _status.append(e.msg)
       return 98, _status
     except FileNotFoundError:
       _status.append('Failed opening "%s"' % (job['JSONfileToBeEdited']))

@@ -3,7 +3,7 @@ import unittest
 from unittest.mock import patch
 
 import ScriptedJsonEditor
-import test_test_strings
+import Tests.test_test_strings as test_test_strings
 import command_line
 
 filepath = r'player.json'

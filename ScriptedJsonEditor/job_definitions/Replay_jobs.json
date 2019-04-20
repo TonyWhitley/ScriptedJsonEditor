@@ -1,0 +1,186 @@
+{
+  "# Config file for ScriptedJsonEditor": "",
+  "# V1.0.0": "",
+  "# Note: any key with a # is a comment": "",
+  "# Jobs for controlling replay settings": "",
+  "# Jobs provided in this file": [
+    "Driver aid buttons disable",
+    "Cursor keys control seat"
+  ],
+  "jobs file format": 6,
+  "job definitions": {
+    "Compress Replay 0": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "Game Options": {
+          "#Tooltip: No compression": "",
+          "Compress Replay":0,
+          "Compress Replay#":"0 (none) to 4 (highest); how much to compress VCR file (uses less disk space but takes more time to write when a session ends)"
+        }
+      }
+    },
+    "Compress Replay 1": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "Game Options": {
+          "Compress Replay":1,
+          "Compress Replay#":"0 (none) to 4 (highest); how much to compress VCR file (uses less disk space but takes more time to write when a session ends)"
+        }
+      }
+    },
+    "Compress Replay 2": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "Game Options": {
+          "Compress Replay":2,
+          "Compress Replay#":"0 (none) to 4 (highest); how much to compress VCR file (uses less disk space but takes more time to write when a session ends)"
+        }
+      }
+    },
+    "Compress Replay 3": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "Game Options": {
+          "Compress Replay":3,
+          "Compress Replay#":"0 (none) to 4 (highest); how much to compress VCR file (uses less disk space but takes more time to write when a session ends)"
+        }
+      }
+    },
+    "Compress Replay 4": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "Game Options": {
+          "#Tooltip: Maximum compression": "",
+          "Compress Replay":4,
+          "Compress Replay#":"0 (none) to 4 (highest); how much to compress VCR file (uses less disk space but takes more time to write when a session ends)"
+        }
+      }
+    },
+    "Record hotlaps": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "Game Options": {
+          "Record Hotlaps":1,
+          "Record Hotlaps#":"whether to record hotlaps or not (must have replay recording on)"
+        }
+      }
+    },
+    "Don't record hotlaps": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "Game Options": {
+          "Record Hotlaps":1,
+          "Record Hotlaps#":"whether to record hotlaps or not (must have replay recording on)"
+        }
+      }
+    },
+    "Record replays": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "Game Options": {
+          "Record Replays":1,
+          "Record Replays#":"whether to record replays or not"
+        }
+      }
+    },
+    "Don't record replays": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "Game Options": {
+          "Record Replays":0,
+          "Record Replays#":"whether to record replays or not"
+        }
+      }
+    },
+    "Record to memory": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "Game Options": {
+          "#Tooltip: Record replays to memory (may possibly reduce stuttering, but at your own risk because memory usage will be significant for long races)": "",
+          "Record To Memory":true,
+          "Record To Memory#":"record replays to memory rather than disk (may possibly reduce stuttering, but at your own risk because memory usage will be significant for long races)"
+        }
+      }
+    },
+    "Record to disc": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "Game Options": {
+          "#Tooltip: Record replays to disc (may cause stuttering, but memory usage will be lower for long races)": "",
+          "Record To Memory":false,
+          "Record To Memory#":"record replays to memory rather than disk (may possibly reduce stuttering, but at your own risk because memory usage will be significant for long races)"
+        }
+      }
+    },
+    "Save All Replay Sessions": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "Game Options": {
+          "Save All Replay Sessions":true,
+          "Save All Replay Sessions#":"whether to save the replay from each session"
+        }
+      }
+    },
+    "Save only qualify and race replays": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "Game Options": {
+          "Save All Replay Sessions":true,
+          "Save All Replay Sessions#":"whether to save the replay from each session"
+        }
+      }
+    }
+  }
+}
