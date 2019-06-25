@@ -18,7 +18,7 @@ from json_include import build_json_include
 from backups import Backups
 from command_line import CommandLine
 
-BUILD_REVISION = 75 # The git commit count
+BUILD_REVISION = 76 # The git commit count
 versionStr = 'Scripted JSON Editor V1.10.%d' % BUILD_REVISION
 versionDate = '2019-06-25'
 
@@ -580,7 +580,6 @@ def execute_job_file(playerID, rF2root, jobs_file_name):
   _status = []
   try:
     _JSNO_O = JsonJobsFile()
-    print('jobs_file_name', jobs_file_name)
     __, config = _JSNO_O.read(jobs_file_name)
     config["<PLAYER.JSON>"] = config["<PLAYER.JSON>"].replace('<PLAYER>', playerID)
     config["<PLAYER.JSON>"] = config["<PLAYER.JSON>"].replace('<RF2ROOT>', rF2root)
