@@ -18,7 +18,7 @@ from json_include import build_json_include
 from backups import Backups
 from command_line import CommandLine
 
-BUILD_REVISION = 74 # The git commit count
+BUILD_REVISION = 75 # The git commit count
 versionStr = 'Scripted JSON Editor V1.10.%d' % BUILD_REVISION
 versionDate = '2019-06-25'
 
@@ -259,7 +259,8 @@ class JsonJobsFile(JsonFile):
           In the job file job description files are specified relative 
           to the parent folder of the job file (self.filepath).
           """
-          _job_description_file = os.path.join(
+          if self.filepath: # unit tests may not set it
+            _job_description_file = os.path.join(
               os.path.dirname(
                   os.path.dirname(self.filepath)),
               _job_description_file)
