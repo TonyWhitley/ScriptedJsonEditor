@@ -51,8 +51,12 @@ class Menu:
     filemenu = tk.Menu(menubar, tearoff=0)
     filemenu.add_command(label="Open job definitions folder", command=self.openJobDefinitionsFolder)
     filemenu.add_command(label="Open jobs folder", command=self.openJobsFolder)
-    filemenu.add_command(label="Save job file", command=self.save, accelerator='Ctrl+S')
-    menubar.master.bind_all("<Control-s>", self.save)
+    filemenu.add_command(label="Save job file", command=self.save)
+    # The shortcut operates when rFactory Saves scenario too
+    # so don't use it.
+    # , accelerator='Ctrl+S')
+    # menubar.master.bind_all("<Control-s>", self.save)
+
     filemenu.add_command(label="Save job file as...", command=self.saveAs)
     filemenu.add_separator()
     filemenu.add_command(label="Change rFactor player folder", command=self.changeRF2player)
@@ -60,19 +64,14 @@ class Menu:
     filemenu.add_command(label="Exit", command=menubar.master.quit)
     menubar.add_cascade(label="File", menu=filemenu)
 
-    """
-    # create more pulldown menus
-    editmenu = tk.Menu(menubar, tearoff=0)
-    editmenu.add_command(label="Cut", command=hello)
-    editmenu.add_command(label="Copy", command=hello)
-    editmenu.add_command(label="Paste", command=hello)
-    menubar.add_cascade(label="Edit", menu=editmenu)
-    """
-
     helpmenu = tk.Menu(menubar, tearoff=0)
     helpmenu.add_command(label="FAQ", command=faq)
     helpmenu.add_command(label="About", command=about)
     menubar.add_cascade(label="Help", menu=helpmenu)
+
+  def controlS(self):
+    """ Add the Ctrl/S accelerator """
+    menubar.master.bind_all("<Control-s>", self.save)
 
   def openJobDefinitionsFolder(self):
     _folder = filedialog.askdirectory(parent=self.parentFrame,
@@ -98,7 +97,7 @@ class Menu:
                                  defaultextension='.JSON',
                                  filetypes=[('Job files', 'JSON')])
     if _filepath:
-      self.menu2tab.jobFileName = _filepath
+      self.menu2tab.jobFileName = os.path.basename(_filepath)
       self.menu2tab.writeJobFile(_filepath)
       self.menu2tab.jobsFolderRefresh()
 
@@ -155,5 +154,6 @@ if __name__ == '__main__':
 
   o_menu = Menu(menubar=filemenu, 
                 menu2tab=menu2tab)
+  o_menu.controlS() # Add the Ctrl/S accelerator
 
   root.mainloop()

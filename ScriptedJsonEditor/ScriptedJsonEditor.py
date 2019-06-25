@@ -18,9 +18,9 @@ from json_include import build_json_include
 from backups import Backups
 from command_line import CommandLine
 
-BUILD_REVISION = 73 # The git commit count
-versionStr = 'Scripted JSON Editor V1.9.%d' % BUILD_REVISION
-versionDate = '2019-04-20'
+BUILD_REVISION = 74 # The git commit count
+versionStr = 'Scripted JSON Editor V1.10.%d' % BUILD_REVISION
+versionDate = '2019-06-25'
 
 TooltipStr = '#Tooltip: ' # The comment in the job descriptions files that
                           # indicates Tooltip text to be used
@@ -255,6 +255,14 @@ class JsonJobsFile(JsonFile):
       for _job_description_file in self.json_dict["job definition files"]:
         _JDFO = JsonJobsDefinitionsFile(self.config)
         try:
+          """
+          In the job file job description files are specified relative 
+          to the parent folder of the job file (self.filepath).
+          """
+          _job_description_file = os.path.join(
+              os.path.dirname(
+                  os.path.dirname(self.filepath)),
+              _job_description_file)
           _JDFO.read(_job_description_file)
           _job_definitions[_JDFO.get_filename()] = _JDFO
         except:
@@ -571,6 +579,7 @@ def execute_job_file(playerID, rF2root, jobs_file_name):
   _status = []
   try:
     _JSNO_O = JsonJobsFile()
+    print('jobs_file_name', jobs_file_name)
     __, config = _JSNO_O.read(jobs_file_name)
     config["<PLAYER.JSON>"] = config["<PLAYER.JSON>"].replace('<PLAYER>', playerID)
     config["<PLAYER.JSON>"] = config["<PLAYER.JSON>"].replace('<RF2ROOT>', rF2root)

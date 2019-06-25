@@ -36,9 +36,10 @@ class Test_test_main(unittest.TestCase):
       # check before changes
       _JSNO_O = ScriptedJsonEditor.JsonRfactorFile()
       _player = _JSNO_O.read(TEST_PLAYER_JSON)
-      assert _player["Graphic Options"]["Allow Letterboxing"] == True, _player["Graphic Options"]["Allow
-      Letterboxing"]
-      assert _player["Graphic Options"]["Automap"] == 3, _player["Graphic Options"]["Automap"]
+      assert _player["Graphic Options"]["Allow Letterboxing"] == True, \
+        _player["Graphic Options"]["Allow Letterboxing"]
+      assert _player["Graphic Options"]["Automap"] == 3, \
+        _player["Graphic Options"]["Automap"]
 
       sys.argv = ['ScriptedJsonEditor', r'Tests\jobs_test1.json']
 
@@ -47,9 +48,10 @@ class Test_test_main(unittest.TestCase):
       # check the changes were made
       _JSNO_O = ScriptedJsonEditor.JsonRfactorFile()
       _player = _JSNO_O.read(TEST_PLAYER_JSON)
-      assert _player["Graphic Options"]["Allow Letterboxing"] == False, _player["Graphic Options"][
-      "Allow Letterboxing"]
-      assert _player["Graphic Options"]["Automap"] == 2, _player["Graphic Options"]["Automap"]
+      assert _player["Graphic Options"]["Allow Letterboxing"] == False, \
+        _player["Graphic Options"]["Allow Letterboxing"]
+      assert _player["Graphic Options"]["Automap"] == 2, \
+        _player["Graphic Options"]["Automap"]
 
     finally:
       # restore the original player.JSON
@@ -66,10 +68,10 @@ class Test_test_main(unittest.TestCase):
         # check before changes
         _JSNO_O = ScriptedJsonEditor.JsonRfactorFile()
         _player = _JSNO_O.read(TEST_PLAYER_JSON)
-        assert _player["Graphic Options"]["Track Detail"] == 0, _player["Graphic Options"]["Track
-        Detail"]
-        assert _player["Graphic Options"]["Texture Filter"] == 0, _player["Graphic Options"]["Texture
-        Filter"]
+        assert _player["Graphic Options"]["Track Detail"] == 0, \
+          _player["Graphic Options"]["Track Detail"]
+        assert _player["Graphic Options"]["Texture Filter"] == 0, \
+          _player["Graphic Options"]["Texture Filter"]
 
         sys.argv = ['ScriptedJsonEditor', r'Tests\jobs_test_configs.json']
 
@@ -78,9 +80,10 @@ class Test_test_main(unittest.TestCase):
         # check the changes were made
         _JSNO_O = ScriptedJsonEditor.JsonRfactorFile()
         _player = _JSNO_O.read(TEST_PLAYER_JSON)
-        assert _player["Graphic Options"]["Track Detail"] == 1, _player["Graphic Options"]["Track
-        Detail"]
-        assert _player["Graphic Options"]["Texture Filter"] == 4, _player["Graphic Options"][""]
+        assert _player["Graphic Options"]["Track Detail"] == 1, \
+          _player["Graphic Options"]["Track Detail"]
+        assert _player["Graphic Options"]["Texture Filter"] == 4, \
+          _player["Graphic Options"][""]
 
       finally:
         # restore the original player.JSON

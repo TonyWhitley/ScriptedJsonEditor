@@ -62,7 +62,7 @@ Need to add\n\
                                 height=5,
                                 width=20,
                                 command=self.goCommandPrepare)
-      self.goButton.grid(column=1, row=0, padx=15, pady=20)
+      self.goButton.grid(column=0, row=0, padx=15, pady=20)
  
   def fillJobDropdown(self, parentFrame):
     # Dictionary with options
@@ -83,7 +83,7 @@ Need to add\n\
     self.jobDefinitionFrames.clear_checkbuttons()
     #self.initialJobDefinitions = {} # for detecting if anything has changed
     _jobsFile = os.path.join(self.menu2tab.jobsFolder, self.jobFileVar.get())
-    self.menu2tab.jobFileName = _jobsFile
+    self.menu2tab.jobFileName = os.path.basename(_jobsFile)
     try:
       _jobs = read_jobs_in_jobs_file(_jobsFile)
       for job in _jobs:
