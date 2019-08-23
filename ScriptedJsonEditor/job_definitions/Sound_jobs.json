@@ -1,0 +1,41 @@
+{
+  "# Config file for ScriptedJsonEditor": "",
+  "# V1.0.0": "",
+  "# Note: any key with a # is a comment": "",
+  "# Jobs for controlling replay settings": "",
+  "# Jobs provided in this file": [
+    "Pop and crackle fix",
+    "Revert pop and crackle fix"
+  ],
+  "jobs file format": 6,
+  "job definitions": {
+    "Pop and crackle fix": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "Sound Options":{
+          "#Tooltip: https://forum.studio-397.com/index.php?threads/new-two-strong-pack-mclaren-senna-gtr-the-aston-vantage-gte.63860/page-7#post-996641": "",
+          "Buffer Count":35,
+          "Buffer Count#":"Controls size of mixing buffer, small values reduce latency but can cause skipping; latency = 1ms * value, which doesn't include driver\/card\/OS latencies (which are humongous on Windows)!"
+        }
+      }
+    },
+    "Revert pop and crackle fix": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "Sound Options":{
+          "#Tooltip: https://forum.studio-397.com/index.php?threads/new-two-strong-pack-mclaren-senna-gtr-the-aston-vantage-gte.63860/page-7#post-996641": "",
+          "Buffer Count":25,
+          "Buffer Count#":"Controls size of mixing buffer, small values reduce latency but can cause skipping; latency = 1ms * value, which doesn't include driver\/card\/OS latencies (which are humongous on Windows)!"
+        }
+      }
+    }
+  }
+}

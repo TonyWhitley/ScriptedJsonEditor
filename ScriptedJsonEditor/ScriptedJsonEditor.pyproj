@@ -89,6 +89,7 @@
     <Content Include="jobs\VR.json" />
     <Content Include="job_definitions\Replay_jobs.json" />
     <Content Include="job_definitions\SiG_jobs.json" />
+    <Content Include="job_definitions\Sound_jobs.json" />
     <Content Include="job_definitions\VR_jobs.json" />
   </ItemGroup>
   <ItemGroup>
