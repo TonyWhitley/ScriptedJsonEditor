@@ -57,13 +57,9 @@
             0,
             89
           ],
+          "#Tooltip: Disable right wheel button used for PTT": "",
           "Control - Look Right": [
             0,
-            89
-          ],
-          "#Tooltip: Disable right wheel button used for PTT": "",
-          "Control - VR : Re-Center head position": [
-            1,
             89
           ]
         }
@@ -156,6 +152,7 @@
       "rFactor escape slash": true,
       "# rFactor 2 escapes /. Also remove space after the :": "",
       "#Tooltip: Button mapping: b1:32 to b8:39 b16:47 to b19:50  ": "",
+      "#Tooltip: Headlights on Ctrl to work with rF2headlights  ": "",
       "edits": {
         "Input": {
           "Control - Starter":[
@@ -168,7 +165,7 @@
           ],
           "Control - Headlights": [
             1,
-            49
+            29
           ],
           "Control - Speed Limiter":[
             1,
