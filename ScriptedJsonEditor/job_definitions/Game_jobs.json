@@ -177,7 +177,39 @@
         }
       }
     },
-    "Repeat shifts": {
+    "t0p5ecret's AI settings": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "edits": {
+        "Game Options":{
+          "#Tooltip: https://www.youtube.com/watch?time_continue=3&v=3blb7EVPAYQ": "",
+          "#Tooltip: AI settings by https://forum.studio-397.com/index.php?members/t0p5ecret.29333 aka Mark Pearce": "",
+          "AI Aggression":0.66,
+          "AI Brake_Grip Usage":0.9725,
+          "AI Brake_Grip Usage#":"Fraction of theoretical brake grip that AI attempt to use (can be overrode in HDV)",
+          "AI Brake_Power Usage":0.92,
+          "AI Brake_Power Usage#":"Fraction of theoretical brake power that AI attempt to use (can be overrode in HDV)",
+          "AI Calibrate Sample Size":10,
+          "AI Calibrate Sample Size#":"When AI calibration is set to 2, this is the number of trials the AI should run while testing each parameter.  bigger # == larger file size of saved data",
+          "AI Corner_Grip Usage":0.97,
+          "AI Corner_Grip Usage#":"Fraction of theoretical cornering grip that AI attempt to use (can be overrode in HDV)",
+          "AI Formation by Position":true,
+          "AI Formation by Position#":"If true, AI will line up for yellow or formation laps by fixed position behind the pace car, if false they will line up relative to specific car they should be following",
+          "AI Fuel Mult":0.99,
+          "AI Fuel Mult#":"Additional fuel multiplier for AIs because of their driving style",
+          "AI Limiter":0.40,
+          "AI Limiter#":"Range: 0.0 (no limiting) - 1.0 (limiting used to make racing closer but also make more driver differences on flat-out tracks)",
+          "AI Logic Override":0,
+          "AI Logic Override#":"use bitfields to disable certain AI behaviors. 1= blocking line, 2 = flexible superspeedway driving line",
+          "AI Mistakes":1.0,
+          "AI Mistakes#":"a range of (intentional) AI mistakes from 0.0 (none) to 1.0 (sometimes).  Anything above 1.0 multiplies the frequency",
+          "AI Power Calibration":5,
+          "AI Power Calibration#":"Adjustments with AI strength (0=none, or add the following: 1=power, 2=gearing, 4=fuel)",
+          "Autocalibrate AI Mode":2,
+          "Autocalibrate AI Mode#":"When in a test day with 1 AI, AI will attempt to perfect his driving line, and save his knowledge for future use"
+        }
+      }
+    },
+  "Repeat shifts": {
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "edits": {
         "DRIVING AIDS": {
