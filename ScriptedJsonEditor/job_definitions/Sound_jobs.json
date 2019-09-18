@@ -5,7 +5,8 @@
   "# Jobs for controlling replay settings": "",
   "# Jobs provided in this file": [
     "Pop and crackle fix",
-    "Revert pop and crackle fix"
+    "Revert pop and crackle fix",
+    "Dodd's RF2 Audio Overhaul 1.0"
   ],
   "jobs file format": 6,
   "job definitions": {
@@ -16,10 +17,10 @@
       "rFactor escape slash": true,
       "# rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
-        "Sound Options":{
+        "Sound Options": {
           "#Tooltip: https://forum.studio-397.com/index.php?threads/new-two-strong-pack-mclaren-senna-gtr-the-aston-vantage-gte.63860/page-7#post-996641": "",
-          "Buffer Count":35,
-          "Buffer Count#":"Controls size of mixing buffer, small values reduce latency but can cause skipping; latency = 1ms * value, which doesn't include driver\/card\/OS latencies (which are humongous on Windows)!"
+          "Buffer Count": 35,
+          "Buffer Count#": "Controls size of mixing buffer, small values reduce latency but can cause skipping; latency = 1ms * value, which doesn't include driver\/card\/OS latencies (which are humongous on Windows)!"
         }
       }
     },
@@ -30,10 +31,59 @@
       "rFactor escape slash": true,
       "# rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
-        "Sound Options":{
+        "Sound Options": {
           "#Tooltip: https://forum.studio-397.com/index.php?threads/new-two-strong-pack-mclaren-senna-gtr-the-aston-vantage-gte.63860/page-7#post-996641": "",
-          "Buffer Count":25,
-          "Buffer Count#":"Controls size of mixing buffer, small values reduce latency but can cause skipping; latency = 1ms * value, which doesn't include driver\/card\/OS latencies (which are humongous on Windows)!"
+          "Buffer Count": 25,
+          "Buffer Count#": "Controls size of mixing buffer, small values reduce latency but can cause skipping; latency = 1ms * value, which doesn't include driver\/card\/OS latencies (which are humongous on Windows)!"
+        }
+      }
+    },
+    "Dodd's RF2 Audio Overhaul 1.0": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "Sound Options": {
+          "#Tooltip: https://www.racedepartment.com/downloads/dodds-rf2-audio-overhaul.28744/": "",
+          "Buffer Count": 24,
+          "Buffer Count#": "Controls size of mixing buffer, small values reduce latency but can cause skipping; latency = 1ms * value, which doesn't include driver\/card\/OS latencies (which are humongous on Windows)!",
+          "Maximum Effects": 40,
+          "Maximum Effects#": "Maximum sound effects playing simultaneously",
+          "Music": 0,
+          "Options Volume": 0,
+          "Options Volume#": "0.0-1.0",
+          "Other Volume Ratio": 0.52381,
+          "Other Volume Ratio#": "Additional volume multiplier for other vehicles",
+          "Pit Volume": 0.2,
+          "Pit Volume#": "0.0-1.0, controls volume of pit sounds while you're at the monitor",
+          "Player Volume Ratio": 1,
+          "Player Volume Ratio#": "Additional volume multiplier for player's vehicle",
+          "Rain Volume Mult": 0.3,
+          "Rain Volume Mult#": "Simulation will adjust rain volume derived from rain intensity. This parameter will either reduce or enhance that adjustment.",
+          "Reverb Decay": 0.6,
+          "Reverb Decay#": "Controls decay function (0.0=short, 1.0=long)",
+          "Reverb Dry Volume": 1,
+          "Reverb Dry Volume#": "Volume increase for original sound (0.0-1.0)",
+          "Reverb Max Dist": 20,
+          "Reverb Max Dist#": "Distance from wall at which reverb drops to zero",
+          "Reverb Wet Volume": 1,
+          "Reverb Wet Volume#": "Reverb volume multiplier (0.0-1.0)",
+          "SoundFX Volume": 1,
+          "SoundFX Volume#": "0.0-1.0",
+          "Speed Of Sound": 340,
+          "Speed Of Sound#": "340m\/s at sea level, but lower numbers help exaggerate the Doppler effect",
+          "Spotter Volume": 0.161905,
+          "Spotter Volume#": "0.0-1.0",
+          "Thunder Volume Mult": 0.8,
+          "Thunder Volume Mult#": "Simulation will adjust thunder volume derived from storm intensity and distance. This parameter will either reduce or enhance that adjustment.",
+          "Tire Volume Ratio": 0.666667,
+          "Tire Volume Ratio#": "Additional volume multiplier for tires",
+          "Track Load Commentary": true,
+          "Vehicle Roadnoise FreqMin": 0.2,
+          "Vehicle Roadnoise FreqMult": 0.0189062,
+          "Vehicle Skidding FreqGrip": -0.6
         }
       }
     }
