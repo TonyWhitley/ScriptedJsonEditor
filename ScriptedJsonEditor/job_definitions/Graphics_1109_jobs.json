@@ -8,7 +8,7 @@
     "Mid range GPU",
     "High end GPU",
     "FPS savers",
-	"FPS Limit 100 (VR)"
+    "FPS Limit 100 (VR)"
   ],
   "# The jobs follow. Add more if you want": "",
   "############################################": "",
@@ -16,6 +16,7 @@
     "Low end GPU": {
       "#Tooltip: Set graphic options for Low end GPU as recommended in": "",
       "#Tooltip: https://forum.studio-397.com/index.php?threads/latest-release-1109-rain-effects-and-more.58675/": "",
+      "#Tooltip: Added texture overrides": "",
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "skip keys with # in them": true,
       "# keys with # in them are used as comments, don't change the values": "",
@@ -35,6 +36,9 @@
           "#Tooltip: And some further settings that are not mentioned but seem like a good idea": "",
           "Garage Detail": 0.01,
           "Garage Detail#": "LOD multiplier when vehicle is in garage (0.01-1.00)",
+          "Heat FX Fade Speed":0,
+          "Heat FX Fade Speed#":"Speed at which exhaust heat effects reduce by half (0 to completely disable)",
+          "Heat FX Fade Speed#":"(Disabled otherwise some cars have a blue circle behind them)",
           "Max Headlights": 20,
           "Max Headlights#": "Max headlights visible relative to your car.",
           "Rearview_Back_Clip": 30,
@@ -44,10 +48,14 @@
           "HUD Race Stats": 0,
           "HUD Tachometer": 0,
           "Max Visible Vehicles": 15,
-          "Opponent Detail": 1,
+          "Opponent Detail": 0,
           "Opponent Detail#": "0=Low 1=Medium 2=High 3=Full",
+          "Opponent Texture Override":1,
+          "Opponent Texture Override#":"For opponents' vehicle textures: -1=use Opponent Detail, 0-3=override value",
           "Player Detail": 2,
           "Player Detail#": "0=Low 1=Medium 2=High 3=Full",
+          "Player Texture Override":-1,
+          "Player Texture Override#":"For player's vehicle textures: -1=use Player Detail, 0-3=override value",
           "Rain FX Quality": 1,
           "Rain FX Quality#": "If 1, enable rain drops, if >1 enable rain effects from Low to High",
           "Rearview Driving": 0,
@@ -74,6 +82,7 @@
     "Mid range GPU": {
       "#Tooltip: Set graphic options for Mid range GPU as recommended in": "",
       "#Tooltip: https://forum.studio-397.com/index.php?threads/latest-release-1109-rain-effects-and-more.58675/": "",
+      "#Tooltip: Added texture overrides": "",
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "skip keys with # in them": true,
       "# keys with # in them are used as comments, don't change the values": "",
@@ -93,6 +102,9 @@
           "#Tooltip: And some further settings that are not mentioned but seem like a good idea": "",
           "Garage Detail": 0.01,
           "Garage Detail#": "LOD multiplier when vehicle is in garage (0.01-1.00)",
+          "Heat FX Fade Speed":0,
+          "Heat FX Fade Speed#":"Speed at which exhaust heat effects reduce by half (0 to completely disable)",
+          "Heat FX Fade Speed#":"(Disabled otherwise some cars have a blue circle behind them)",
           "Max Headlights": 20,
           "Max Headlights#": "Max headlights visible relative to your car.",
           "HUD": 7,
@@ -100,10 +112,14 @@
           "HUD Race Stats": 1,
           "HUD Tachometer": 1,
           "Max Visible Vehicles": 15,
-          "Opponent Detail": 2,
+          "Opponent Detail": 1,
           "Opponent Detail#": "0=Low 1=Medium 2=High 3=Full",
+          "Opponent Texture Override":2,
+          "Opponent Texture Override#":"For opponents' vehicle textures: -1=use Opponent Detail, 0-3=override value",
           "Player Detail": 3,
           "Player Detail#": "0=Low 1=Medium 2=High 3=Full",
+          "Player Texture Override":-1,
+          "Player Texture Override#":"For player's vehicle textures: -1=use Player Detail, 0-3=override value",
           "Rain FX Quality": 2,
           "Rain FX Quality#": "If 1, enable rain drops, if >1 enable rain effects from Low to High",
           "Rearview Driving": 0,
@@ -130,6 +146,7 @@
     "High end GPU": {
       "#Tooltip: Set graphic options for High end GPU as recommended in": "",
       "#Tooltip: https://forum.studio-397.com/index.php?threads/latest-release-1109-rain-effects-and-more.58675/": "",
+      "#Tooltip: Added texture overrides": "",
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "skip keys with # in them": true,
       "# keys with # in them are used as comments, don't change the values": "",
@@ -149,6 +166,9 @@
           "#Tooltip: And some further settings that are not mentioned but seem like a good idea": "",
           "Garage Detail": 0.01,
           "Garage Detail#": "LOD multiplier when vehicle is in garage (0.01-1.00)",
+          "Heat FX Fade Speed":0,
+          "Heat FX Fade Speed#":"Speed at which exhaust heat effects reduce by half (0 to completely disable)",
+          "Heat FX Fade Speed#":"(Disabled otherwise some cars have a blue circle behind them)",
           "Max Headlights": 20,
           "Max Headlights#": "Max headlights visible relative to your car.",
           "HUD": 7,
@@ -158,8 +178,12 @@
           "Max Visible Vehicles": 15,
           "Opponent Detail": 3,
           "Opponent Detail#": "0=Low 1=Medium 2=High 3=Full",
+          "Opponent Texture Override":3,
+          "Opponent Texture Override#":"For opponents' vehicle textures: -1=use Opponent Detail, 0-3=override value",
           "Player Detail": 3,
           "Player Detail#": "0=Low 1=Medium 2=High 3=Full",
+          "Player Texture Override":3,
+          "Player Texture Override#":"For player's vehicle textures: -1=use Player Detail, 0-3=override value",
           "Rain FX Quality": 3,
           "Rain FX Quality#": "If 1, enable rain drops, if >1 enable rain effects from Low to High",
           "Rearview Driving": 0,
@@ -223,13 +247,13 @@
       "edits": {
         "Graphic Options": {
           "Lightning Probability":0,
-		  "Lightning Probability#":"Probability of seeing lightning (0.0-1.5)",
+      "Lightning Probability#":"Probability of seeing lightning (0.0-1.5)",
           "Rain FX Quality":0,
-		  "Rain FX Quality#":"If 1, enable rain drops, if >1 enable rain effects from Low to High",
+      "Rain FX Quality#":"If 1, enable rain drops, if >1 enable rain effects from Low to High",
           "Raindrop Flow":0,
-		  "Raindrop Flow#":"Add to enable: 1=flow over current 2=flow over other vehicles",
+      "Raindrop Flow#":"Add to enable: 1=flow over current 2=flow over other vehicles",
           "Rainspray Flow":0,
-		  "Rainspray Flow#":"Add to enable: 1=flow over current 2=flow over other vehicles"
+      "Rainspray Flow#":"Add to enable: 1=flow over current 2=flow over other vehicles"
         }
       }
     },
@@ -243,13 +267,13 @@
       "edits": {
         "Graphic Options": {
           "Lightning Probability":1,
-		  "Lightning Probability#":"Probability of seeing lightning (0.0-1.5)",
+      "Lightning Probability#":"Probability of seeing lightning (0.0-1.5)",
           "Rain FX Quality":2,
-		  "Rain FX Quality#":"If 1, enable rain drops, if >1 enable rain effects from Low to High",
+      "Rain FX Quality#":"If 1, enable rain drops, if >1 enable rain effects from Low to High",
           "Raindrop Flow":1,
-		  "Raindrop Flow#":"Add to enable: 1=flow over current 2=flow over other vehicles",
+      "Raindrop Flow#":"Add to enable: 1=flow over current 2=flow over other vehicles",
           "Rainspray Flow":1,
-		  "Rainspray Flow#":"Add to enable: 1=flow over current 2=flow over other vehicles"
+      "Rainspray Flow#":"Add to enable: 1=flow over current 2=flow over other vehicles"
         }
       }
     },
@@ -263,13 +287,13 @@
       "edits": {
         "Graphic Options": {
           "Lightning Probability":1,
-		  "Lightning Probability#":"Probability of seeing lightning (0.0-1.5)",
+      "Lightning Probability#":"Probability of seeing lightning (0.0-1.5)",
           "Rain FX Quality":3,
-		  "Rain FX Quality#":"If 1, enable rain drops, if >1 enable rain effects from Low to High",
+      "Rain FX Quality#":"If 1, enable rain drops, if >1 enable rain effects from Low to High",
           "Raindrop Flow":2,
-		  "Raindrop Flow#":"Add to enable: 1=flow over current 2=flow over other vehicles",
+      "Raindrop Flow#":"Add to enable: 1=flow over current 2=flow over other vehicles",
           "Rainspray Flow":2,
-		  "Rainspray Flow#":"Add to enable: 1=flow over current 2=flow over other vehicles"
+      "Rainspray Flow#":"Add to enable: 1=flow over current 2=flow over other vehicles"
         }
       }
     },

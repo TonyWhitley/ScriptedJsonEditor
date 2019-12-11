@@ -25,7 +25,8 @@
         "Showroom zoom on",
         "No formation lap",
         "Race replays only",
-        "AI mistakes 60%"
+        "t0p5ecret's AI settings",
+        "Repeat shifts"
       ],
       "G25_jobs": [
         "Wheel settings",
@@ -47,6 +48,9 @@
       "Keyboard_jobs": [
         "Driver aid buttons disable",
         "Cursor keys control seat"
+      ],
+      "Sound_jobs": [
+      "Dodd's RF2 Audio Overhaul 1.0"
       ]
     }
   ]

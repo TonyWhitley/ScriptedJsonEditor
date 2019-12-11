@@ -7,6 +7,7 @@
     "universal": {
       "#Tooltip: Set graphic options for VR as recommended in": "",
       "#Tooltip: https://forum.studio-397.com/index.php?threads/rfactor2-the-vr-thread-settings-tips.55249/": "",
+      "#Tooltip: Added texture overrides": "",
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "skip keys with # in them": true,
       "# keys with # in them are used as comments, don't change the values": "",
@@ -34,10 +35,14 @@
           "Look Up/Down Angle#": "Angle to look up\/down (pitch) w\/ controller in radians (= degrees \/ 57)",
           "Max Headlights": 20,
           "Max Headlights#": "Max headlights visible relative to your car.",
-          "Opponent Detail": 2,
+          "Opponent Detail": 0,
           "Opponent Detail#": "0=Low 1=Medium 2=High 3=Full",
-          "Player Detail": 1,
-          "Player Detail#": "0=Low 1=Medium 2=High 3=Full"
+          "Opponent Texture Override":3,
+          "Opponent Texture Override#":"For opponents' vehicle textures: -1=use Opponent Detail, 0-3=override value",
+          "Player Detail": 2,
+          "Player Detail#": "0=Low 1=Medium 2=High 3=Full",
+          "Player Texture Override":3,
+          "Player Texture Override#":"For player's vehicle textures: -1=use Player Detail, 0-3=override value"
         }
       }
     },
