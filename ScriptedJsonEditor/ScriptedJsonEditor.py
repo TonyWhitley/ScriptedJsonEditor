@@ -18,9 +18,9 @@ from json_include import build_json_include
 from backups import Backups
 from command_line import CommandLine
 
-BUILD_REVISION = 76 # The git commit count
+BUILD_REVISION = 84 # The git commit count
 versionStr = 'Scripted JSON Editor V1.10.%d' % BUILD_REVISION
-versionDate = '2019-06-25'
+versionDate = '2019-12-20'
 
 TooltipStr = '#Tooltip: ' # The comment in the job descriptions files that
                           # indicates Tooltip text to be used
@@ -219,9 +219,9 @@ class JsonJobsFile(JsonFile):
     self.json_dict = super().read(filepath)
     return self.json_dict
   def read(self, filepath, dirpath=None):
-    """ 
-    return the JSON as a dict after substituting config 
-    keys like JSONfileToBeEdited 
+    """
+    return the JSON as a dict after substituting config
+    keys like JSONfileToBeEdited
     """
     self._raw_read(filepath, dirpath)
     return self._read()
@@ -256,7 +256,7 @@ class JsonJobsFile(JsonFile):
         _JDFO = JsonJobsDefinitionsFile(self.config)
         try:
           """
-          In the job file job description files are specified relative 
+          In the job file job description files are specified relative
           to the parent folder of the job file (self.filepath).
           """
           if self.filepath: # unit tests may not set it
@@ -275,7 +275,7 @@ class JsonJobsFile(JsonFile):
             if __j:
               _result.append(__j)
             else: # job not found in Job Description file
-              _result.append('job "%s" not found in Job Description file "%s"' % 
+              _result.append('job "%s" not found in Job Description file "%s"' %
                     (_job, _job_description_file))
               raise NoSuchJobError
     except KeyError:
@@ -601,12 +601,17 @@ def execute_job_file(playerID, rF2root, jobs_file_name):
       _report = run_job(playerID, rF2root, job, config)
       if len(_report):
         _status.append(_report)
+      else:
+        pass # debug trap
     except JobFailedError as e: # failed to execute job
       _status.append(e.msg)
       return 98, _status
     except FileNotFoundError:
       _status.append('Failed opening "%s"' % (job['JSONfileToBeEdited']))
       return 99, _status
+    except:
+      print(sys.exc_info()[0])
+      pass
   return 0, _status
 
 if __name__ == '__main__':

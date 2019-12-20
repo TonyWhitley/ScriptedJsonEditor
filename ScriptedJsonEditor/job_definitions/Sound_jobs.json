@@ -119,7 +119,7 @@
           "Reverb Max Dist#": "Distance from wall at which reverb drops to zero",
           "Reverb Wet Volume": 0.75,
           "Reverb Wet Volume#": "Reverb volume multiplier (0.0-1.0)",
-          "SoundFX Volume": .22,
+          "SoundFX Volume": 0.22,
           "SoundFX Volume#": "0.0-1.0",
           "Speed Of Sound": 300,
           "Speed Of Sound#": "340m\/s at sea level, but lower numbers help exaggerate the Doppler effect",

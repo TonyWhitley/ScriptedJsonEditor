@@ -10,7 +10,8 @@
     "job_definitions\\G25_jobs.json",
     "job_definitions\\Graphics_1109_jobs.json",
     "job_definitions\\VR_jobs.json",
-    "job_definitions\\Keyboard_jobs.json"
+    "job_definitions\\Keyboard_jobs.json",
+    "job_definitions\\Sound_jobs.json"
   ],
   "jobs": [
     {
