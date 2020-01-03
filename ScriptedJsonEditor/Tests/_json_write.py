@@ -3,15 +3,15 @@ import json
 import pprint
 
 _DATA = {
-  "<CONTROLLER.JSON>":
+    "<CONTROLLER.JSON>":
     r"c:\Program Files (x86)\Steam\steamapps\common\rFactor 2\UserData\Player\Controller.JSON",
-  "job definition files": ["Keyboard_jobs.json"],
-  "jobs": [
-    {"Keyboard_jobs": [
-      "Driver aid buttons disable",
-      "Cursor keys control seat"]
-    }
-  ]
+    "job definition files": ["Keyboard_jobs.json"],
+    "jobs": [
+        {"Keyboard_jobs": [
+            "Driver aid buttons disable",
+            "Cursor keys control seat"]
+         }
+    ]
 }
 
 PP = pprint.PrettyPrinter(indent=2)

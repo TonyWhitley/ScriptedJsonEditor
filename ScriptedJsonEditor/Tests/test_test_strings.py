@@ -1,14 +1,18 @@
 """ Test strings used by test functions """
 
+from command_line import JOBS_FILE_HELP_STR, JOB_DEFINITIONS_FILE_HELP_STR
 import json
 import os
 import sys
 import unittest
 
-sys.path.insert(0, os.path.abspath(os.path.dirname(os.path.dirname(os.path.realpath(__file__)))))
+sys.path.insert(
+    0, os.path.abspath(
+        os.path.dirname(
+            os.path.dirname(
+                os.path.realpath(__file__)))))
 
 
-from command_line import JOBS_FILE_HELP_STR,JOB_DEFINITIONS_FILE_HELP_STR
 valid_JSON_strings = [JOBS_FILE_HELP_STR]
 valid_JSON_strings.append(JOB_DEFINITIONS_FILE_HELP_STR)
 
@@ -18,15 +22,18 @@ edits = [
     ("Graphic Options", "Player Detail", 1),
     ("Graphic Options", "Opponent Detail", 1),
     ("Graphic Options", "Texture Detail", 1),
-    ("Graphic Options", "Texture Filter", 4),  # "0, bilinear, 1, trilinear, 2, X2 AF, 3, X4 AF, 4, X8 AF, 5, X16 AF"
+    # "0, bilinear, 1, trilinear, 2, X2 AF, 3, X4 AF, 4, X8 AF, 5, X16 AF"
+    ("Graphic Options", "Texture Filter", 4),
 
     ("Graphic Options", "Shadows", 1),
-    ("Graphic Options", "Shadow Blur", 0),	# "0=Off, 1=Fast, 2=Optimal, 3=Quality"
-    ("Graphic Options", "Soft Particles", 1),  # "0=Off, 1=Cheap soft edges, 2=Depth buffered soft edges"
-    ("Graphic Options", "Rain FX Quality", 1), # 
-    ("Graphic Options", "Road Reflections", 2), # "Off/Low/High"
-    ("Graphic Options", "Environment Reflections", 1), # "Off/Low/High"
-  
+    # "0=Off, 1=Fast, 2=Optimal, 3=Quality"
+    ("Graphic Options", "Shadow Blur", 0),
+    # "0=Off, 1=Cheap soft edges, 2=Depth buffered soft edges"
+    ("Graphic Options", "Soft Particles", 1),
+    ("Graphic Options", "Rain FX Quality", 1),
+    ("Graphic Options", "Road Reflections", 2),  # "Off/Low/High"
+    ("Graphic Options", "Environment Reflections", 1),  # "Off/Low/High"
+
     # VR-specific graphics
     ("Graphic Options", "Car Vibration Mult1", 0),
     ("Graphic Options", "Car Vibration Mult2", 0),
@@ -41,8 +48,8 @@ edits = [
     ("Graphic Options", "Garage Detail", 0.01),
     ("Graphic Options", "Max Headlights", 20),
     ("GraphicOptions", "Max Headlights", 20),
-  
-  ]
+
+]
 
 playerJSONstr = r"""
 {
@@ -71,7 +78,7 @@ playerJSONstr = r"""
 		                        "Shadow Blur#": "0=Off, 1=Fast, 2=Optimal, 3=Quality",
                             "Texture Filter": 4,
                             "Texture Filter#": "0, bilinear, 1, trilinear, 2, X2 AF, 3, X4 AF, 4, X8 AF, 5, X16 AF",
-                            "Track Detail": 0,  
+                            "Track Detail": 0,
 		                        "Track Detail#": "0=Low 1=Medium 2=High 3=Full",
                             "Shadows": 0,
 		                        "Shadows#": "0=Low 1=Medium 2=High 3=Full"
@@ -96,7 +103,7 @@ jobsJSONstr1 = r"""
 
 	  "edits": {
 		  "Graphic Options":{
-		  "Track Detail": 1,  
+		  "Track Detail": 1,
 		  "Track Detail#": "0=Low 1=Medium 2=High 3=Full",
 		  "Texture Filter": 4,
 		  "Texture Filter#": "0, bilinear, 1, trilinear, 2, X2 AF, 3, X4 AF, 4, X8 AF, 5, X16 AF"
@@ -123,7 +130,7 @@ jobsJSONstrBadKey2 = r"""
 
 	  "edits": {
 		  "Graphic Options":{
-		  "Track Detail": 1,  
+		  "Track Detail": 1,
 		  "Track Detail#": "0=Low 1=Medium 2=High 3=Full",
 		  "Texture Filter": 4,
 		  "Texture Filter#": "0, bilinear, 1, trilinear, 2, X2 AF, 3, X4 AF, 4, X8 AF, 5, X16 AF"
@@ -140,7 +147,7 @@ jobsJSONstrBadKey2 = r"""
 
 	  "edits": {
 		  "Graphic Options":{
-		  "Shadows": 1,  
+		  "Shadows": 1,
 		  "Shadows#": "0=Low 1=Medium 2=High 3=Full",
 		  "Shadow Blue": 4,
 		  "Shadow Blur#": "0=Off, 1=Fast, 2=Optimal, 3=Quality"
@@ -225,7 +232,7 @@ jobDefinition = r"""
 {
 "job definitions":{
   "VR": {
-    "JSONfileToBeEdited": "<CONTROLLER.JSON>", 
+    "JSONfileToBeEdited": "<CONTROLLER.JSON>",
     "edits": {
       "Input": {
         "#Tooltip: Left wheel button is Esc": 0,
@@ -250,23 +257,23 @@ jobDefinition = r"""
       }
     }
   },
-  "G25 minor controls": { 
-    "JSONfileToBeEdited": "<CONTROLLER.JSON>", 
-    "edits": { 
-       "Input": { 
-         "Control - Headlights": [ 
-           1, 
-           49 
-         ], 
-         "Control - Reset Force Feedback": [ 
-           1, 
-           34 
-         ] 
-       } 
-      } 
+  "G25 minor controls": {
+    "JSONfileToBeEdited": "<CONTROLLER.JSON>",
+    "edits": {
+       "Input": {
+         "Control - Headlights": [
+           1,
+           49
+         ],
+         "Control - Reset Force Feedback": [
+           1,
+           34
+         ]
+       }
+      }
     }
   }
-} 
+}
 """
 valid_JSON_strings.append(jobDefinition)
 
@@ -455,20 +462,21 @@ invalid_JSON_strings = [jobsBadJSONstr]
 
 
 class Test_test_test_strings(unittest.TestCase):
-  def test_valid_JSON_strings(self):
-    for json_str in valid_JSON_strings:
-      try:
-        json_dict = json.loads(json_str)
-      except ValueError:
-        assert False, 'JSON string content error'
+    def test_valid_JSON_strings(self):
+        for json_str in valid_JSON_strings:
+            try:
+                json_dict = json.loads(json_str)
+            except ValueError:
+                assert False, 'JSON string content error'
 
-  def test_invalid_JSON_strings(self):
-    for json_str in invalid_JSON_strings:
-      try:
-        json_dict = json.loads(json_str)
-        assert True, 'JSON string content error expected but didn\'t happen'
-      except ValueError:
-        pass # Error is expected
+    def test_invalid_JSON_strings(self):
+        for json_str in invalid_JSON_strings:
+            try:
+                json_dict = json.loads(json_str)
+                assert True, 'JSON string content error expected but didn\'t happen'
+            except ValueError:
+                pass  # Error is expected
+
 
 if __name__ == '__main__':
-  unittest.main()
+    unittest.main()

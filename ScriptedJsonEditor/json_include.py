@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# Originally https://pypi.python.org/pypi/json-include, minor edits for Python 3 - search for Py3
-from __future__ import print_function # Py3: compatibility for Python 2
+# Originally https://pypi.python.org/pypi/json-include, minor edits for
+# Python 3 - search for Py3
+from __future__ import print_function  # Py3: compatibility for Python 2
 # pylint: skip-file
 
 import os
@@ -27,7 +28,7 @@ def read_file(filepath):
 
 
 def get_include_name(value):
-    if isinstance(value, (str,bytes)):  # Py3
+    if isinstance(value, (str, bytes)):  # Py3
         rv = INCLUDE_VALUE_PATTERN.search(value)
         if rv:
             return rv.groups()[0]
@@ -38,12 +39,13 @@ def walk_through_to_include(o, dirpath):
     if isinstance(o, dict):
         is_include_exp = False
         if set(o) == set([INCLUDE_KEY]):
-            include_name = get_include_name(list(o.values())[0]) # Py3
+            include_name = get_include_name(list(o.values())[0])  # Py3
             if include_name:
                 is_include_exp = True
                 o.clear()
                 if include_name not in _included_cache:
-                    _included_cache[include_name] = parse_json_include(dirpath, include_name, True)
+                    _included_cache[include_name] = parse_json_include(
+                        dirpath, include_name, True)
                 o.update(_included_cache[include_name])
 
         if is_include_exp:
@@ -110,14 +112,21 @@ def build_json_include_to_files(dirpath, filenames, target_dirpath, indent=4):
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Command line tool to build JSON file by include syntax.')
+    parser = argparse.ArgumentParser(
+        description='Command line tool to build JSON file by include syntax.')
 
-    parser.add_argument('dirpath', metavar="DIR", help="The directory path of source json files")
-    parser.add_argument('filename', metavar="FILE", help="The name of the source json file")
+    parser.add_argument(
+        'dirpath',
+        metavar="DIR",
+        help="The directory path of source json files")
+    parser.add_argument(
+        'filename',
+        metavar="FILE",
+        help="The name of the source json file")
 
     args = parser.parse_args()
 
-    print (build_json_include(args.dirpath, args.filename)) # Py3
+    print(build_json_include(args.dirpath, args.filename))  # Py3
 
 
 if __name__ == '__main__':
