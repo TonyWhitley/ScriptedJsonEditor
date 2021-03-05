@@ -19,8 +19,8 @@ from json_include import build_json_include
 from backups import Backups
 from command_line import CommandLine
 
-BUILD_REVISION = 85  # The git commit count
-versionStr = 'Scripted JSON Editor V1.10.%d' % BUILD_REVISION
+BUILD_REVISION = 90  # The git commit count
+versionStr = 'Scripted JSON Editor V1.11.%d' % BUILD_REVISION
 versionDate = '2020-01-03'
 
 TooltipStr = '#Tooltip: '  # The comment in the job descriptions files that

@@ -1,5 +1,6 @@
 # Python 3
 import os
+import sys
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
@@ -15,7 +16,7 @@ from GUI import Menu2tab
 def about():
     messagebox.askokcancel(
         'About Scripted JSON Editor',
-        '%s  %s\nby Tony Whitley' % (versionStr, versionDate)
+        '%s  %s\nby Tony Whitley\nUsing Python V%s' % (versionStr, versionDate, sys.version.split()[0])
     )
 
 
