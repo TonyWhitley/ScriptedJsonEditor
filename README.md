@@ -1,3 +1,4 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 # ScriptedJsonEditor
 Scripted JSON editor is a command line program to make changes for example to rFactor 2 player.json
 
