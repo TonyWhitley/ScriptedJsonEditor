@@ -42,10 +42,10 @@
       "# rFactor 2 escapes /. Also remove space after the :": "",
       "edits": {
         "Input": {
-          "#Tooltip: Left wheel button is Esc": "",
+          "#Tooltip: Button 4 is Esc": "",
           "Control - Alternate Esc": [
             1,
-            39
+            35
           ],
           "#Tooltip: Button 19 re-centres head": "",
           "Control - VR : Re-Center head position": [
@@ -178,10 +178,6 @@
           "Control - Reset Force Feedback": [
             1,
             34
-          ],
-          "Control - Display Mode":[
-            1,
-            35
           ]
         }
       }
