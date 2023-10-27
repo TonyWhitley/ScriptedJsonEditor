@@ -1,0 +1,323 @@
+{
+  "# Config file for ScriptedJsonEditor": "",
+  "# V1.0.1": "",
+  "# Note: any key with a # is a comment": "",
+  "# Jobs provided in this file": [
+    "Wheel settings",
+    "VR",
+    "DriverAidsDisable",
+    "POV_hat_LCD_control",
+    "Minor controls"
+  ],
+  "# The jobs follow. Add more if you want": "",
+  "############################################": "",
+  "job definitions": {
+    "Wheel settings": {
+      "JSONfileToBeEdited": "<CONTROLLER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "Force Feedback": {
+      "#Tooltip: Filter = 0": "",
+          "Steering torque filter": 0,
+          "Steering torque filter#": "Number of old samples to use to filter torque from vehicle's steering column (0-32, note that higher values increase effective latency)",
+      "#Tooltip: Minimum torque = 12": "",
+          "Steering torque minimum": 0.12,
+          "Steering torque minimum#": "Minimum torque to apply in either direction to overcome steering wheel's 'FFB deadzone' caused by friction"
+        },
+        "General Controls": {
+      "#Tooltip: Range = 900 degrees": "",
+          "Steering Wheel Range": 900,
+          "Steering Wheel Range#": "Degrees of steering wheel rotation, both visual and physical (if available)"
+        }
+      }
+    },
+    "VR": {
+      "JSONfileToBeEdited": "<CONTROLLER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "Input": {
+          "#Tooltip: Button 4 is Esc": "",
+          "Control - Alternate Esc": [
+            1,
+            35
+          ],
+          "#Tooltip: Button 19 re-centres head": "",
+          "Control - VR : Re-Center head position": [
+            1,
+            50
+          ],
+          "#Tooltip: Disable look left/right": "",
+          "Control - Look Left": [
+            0,
+            89
+          ],
+          "#Tooltip: Disable right wheel button used for PTT": "",
+          "Control - Look Right": [
+            0,
+            89
+          ]
+        }
+      }
+    },
+    "Monitor": {
+      "JSONfileToBeEdited": "<CONTROLLER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "Input": {
+          "#Tooltip: Disable VR Left/right wheel buttons": "",
+          "Control - Alternate Esc": [
+            0,
+            89
+          ],
+          "Control - VR : Re-Center head position": [
+            0,
+            89
+          ],
+          "#Tooltip: Enable look left/right": "",
+          "Control - Look Left": [
+            1,
+            39
+          ],
+          "Control - Look Right": [
+            1,
+            38
+          ],
+          "#Tooltip: Button mapping: b19:50 is Ignition ": "",
+          "#Tooltip: otherwise used for VR centre head position ": "",
+          "Control - Ignition":[
+            1,
+            50
+          ]
+        }
+      }
+    },
+    "POV_hat_LCD_control": {
+      "JSONfileToBeEdited": "<CONTROLLER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "Input": {
+          "#Tooltip: Disable old control of brake bias and ARBs": "",
+          "Control - Bias Forward": [
+            0,
+            89
+          ],
+          "Control - Bias Rearward": [
+            0,
+            89
+          ],
+          "Control - Dec Front ARB": [
+            0,
+            89
+          ],
+          "Control - Dec Rear ARB": [
+            0,
+            89
+          ],
+          "#Tooltip: Use for pit LCD instead": "",
+          "Control - Pit Menu Dec": [
+            1,
+            19
+          ],
+          "Control - Pit Menu Down": [
+            1,
+            18
+          ],
+          "Control - Pit Menu Inc": [
+            1,
+            17
+          ],
+          "Control - Pit Menu Up": [
+            1,
+            16
+          ]
+        }
+      }
+    },
+    "Minor controls": {
+      "JSONfileToBeEdited": "<CONTROLLER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "#Tooltip: Button mapping: b1:32 to b8:39 b16:47 to b19:50  ": "",
+      "#Tooltip: Headlights on Ctrl to work with rF2headlights  ": "",
+      "edits": {
+        "Input": {
+          "Control - Starter":[
+            1,
+            47
+          ],
+          "Control - Wipers":[
+            1,
+            48
+          ],
+          "Control - Headlights": [
+            1,
+            29
+          ],
+          "Control - Speed Limiter":[
+            1,
+            32
+          ],
+          "Control - Pit Request":[
+            1,
+            33
+          ],
+          "Control - Reset Force Feedback": [
+            1,
+            34
+          ]
+        }
+      }
+    },
+
+    "Ignition on Button 19": {
+      "JSONfileToBeEdited": "<CONTROLLER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "Input": {
+          "#Tooltip: Button mapping: b19:50 is Ignition ": "",
+          "#Tooltip: otherwise used for VR centre head position ": "",
+          "Control - Ignition":[
+            1,
+            50
+          ]
+        }
+      }
+    },
+
+    "6 speed shifter": {
+      "JSONfileToBeEdited": "<CONTROLLER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "Input": {
+          "Control - First Gear":[
+            1,
+            40
+          ],
+          "Control - Second Gear":[
+            1,
+            41
+          ],
+          "Control - Third Gear":[
+            1,
+            42
+          ],
+          "Control - Fourth Gear":[
+            1,
+            43
+          ],
+          "Control - Fifth Gear":[
+            1,
+            44
+          ],
+          "Control - Sixth Gear":[
+            1,
+            45
+          ],
+          "Control - Reverse Gear":[
+            1,
+            46
+          ]
+        }
+      }
+    },
+    "5 speed shifter": {
+      "JSONfileToBeEdited": "<CONTROLLER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "Input": {
+          "Control - First Gear":[
+            1,
+            40
+          ],
+          "Control - Second Gear":[
+            1,
+            41
+          ],
+          "Control - Third Gear":[
+            1,
+            42
+          ],
+          "Control - Fourth Gear":[
+            1,
+            43
+          ],
+          "Control - Fifth Gear":[
+            1,
+            44
+          ],
+          "Control - Sixth Gear":[
+            0,
+            89
+          ],
+          "Control - Reverse Gear":[
+            1,
+            46
+          ]
+        }
+      }
+    },
+    "5 speed dog leg shifter": {
+      "#Tooltip: Reverse opposite 1st, 2nd opposite 3rd, 4th opposite 5th": "",
+      "JSONfileToBeEdited": "<CONTROLLER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "Input": {
+          "Control - First Gear":[
+            1,
+            41
+          ],
+          "Control - Second Gear":[
+            1,
+            42
+          ],
+          "Control - Third Gear":[
+            1,
+            43
+          ],
+          "Control - Fourth Gear":[
+            1,
+            44
+          ],
+          "Control - Fifth Gear":[
+            1,
+            45
+          ],
+          "Control - Sixth Gear":[
+            0,
+            89
+          ],
+          "Control - Reverse Gear":[
+            1,
+            40
+          ]
+        }
+      }
+    }
+  }
+}

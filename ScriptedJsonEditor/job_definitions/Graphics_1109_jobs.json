@@ -321,6 +321,31 @@
           "Max Framerate": 100
         }
       }
+    },
+    "FPS Limit 60 (VR)": {
+      "#Tooltip: Set graphic options generally as recommended in": "",
+      "#Tooltip: https://forum.studio-397.com/index.php?threads/rfactor2-the-vr-thread-settings-tips.55249/page-77#post-962195": "",
+      "#Tooltip: In game FPS should always be limited to 5-15% below your minimum measurable framerate.": "",
+      "#Tooltip: Without the limit, your PC is much more vulnerable for any interruptions by other programs": "",
+      "#Tooltip: and also actions on track, plus simply varying frametime from corner to corner, making the": "",
+      "#Tooltip: experience not smooth even if running high FPS.": "",
+      "#Tooltip: Most importantly, if you are CPU or memory bandwith bottlenecked, you will experience": "",
+      "#Tooltip: serious stutters and going out of real time if you reach 100% CPU usage. Plus it's simply": "",
+      "#Tooltip: a waste of electricity if you are pumping out over 200 frames per second. Just like you can": "",
+      "#Tooltip: tell a difference between 60hz and 120hz but not really between 120hz and 144hz monitors,": "",
+      "#Tooltip: you will hardly notice if your FPS is 150 or 550. Just keep it over your screens refresh": "",
+      "#Tooltip: rate and generally above 100 for good frametime.": "",
+
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "skip keys with # in them": true,
+      "# keys with # in them are used as comments, don't change the values": "",
+      "rFactor escape slash": true,
+      "# rFactor 2 escapes /. Also remove space after the :": "",
+      "edits": {
+        "Graphic Options": {
+          "Max Framerate": 60
+        }
+      }
     }
   }
 }

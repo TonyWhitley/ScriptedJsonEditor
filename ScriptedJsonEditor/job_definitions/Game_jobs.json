@@ -104,6 +104,15 @@
         }
       }
     },
+    "Virtual mirrors on": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "edits": {
+        "Graphic Options": {
+          "Virtual Rearview In Cockpit": true,
+          "Virtual Rearview In Cockpit#": "applies to cockpit or TV cockpit"
+        }
+      }
+    },
     "Pitstop Description on": {
       "JSONfileToBeEdited": "<PLAYER.JSON>",
       "edits": {
@@ -217,6 +226,24 @@
           "#Tooltip: Avoid accidental double gear change": "",
           "Repeat Shifts":4,
           "Repeat Shifts#":"0 = no repeat shift detection, 1 = detect and eliminate accidental repeat shifts within 100ms, 2 = 150ms, 3 = 200ms, 4 = 250ms, 5 = prevent shifting again before previous shift is completed"
+        }
+      }
+    },
+    "Invulnerability on": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "edits": {
+        "DRIVING AIDS": {
+          "#Tooltip: Damage OFF": "",
+          "Invulnerability": 1
+        }
+      }
+    },
+    "Invulnerability off": {
+      "JSONfileToBeEdited": "<PLAYER.JSON>",
+      "edits": {
+        "DRIVING AIDS": {
+          "#Tooltip: Damage ON": "",
+          "Invulnerability": 0
         }
       }
     }

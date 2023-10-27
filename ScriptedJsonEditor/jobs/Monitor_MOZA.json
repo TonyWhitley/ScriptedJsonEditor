@@ -1,13 +1,12 @@
 {
   "# Example of a typical jobs file that runs jobs found in several job definition files": "",
-  "# This sets up rF2 to run VR on a high end GPU using a G25 wheel": "",
+  "# This sets up rF2 to run VR on a high end GPU using a MOZA wheel": "",
   "# and a bunch of Game Settings I want": "",
   "# V1.0.0": "",
   "<PLAYER.JSON>": "<RF2ROOT>\\UserData\\<PLAYER>\\<PLAYER>.JSON",
   "jobs file format": 6,
   "job definition files": [
     "job_definitions\\Game_jobs.json",
-    "job_definitions\\G25_jobs.json",
     "job_definitions\\Graphics_1109_jobs.json",
     "job_definitions\\VR_jobs.json",
     "job_definitions\\Keyboard_jobs.json",
@@ -21,7 +20,7 @@
         "24 minute race x3",
         "Spotter off",
         "HUD off",
-        "Virtual mirrors off",
+        "Virtual mirrors on",
         "Pitstop Description on",
         "Showroom zoom on",
         "No formation lap",
@@ -29,25 +28,28 @@
         "t0p5ecret's AI settings",
         "Repeat shifts"
       ],
-      "G25_jobs": [
+      "MOZA_jobs": [
         "Wheel settings",
-        "VR",
+        "Monitor",
         "POV_hat_LCD_control",
         "Minor controls",
         "6 speed shifter"
       ],
       "Graphics_1109_jobs": [
-        "FPS savers",
-        "No rain",
+        "High end GPU",
+        "Rain medium",
         "FPS Limit 100 (VR)"
       ],
       "VR_jobs": [
-        "universal",
-        "High end GPU"
+        "Graphic Options undo"
       ],
       "Keyboard_jobs": [
         "Driver aid buttons disable",
         "Cursor keys control seat"
+      ],
+      "HUD_jobs": [
+        "HUD off",
+        "Lap time delta"
       ]
     }
   ]
