@@ -87,13 +87,13 @@ class JsonFile():
         """ Read the JSON file """
         try:
             #filepath = os.path.normpath(filepath)
-            with open(filepath) as f_p:
+            with open(filepath, encoding='utf-8', errors='ignore') as f_p:
                 try:
-                    self.json_dict = json.load(f_p)
+                    self.json_dict = json.load(f_p);
                     self.filepath = filepath
                     return self.json_dict
                 except ValueError as err:
-                    print('JSON content error in "%s"' % filepath)
+                    print(f'JSON content error in "{filepath}"')
                     print(err)
         except (IOError, FileNotFoundError):
             print(
@@ -298,15 +298,18 @@ class JsonJobsFile(JsonFile):
             for _job_definition_file_set in self.json_dict["jobs"]:
                 for _job_definition_file in _job_definition_file_set:
                     for _job in _job_definition_file_set[_job_definition_file]:
-                        __j = _job_definitions[_job_definition_file].get_job(
-                            _job)
-                        if __j:
-                            _result.append(__j)
-                        else:  # job not found in Job Description file
-                            _result.append(
-                                'job "%s" not found in Job Description file "%s"' %
-                                (_job, _job_description_file))
-                            raise NoSuchJobError
+                        if _job.startswith('#'):
+                            pass
+                        else:
+                            __j = _job_definitions[_job_definition_file].get_job(
+                                _job)
+                            if __j:
+                                _result.append(__j)
+                            else:  # job not found in Job Description file
+                                _result.append(
+                                    'job "%s" not found in Job Description file "%s"' %
+                                    (_job, _job_description_file))
+                                raise NoSuchJobError
         except KeyError:
             _result.append('%s has no "job definition files"' % self.filepath)
         return _result
@@ -593,7 +596,8 @@ def get_jobs_hierarchy(jobs_file_name):
     # For each job in jobsFile
     for job in _jobs:
         try:
-            list_job(job, config)
+            _report = list_job(job, config)
+            print(_report)
         except JobFailedError:  # failed to execute job
             return 98
         except FileNotFoundError:
