@@ -10,7 +10,8 @@
     "job_definitions\\Graphics_1109_jobs.json",
     "job_definitions\\VR_jobs.json",
     "job_definitions\\Keyboard_jobs.json",
-    "job_definitions\\Sound_jobs.json"
+    "job_definitions\\Sound_jobs.json",
+    "job_definitions\\HUD_jobs.json"
   ],
   "jobs": [
     {
@@ -19,7 +20,6 @@
         "Flags off",
         "24 minute race x3",
         "Spotter off",
-        "HUD off",
         "Virtual mirrors on",
         "Pitstop Description on",
         "Showroom zoom on",
@@ -27,6 +27,9 @@
         "Race replays only",
         "t0p5ecret's AI settings",
         "Repeat shifts"
+      ],
+      "HUD_jobs": [
+        "Lap time delta"
       ],
       "MOZA_jobs": [
       ],
@@ -37,7 +40,7 @@
       ],
       "VR_jobs": [
         "universal",
-        "High end GPU"
+        "Ultra GPU"
       ],
       "Keyboard_jobs": [
         "Driver aid buttons disable",
